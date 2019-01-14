@@ -1,0 +1,34 @@
+page-modal-product {
+  $fontcolor:map-get($colors, shades );
+  .label-product{
+    padding-left: 6%;
+  }
+
+  .searchbar-input {
+    font-size: 1.7rem !important;
+    color:$fontcolor !important;
+
+}
+.searchbar {
+  background: #FFF !important;
+  border-radius: 10px !important;
+  height: 40px !important;
+  //max-width: 3px;
+  border: 0px solid transparent !important;
+  color:$fontcolor;
+}
+
+ion-label{
+  color: map-get($colors, primary);
+}
+
+form{
+  ion-input{
+    color:$fontcolor;
+  }
+  ion-select{
+    color:$fontcolor;
+  }
+}
+
+}

@@ -1,17 +1,75 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+
+    <ion-navbar> <ion-title></ion-title> </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-list>
+    <ion-card *ngFor="let item of arrProdutos">
+      <ion-card-content color="primary">
+       <ion-grid>
+        <ion-row>
+          <ion-col align-self-start>
+            <h3>Produto:</h3>
+          </ion-col>
+          <ion-col justify-content-end>
+            <p align="right" *ngIf="item.produto.nome.name">{{ item.produto.nome.name}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col align-self-start>
+            <h3>Quantidade:</h3> </ion-col>
+          <ion-col align-self-end>
+            <p align="right" >{{ item.produto.qtd }}</p>
+          </ion-col>
+        </ion-row>
+
+       <!--  <ion-row>
+            <ion-col align-self-start> <h3>Tipo:</h3> </ion-col>
+            <ion-col align-self-end>
+              <p align="right">{{ item.produto.tipo }}</p>
+            </ion-col>
+          </ion-row>
+ -->
+          <ion-row>
+              <ion-col align-self-start> <h3>Unidade:</h3> </ion-col>
+              <ion-col align-self-end>
+                <p align="right">{{ item.produto.unidade }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-card-content>
+
+      <ion-row text-center>
+        <ion-col>
+          <button ion-button icon-left clear small (click)="editProduct(item)">
+            <ion-icon name="create"></ion-icon>
+            <div>Editar</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button
+            ion-button
+            icon-left
+            clear
+            small
+            (click)="removeProduct(item)"
+          >
+            <ion-icon name="trash"></ion-icon>
+            <div>Excluir</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addProduct()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
+
+

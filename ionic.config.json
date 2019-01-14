@@ -1,5 +1,7 @@
 {
   "name": "RequestApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

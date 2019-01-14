@@ -1,40 +1,79 @@
+import { RequestPage } from './../pages/request/request';
+import { StockPage } from './../pages/stock/stock';
+import { Utilitarios } from './../utilitarios/utilitarios';
+import { ModalProductPage } from './../pages/modal-product/modal-product';
+import { MbscModule } from '@mobiscroll/angular';
+import { EditProductPage } from './../pages/edit-product/edit-product';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { DatePipe } from '@angular/common';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ProductStorageProvider } from '../providers/product-storage/product-storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AutoCompleteModule } from 'ionic2-auto-complete';
+import { CompleteServiceProvider } from '../providers/complete-service/complete-service';
+import { HttpModule } from '@angular/http';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { MorePage } from '../pages/more/more';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EditProductPage,
+    ModalProductPage,
+    LoginPage,
+    SignupPage,
+    MorePage,
+    StockPage,
+    RequestPage
+
   ],
   imports: [
+    MbscModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    FormsModule,
+    AutoCompleteModule,
+    HttpModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EditProductPage,
+    ModalProductPage,
+    LoginPage,
+    SignupPage,
+    MorePage,
+    StockPage,
+    RequestPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatePipe,
+    ProductStorageProvider,
+    CompleteServiceProvider,
+    Utilitarios
   ]
 })
 export class AppModule {}

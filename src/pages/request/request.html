@@ -1,0 +1,92 @@
+<!--
+  Generated template for the RequestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+   <ion-title> Pedido </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content class="background-img" >
+
+    <ion-segment color="indigo" (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
+        <ion-segment-button value="F">
+          Fruta
+        </ion-segment-button>
+        <ion-segment-button value="V">
+          Verdura
+        </ion-segment-button>
+        <ion-segment-button value="L">
+          Legume
+        </ion-segment-button>
+      </ion-segment>
+
+  <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">
+    <ion-grid>
+      <ion-row>
+        <ion-col name="Produto" class="size-title" align-self-center col-8>
+          Produto
+        </ion-col>
+
+        <ion-col name="Qtd" align-self-center align="right">
+          Qtd
+        </ion-col>
+        <ion-col name="Und" align="right">
+          Und
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngFor="let item of arrProdutos " class="card">
+    <ion-list>
+      <ion-item-sliding>
+        <ion-item class="item">
+          <ion-grid>
+            <div>
+              <ion-row>
+
+                <ion-col class="ion-col" align-self-start col-8>
+                  <h4>{{ item.produto.nome.name}}</h4>
+                </ion-col>
+                <ion-col align-self-center align="right">
+                  <h4> {{ item.produto.qtd }}</h4>
+                </ion-col>
+
+                <ion-col align="right">
+                  <h4>{{ item.produto.unidade }}</h4>
+                </ion-col>
+
+              </ion-row>
+            </div>
+
+          </ion-grid>
+        </ion-item>
+        <ion-item-options side="right" (ionSwipe)="removeProduct(item)">
+          <button ion-button expandable color="danger" (click)="removeProduct(item)">
+            <ion-icon name="trash"></ion-icon>Excluir
+          </button>
+          <button ion-button (click)="editProduct(item)">
+            <ion-icon name="create"></ion-icon>Editar
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+  <div>
+    <ion-fab right bottom>
+      <button ion-fab color="indigo" (click)="addProduct()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+
+
+</ion-content>

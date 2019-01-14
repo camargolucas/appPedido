@@ -1,0 +1,51 @@
+
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+          Inserir Produto
+        </ion-title>
+        <ion-buttons clear start>
+          <button ion-button (click)="closeModal()">
+            <span ion-text color="primary" showWhen="ios">Cancel</span>
+           <!--  <ion-icon name="md-close" ></ion-icon> -->
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="myForm"  >
+        <div>
+          <ion-label class="label-product" stacked>Produto</ion-label>
+          <ion-auto-complete type="text" name="produto" [(ngModel)]="model.nome"  [dataProvider]="completeService" formControlName="products" [options]="{ autocomplete  : 'on' , placeholder : 'Digite o Produto'}"  ></ion-auto-complete>
+        </div>
+        <hr>
+
+      <ion-item>
+        <ion-label stacked>Quantidade</ion-label>
+        <ion-input type="number" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade" formControlName="qtd" ></ion-input>
+      </ion-item>
+
+     <!--  <ion-item>
+        <ion-label stacked>Tipo</ion-label>
+        <ion-select name="tipo" [(ngModel)]="model.tipo" placeholder="Escolha o Tipo" formControlName="tipo">
+          <ion-option *ngFor="let item of arrTipo" value="{{ item.tipo }}">{{
+            item.tipo
+          }}</ion-option>
+        </ion-select>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label stacked>Und. Medida</ion-label>
+        <ion-select name="unidade" [(ngModel)]="model.unidade" placeholder="Escolha a Unidade" formControlName="und">
+          <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}" > {{
+            item.und
+          }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button type="submit" ion-button block (click)="save()" [disabled]="myForm.invalid">Salvar</button>
+
+    </form>
+</ion-content>
