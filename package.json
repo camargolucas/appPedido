@@ -37,6 +37,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "ionic-angular": "3.9.2",
+    "ionic-native": "^2.9.0",
     "ionic2-auto-complete": "^1.6.2-alpha",
     "ionic2-auto-complete-ng5": "^1.0.3-release",
     "ionicons": "3.0.0",

@@ -31,6 +31,10 @@ export class ProductStorageProvider {
     return this.storage.get(key)
   }
 
+  public clear(){
+    return this.storage.clear();
+  }
+
   public getAll(){
     let produtos: ListaProduto[] = [];
 

@@ -4,7 +4,8 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ToastController
+  ToastController,
+  Img
 } from "ionic-angular";
 import { ModalController, ViewController } from "ionic-angular";
 import { CompleteServiceProvider } from "../../providers/complete-service/complete-service";
@@ -31,6 +32,7 @@ export class ModalProductPage {
   myForm: FormGroup;
   arrUnidade: any;
   arrTipo: any;
+  classCssImg:string;
 
   constructor(
     public navCtrl: NavController,
@@ -56,6 +58,17 @@ export class ModalProductPage {
 
     this.model.unidade = "KILO";
 
+    // Verifico em qual tela esta sendo aberto a inclusao para indicar ao css qual imagem de fundo ele deve utilizar
+    if (nomeCategoria === 'Estoque') this.classCssImg = 'Estoque-Background'
+    else this.classCssImg = 'Pedido-Background'
+  }
+
+  ionViewDidLoad(){
+    this.changeBackground();
+  }
+
+  changeBackground(){
+    document.getElementById('content').className = this.classCssImg;
   }
 
   ngOnInit(): void {

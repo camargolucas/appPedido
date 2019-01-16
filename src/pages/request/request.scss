@@ -52,4 +52,11 @@ ion-col{
 }
 
 
+.scroll-content{
+  padding: 0px;
+  background-image: map-get($backgroundimg , request);
+  //background-image: map-get($backgroundimg , stock);
+
+  background-size: cover;
+}
 }

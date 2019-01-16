@@ -25,4 +25,8 @@ export class MorePage {
       this.app.getRootNav().setRoot(LoginPage);
   }
 
+  clear(){
+    this.provider.clear();
+  }
+
 }

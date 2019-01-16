@@ -6,25 +6,25 @@
 -->
 <ion-header>
 
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-title> Estoque</ion-title>
   </ion-toolbar>
 
 
 </ion-header>
 
-<ion-content>
-    <ion-segment (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
-        <ion-segment-button value="F">
-          Fruta
-        </ion-segment-button>
-        <ion-segment-button value="V">
-          Verdura
-        </ion-segment-button>
-        <ion-segment-button value="L">
-          Legume
-        </ion-segment-button>
-      </ion-segment>
+<ion-content class="scroll-content">
+  <ion-segment (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
+    <ion-segment-button value="F">
+      Fruta
+    </ion-segment-button>
+    <ion-segment-button value="V">
+      Verdura
+    </ion-segment-button>
+    <ion-segment-button value="L">
+      Legume
+    </ion-segment-button>
+  </ion-segment>
 
   <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">
     <ion-grid>
@@ -51,14 +51,14 @@
               <ion-row>
 
                 <ion-col class="ion-col" align-self-start col-8>
-                  <h4>{{ item.produto.nome.name}}</h4>
+                  <h4>{{ item.produto.nome.NAME }}</h4>
                 </ion-col>
                 <ion-col align-self-center align="right">
                   <h4> {{ item.produto.qtd }}</h4>
                 </ion-col>
 
                 <ion-col align="right">
-                  <h4>{{ item.produto.unidade }}</h4>
+                  <h4>{{ item.produto.unidade  }}</h4>
                 </ion-col>
 
               </ion-row>

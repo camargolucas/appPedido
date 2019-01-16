@@ -43,6 +43,7 @@ export class RequestPage {
 
   ionViewDidEnter() {
     this.loadData(this.tipo);
+
   }
 
   onSegmentChange(value: any) {
@@ -53,7 +54,7 @@ export class RequestPage {
   addProduct(){
    const myModal = this.modal.create(ModalProductPage, {
       idCategoria: this.idCategoria ,
-      nomeCategoria:this.nomeCategoria
+      nomeCategoria:this.nomeCategoria,
     })
     myModal.onDidDismiss(() => {
       this.loadData(this.tipo);
@@ -68,7 +69,7 @@ export class RequestPage {
       .then(results => {
         this.arrRet = results;
         this.arrProdutos = results.filter(data => {
-          return (data.produto.nome["Tipo"] == value && data.produto.categoriaProduto.nomeCategoria == 'Pedido');
+          return (data.produto.nome["TIPO"] == value && data.produto.categoriaProduto.nomeCategoria == 'Pedido');
         });
       })
       .catch(error => {

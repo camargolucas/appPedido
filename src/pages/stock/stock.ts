@@ -83,8 +83,9 @@ export class StockPage {
       .getAll()
       .then(results => {
         this.arrRet = results;
+
         this.arrProdutos = results.filter(data => {
-          return (data.produto.nome["Tipo"] == value && data.produto.categoriaProduto.nomeCategoria == 'Estoque');
+          return (data.produto.nome["TIPO"] == value && data.produto.categoriaProduto.nomeCategoria == 'Estoque');
         });
       })
       .catch(error => {
@@ -111,8 +112,8 @@ export class StockPage {
 
   showConfirm() {
     const confirm = this.alertCtrl.create({
-      title: "Deseja gravar o estoque? ",
-      message: "Lembre-se se voce gravar, o estoque não poderá ser alterado",
+      title: "Deseja enviar o estoque? ",
+      message: "Lembre-se se voce enviar, o estoque não poderá ser alterado",
       buttons: [
         {
           text: "Não",

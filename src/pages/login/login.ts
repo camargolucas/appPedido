@@ -1,7 +1,7 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TabsPage } from './../tabs/tabs';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { TabsPage } from "./../tabs/tabs";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams, Form } from "ionic-angular";
 
 /**
  * Generated class for the LoginPage page.
@@ -12,26 +12,43 @@ import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: "page-login",
+  templateUrl: "login.html"
 })
 export class LoginPage {
-  formLogin:FormGroup
+  formLogin: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+/*     let appEl = <HTMLElement>document.getElementsByTagName("ION-APP")[0],
+      appElHeight = appEl.clientHeight;
+
+    Keyboard.disableScroll(true);
+
+    window.addEventListener("native.keyboardshow", e => {
+      appEl.style.height = appElHeight - (<any>e).keyboardHeight + "px";
+    });
+
+    window.addEventListener("native.keyboardhide", () => {
+      appEl.style.height = "100%";
+    }); */
+
+
 
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+
+  }
+
+
 
   ngOnInit() {
     this.formLogin = new FormGroup({
-      usuario: new FormControl("", Validators.required  ),
-      senha: new FormControl("", Validators.required  )
-    })
+      usuario: new FormControl("", Validators.required),
+      senha: new FormControl("", Validators.required)
+    });
   }
 
-  login(){
-    this.navCtrl.push(TabsPage)
+  login() {
+    this.navCtrl.push(TabsPage);
   }
-
 }

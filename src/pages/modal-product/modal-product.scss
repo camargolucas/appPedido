@@ -22,13 +22,40 @@ ion-label{
   color: map-get($colors, primary);
 }
 
-form{
+/* form{
   ion-input{
     color:$fontcolor;
   }
   ion-select{
     color:$fontcolor;
   }
+} */
+
+.Estoque-Background{
+
+  .scroll-content{
+    padding: 0px;
+    background-image: map-get($backgroundimg , stock);
+    //background-image: map-get($backgroundimg , stock);
+
+    background-size: cover;
+  }
+
 }
+
+.Pedido-Background{
+
+  .scroll-content{
+    padding: 0px;
+    background-image: map-get($backgroundimg , request);
+    //background-image: map-get($backgroundimg , stock);
+
+    background-size: cover;
+  }
+
+}
+
+
+
 
 }

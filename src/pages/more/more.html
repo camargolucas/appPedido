@@ -15,19 +15,23 @@
 
 <ion-content padding>
 
-    <ion-card>
-        <ion-card-header>
-          <h1>Outros</h1>
-        </ion-card-header>
+  <ion-card>
+    <ion-card-header>
+      <h1>Outros</h1>
+    </ion-card-header>
 
-        <ion-list>
-          <button ion-item (click)="leave()" clear>
-            <ion-icon name="md-walk" item-start clear color="primary"></ion-icon>
-            <h2>Sair</h2>
-          </button>
+    <ion-list>
+      <button ion-item (click)="clear()" clear>
+        <ion-icon name="trash" item-start clear color="primary"></ion-icon>
+        <h2>Limpar</h2>
+      </button>
 
-        </ion-list>
-      </ion-card>
+      <button ion-item (click)="leave()" clear>
+        <ion-icon name="md-walk" item-start clear color="primary"></ion-icon>
+        <h2>Sair</h2>
+      </button>
+    </ion-list>
+  </ion-card>
 
 
 </ion-content>
