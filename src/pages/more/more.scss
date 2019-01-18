@@ -8,5 +8,13 @@ h2{
   font-size: 20px !important;
 }
 
+.scroll-content{
+  padding: 0px;
+  background-image: map-get($backgroundimg , default);
+  //background-image: map-get($backgroundimg , stock);
+
+  background-size: cover;
+}
+
 
 }

@@ -18,7 +18,7 @@ import { ListaProduto } from "../../model/ListaProduto";
   templateUrl: "home.html"
 })
 export class HomePage {
-  arrProdutos: ListaProduto[];
+  private arrProdutos: ListaProduto[];
   constructor(
     public navCtrl: NavController,
     public provider: ProductStorageProvider,

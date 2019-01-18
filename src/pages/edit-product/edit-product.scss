@@ -17,5 +17,31 @@ page-edit-product {
 /* ion-auto-complete {
   width: 200vw;
 }
- */
+
+*/
+
+.Estoque-Background{
+
+  .scroll-content{
+    padding: 0px;
+    background-image: map-get($backgroundimg , stock);
+    //background-image: map-get($backgroundimg , stock);
+
+    background-size: cover;
+  }
+
+}
+
+.Pedido-Background{
+
+  .scroll-content{
+    padding: 0px;
+    background-image: map-get($backgroundimg , request);
+    //background-image: map-get($backgroundimg , stock);
+
+    background-size: cover;
+  }
+
+}
+
 }

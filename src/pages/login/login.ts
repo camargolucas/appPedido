@@ -1,7 +1,7 @@
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { TabsPage } from "./../tabs/tabs";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Form } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Form, MenuController, Menu } from "ionic-angular";
 
 /**
  * Generated class for the LoginPage page.
@@ -17,7 +17,7 @@ import { IonicPage, NavController, NavParams, Form } from "ionic-angular";
 })
 export class LoginPage {
   formLogin: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu:MenuController) {
 /*     let appEl = <HTMLElement>document.getElementsByTagName("ION-APP")[0],
       appElHeight = appEl.clientHeight;
 
@@ -31,7 +31,7 @@ export class LoginPage {
       appEl.style.height = "100%";
     }); */
 
-
+    this.menu.enable(false)
 
   }
 
@@ -50,5 +50,6 @@ export class LoginPage {
 
   login() {
     this.navCtrl.push(TabsPage);
+    this.menu.enable(true)
   }
 }

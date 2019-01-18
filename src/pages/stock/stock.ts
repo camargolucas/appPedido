@@ -26,11 +26,11 @@ import { ListaProduto } from "../../model/ListaProduto";
   templateUrl: "stock.html"
 })
 export class StockPage {
-  arrRet: ListaProduto[];
-  arrProdutos: ListaProduto[];
-  tipo = "";
-  editar: boolean = true;
-  idCategoria: number = 1;
+  private arrRet: ListaProduto[];
+  private arrProdutos: ListaProduto[];
+  private tipo = "";
+  private editar: boolean = true;
+  private idCategoria: number = 1;
 
   public nomeCategoria = "Estoque";
 
@@ -59,7 +59,8 @@ export class StockPage {
   editProduct(item: ListaProduto) {
     this.navCtrl.push(EditProductPage, {
       key: item.key,
-      produto: item.produto
+      produto: item.produto,
+      nomeCategoria: this.nomeCategoria,
     });
   }
 

@@ -27,12 +27,12 @@ import { CategoriaProduto } from "./../../model/CategoriaProduto";
   templateUrl: "modal-product.html"
 })
 export class ModalProductPage {
-  model: Produto;
-  key: string;
-  myForm: FormGroup;
-  arrUnidade: any;
-  arrTipo: any;
-  classCssImg:string;
+  private model: Produto;
+  private key: string;
+  private myForm: FormGroup;
+  private arrUnidade: any;
+  private arrTipo: any;
+  private classCssImg:string;
 
   constructor(
     public navCtrl: NavController,

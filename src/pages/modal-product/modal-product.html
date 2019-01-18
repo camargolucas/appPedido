@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content id='content' class="background-request" padding>
+<ion-content id='content' class="Pedido-Background" padding>
   <form [formGroup]="myForm">
     <div>
       <ion-label class="label-product" stacked>Produto</ion-label>
@@ -24,7 +24,7 @@
 
     <ion-item>
       <ion-label stacked>Quantidade</ion-label>
-      <ion-input type="number" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade" formControlName="qtd"></ion-input>
+      <ion-input type="number" pattern="[0-9]*" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade" formControlName="qtd"></ion-input>
     </ion-item>
 
     <!--  <ion-item>

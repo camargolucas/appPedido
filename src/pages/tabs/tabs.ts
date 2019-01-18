@@ -1,11 +1,12 @@
 import { RequestPage } from './../request/request';
 import { MorePage } from './../more/more';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { StockPage } from '../stock/stock';
+import { Nav } from 'ionic-angular';
 
 @Component({
 

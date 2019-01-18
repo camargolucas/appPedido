@@ -1,16 +1,12 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title></ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
   <div>
     <form [formGroup]="formLogin">
-      <ion-title>
-        <h1>Bem Vindo</h1>
-      </ion-title>
-      <ion-item>
+      <div class="title">
+        <ion-title>
+          <h1>Bem Vindo</h1>
+        </ion-title>
+      </div>
+      <ion-item class="ion-item" no-lines>
         <ion-label floating color="primary">
           <ion-icon name="md-people"></ion-icon>
           Usuário
@@ -18,7 +14,7 @@
         <ion-input type="text" formControlName="usuario"> </ion-input>
         <hr>
       </ion-item>
-      <ion-item>
+      <ion-item class="ion-item" no-lines>
         <ion-label floating color="primary">
           <ion-icon name="md-lock" left></ion-icon>
           Senha

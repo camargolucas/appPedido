@@ -3,25 +3,30 @@ page-stock {
   $fontcolor: map-get($colors, shades);
 
   .title {
+    text-align: center;
     font-size: 30px;
   }
 
   h4 {
     color: $fontcolor;
+    font-size: 11px !important;
 
   }
 
   h3 {
-    color: map-get($colors, primary)
+    color: map-get($colors, primary);
+    font-size: 35px !important;
   }
 
   .card {
     margin-bottom: -31px !important;
     margin-top: -10px;
+
   }
 
   .item {
-    height: 20px;
+    height: 16px;
+
   }
 
   ion-col {
@@ -37,7 +42,7 @@ page-stock {
 
   .cfg-title {
     color: map-get($colors, primary);
-    font-size: 17px;
+    font-size: 15px;
 
     ion-col[name='Produto'] {
       padding-left: 20px;
@@ -47,20 +52,11 @@ page-stock {
       padding-right: 22px;
     }
 
-    /* render image */
-    /* <img id="bgrimage" src="/img/getstart.png" alt="imagenotavailable"> */
 
 
 
   }
 
-
-  /* ion-card{
-  display: flex;
-  flex-direction: column;
-  width: 100% !important;
-  margin: 0 !important;
-} */
 
 .scroll-content{
     padding: 0px;
@@ -70,5 +66,17 @@ page-stock {
     background-size: cover;
 }
 
+
+
+
+.icon-cfg{
+  font-size: 25px;
+}
+
+
+ion-fab{
+  top: 82% !important;
+
+}
 
 }

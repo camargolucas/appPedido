@@ -1,62 +1,76 @@
 page-request {
 
-
-h4{
-  color: map-get($colors,shades)
-
-}
-h3{
-  color: map-get($colors,primary)
-}
-
-.card{
-  margin-bottom:  -31px !important;
-  margin-top:-10px;
-}
-
-.item{
-  height: 20px;
-}
-
-ion-col{
-  text-overflow: ellipsis !important;
-  overflow: hidden;
-}
-
-.size-title{
-  padding-top: 0% !important;
-
-}
-
-.background-img{
-  padding: 0px;
- // background-image: url('../assets/imgs/wp3.png');
-  background-size: auto;
-}
-
-
-.cfg-title{
-   color:map-get($colors , indigo );
-   font-size: 17px;
-
-  ion-col[name='Produto']{
-    padding-left: 20px;
+  .title {
+    text-align: center;
+    font-size: 30px;
   }
 
-  ion-col[name='Und']{
-    padding-right: 22px;
+  h4 {
+    color: map-get($colors, shades);
+    font-size: 11px !important;
+  }
+
+  h3 {
+    color: map-get($colors, primary);
+    font-size: 35px !important;
+  }
+
+  .card {
+    margin-bottom: -31px !important;
+    margin-top: -10px;
+  }
+
+  .item {
+    height: 16px;
+  }
+
+  ion-col {
+    text-overflow: ellipsis !important;
+    overflow: hidden;
+  }
+
+  .size-title {
+    padding-top: 0% !important;
+
+  }
+
+  .background-img {
+    padding: 0px;
+    // background-image: url('../assets/imgs/wp3.png');
+    background-size: auto;
   }
 
 
+  .cfg-title {
+    color: map-get($colors, indigo);
+    font-size: 17px;
 
-}
+    ion-col[name='Produto'] {
+      padding-left: 20px;
+    }
+
+    ion-col[name='Und'] {
+      padding-right: 22px;
+    }
 
 
-.scroll-content{
-  padding: 0px;
-  background-image: map-get($backgroundimg , request);
-  //background-image: map-get($backgroundimg , stock);
 
-  background-size: cover;
-}
+  }
+
+  ion-fab {
+    z-index: 100;
+    position: fixed;
+  }
+
+  .scroll-content {
+    padding: 0px;
+    background-image: map-get($backgroundimg, request);
+    //background-image: map-get($backgroundimg , stock);
+
+    background-size: cover;
+  }
+
+  .icon-cfg{
+    font-size: 25px;
+  }
 }

@@ -44,9 +44,11 @@ $colors: (
 );
 
 $backgroundimg:(
- stock: url('../assets/imgs/stock.png'), //linear-gradient(to bottom,#f1f5f7,#d9e4eb, #89a3d1) !important,
- request: url('../assets/imgs/request.png') //linear-gradient(to bottom,#f3eff5,#e8dfec,  #bb99ca) !important
+ stock:       url('../assets/imgs/stock.png'), //linear-gradient(to bottom,#f1f5f7,#d9e4eb, #89a3d1) !important,
+ request:     url('../assets/imgs/request.png'), //linear-gradient(to bottom,#f3eff5,#e8dfec,  #bb99ca) !important
+ default:     url('../assets/imgs/default.png')
 );
+
 .tabbar {
 	a.tab-button[aria-selected=true]:nth-of-type(2) {
     color: color($colors,indigo);
@@ -55,8 +57,9 @@ $backgroundimg:(
 			color: color($colors,indigo);
     }
 	}
-
 }
+
+
 
 // App iOS Variables
 // --------------------------------------------------

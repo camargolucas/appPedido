@@ -79,7 +79,8 @@ export class RequestPage {
   editProduct(item: ListaProduto) {
     this.navCtrl.push(EditProductPage, {
       key: item.key,
-      produto: item.produto
+      produto: item.produto,
+      nomeCategoria: this.nomeCategoria,
     });
   }
 

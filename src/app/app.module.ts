@@ -1,3 +1,4 @@
+import { MenuPage } from './../pages/menu/menu';
 import { RequestPage } from './../pages/request/request';
 import { StockPage } from './../pages/stock/stock';
 import { Utilitarios } from './../utilitarios/utilitarios';
@@ -39,7 +40,8 @@ import { MorePage } from '../pages/more/more';
     SignupPage,
     MorePage,
     StockPage,
-    RequestPage
+    RequestPage,
+    MenuPage
 
   ],
   imports: [
@@ -64,7 +66,8 @@ import { MorePage } from '../pages/more/more';
     SignupPage,
     MorePage,
     StockPage,
-    RequestPage
+    RequestPage,
+    MenuPage
   ],
   providers: [
     StatusBar,

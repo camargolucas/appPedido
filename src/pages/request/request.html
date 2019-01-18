@@ -5,15 +5,24 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-toolbar> <ion-title> Pedido </ion-title> </ion-toolbar>
+  <ion-toolbar>
+    <ion-title class="title"> Pedido </ion-title>
+    <button class="icon-cfg" ion-button menuToggle color="primary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-buttons end>
+      <button class="icon-cfg" ion-button color="primary" (click)="addProduct()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
+
 <ion-content class="background-img">
-  <ion-segment
-    color="indigo"
-    (ionChange)="onSegmentChange(tipo)"
-    [(ngModel)]="tipo"
-  >
+
+  <ion-segment color="indigo" (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
     <ion-segment-button value="F"> Fruta </ion-segment-button>
     <ion-segment-button value="V"> Verdura </ion-segment-button>
     <ion-segment-button value="L"> Legume </ion-segment-button>
@@ -53,12 +62,7 @@
           </ion-grid>
         </ion-item>
         <ion-item-options side="right" (ionSwipe)="removeProduct(item)">
-          <button
-            ion-button
-            expandable
-            color="danger"
-            (click)="removeProduct(item)"
-          >
+          <button ion-button expandable color="danger" (click)="removeProduct(item)">
             <ion-icon name="trash"></ion-icon>Excluir
           </button>
           <button ion-button (click)="editProduct(item)">
@@ -66,14 +70,16 @@
           </button>
         </ion-item-options>
       </ion-item-sliding>
-    </ion-list>
-  </div>
 
-  <div>
-    <ion-fab right bottom>
-      <button ion-fab color="indigo" (click)="addProduct()">
+    </ion-list>
+
+  </div>
+  <!--  <div class="ion-fab">
+    <ion-fab bottom right mini>
+      <button ion-fab color="indigo" (click)="addProduct()" round small>
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-fab>
-  </div>
+  </div> -->
+
 </ion-content>

@@ -25,17 +25,19 @@ import { Produto } from '../../model/Produto';
   selector: "page-edit-product",
   templateUrl: "edit-product.html"
 })
-export class EditProductPage {
+export class  EditProductPage {
   @ViewChild('searchbar')
   searchbar: AutoCompleteComponent;
 
-  model: Produto;
-  key: string;
-  myForm: FormGroup
-  arrUnidade:any
-  arrTipo:any
-  products:any
-  nomeProd = ""
+  private model: Produto;
+  private key: string;
+  private myForm: FormGroup;
+  private arrUnidade:any;
+  private arrTipo:any;
+  private products:any;
+  private nomeProd = "";
+  private nomeCategoria = "";
+  private classCssImg:string;
 
   constructor(
     public navCtrl: NavController,
@@ -45,7 +47,6 @@ export class EditProductPage {
     public completeService:CompleteServiceProvider,
     public utilitarios:Utilitarios,
     public view:ViewController
-
   ) {
     if (this.navParams.data.produto && this.navParams.data.key) {
       this.model = this.navParams.data.produto;
@@ -57,8 +58,21 @@ export class EditProductPage {
     this.arrTipo = this.utilitarios.getArrayTipo()
     this.arrUnidade = this.utilitarios.getArrayUnidade()
     this.nomeProd = this.model.nome
+
+    // verifico em qual tela ele esta querendo editar para colocar a imagem de fundo correspondente ;
+    this.nomeCategoria = navParams.data.nomeCategoria;
+    if (this.nomeCategoria === 'Estoque') this.classCssImg = 'Estoque-Background'
+    else this.classCssImg = 'Pedido-Background'
+
   }
 
+  ionViewDidLoad(){
+    this.changeBackground();
+  }
+
+  changeBackground(){
+    document.getElementById('content').className = this.classCssImg;
+  }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
