@@ -1,45 +1,44 @@
 @import "ionic.globals";
+
 page-login {
 
-ion-item{
+  ion-item {}
 
+  .title {
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .scroll-content {
+    padding: 0px;
+    background-image: map-get($backgroundimg, 'default');
+    background-size: cover;
+  }
+
+  h1 {
+    color: map-get($colors , primary );
+  }
+
+  ion-input {
+    font-weight: lighter;
+    color:black;
+
+  }
+  .ion-item {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 0px solid !important;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 4px;
+    height: 55px;
+  }
+
+  .div-components{
+    padding-top: 30%;
+  }
 }
 
-.title{
-  margin-top: 20px;
-  margin-bottom: 15px;
-}
 
-.scroll-content{
-  padding: 0px;
-  background-image: map-get($backgroundimg , 'default');
-  background-size: cover;
-}
 
-h1{
-  color:#488aff;
-}
-
-ion-input{
-  font-weight: lighter;
-}
-
-}
-
- .ion-item{
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border: 1px solid !important;
-  color: #488aff;
-
-}
-/* ion-item:last-child {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-} */
-ion-item.item {
-  background-color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 7px;
-}

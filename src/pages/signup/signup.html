@@ -13,6 +13,51 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="scroll-content" padding>
+  <div class="div-components">
+    <form [formGroup]="formSignUp">
+
+      <ion-title>
+        <h1>Cadastrar</h1>
+      </ion-title>
+      <div>
+        <ion-item class="ion-item" no-lines>
+          <ion-label>
+            <ion-icon name="md-people"></ion-icon>
+            Usuário
+          </ion-label>
+          <ion-input type="text" formControlName="usuario" #usuario></ion-input>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item class="ion-item" no-lines>
+          <ion-label>
+            <ion-icon name="md-mail"></ion-icon>
+            Email
+          </ion-label>
+          <ion-input type="text" formControlName="email" #email></ion-input>
+        </ion-item>
+      </div>
+      <div class="div-senha">
+        <ion-item class="ion-item" no-lines>
+          <ion-label>
+            <ion-icon name="md-lock" left></ion-icon>
+            Senha
+          </ion-label>
+          <ion-input type="password" formControlName="senha" #senha></ion-input>
+        </ion-item>
+      </div>
+      <div class="div-loja">
+        <ion-item class="ion-item" no-lines>
+          <ion-label>
+            <ion-icon name="md-bookmark" left></ion-icon>
+            Loja
+          </ion-label>
+          <ion-input type="number" pattern="[0-9]*" formControlName="loja" #loja></ion-input>
+        </ion-item>
+      </div>
+      <button ion-button round [disabled]="formSignUp.invalid" (click)="createUser()">Cadastrar</button>
+    </form>
+  </div>
 
 </ion-content>

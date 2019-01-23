@@ -9,12 +9,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
-
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
 import { DatePipe } from '@angular/common';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,6 +24,18 @@ import { HttpModule } from '@angular/http';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { MorePage } from '../pages/more/more';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { UserProvider } from '../providers/user/user';
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCdcciBxo_3dsnem8ltRTcMVStKOZX12xM",
+  authDomain: "request-app-907fc.firebaseapp.com",
+  databaseURL: "https://request-app-907fc.firebaseio.com",
+  storageBucket: "",
+  messagingSenderId: "447443219945"
+};
 
 @NgModule({
   declarations: [
@@ -51,7 +60,9 @@ import { MorePage } from '../pages/more/more';
     IonicStorageModule.forRoot(),
     FormsModule,
     AutoCompleteModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
 
   ],
   bootstrap: [IonicApp],
@@ -76,7 +87,8 @@ import { MorePage } from '../pages/more/more';
     DatePipe,
     ProductStorageProvider,
     CompleteServiceProvider,
-    Utilitarios
+    Utilitarios,
+    UserProvider
   ]
 })
 export class AppModule {}

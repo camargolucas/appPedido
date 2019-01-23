@@ -23,12 +23,12 @@ import { EditProductPage } from '../edit-product/edit-product';
   templateUrl: 'request.html',
 })
 export class RequestPage {
-  Produto:Produto
-  idCategoria:number = 2;
-  nomeCategoria:string = 'Pedido';
-  arrProdutos:ListaProduto[]
-  arrRet:ListaProduto[]
-  tipo=""
+  private Produto:Produto
+  private idCategoria:number = 2;
+  private nomeCategoria:string = 'Pedido';
+  private arrProdutos:ListaProduto[]
+  private arrRet:ListaProduto[]
+  private tipo=""
   constructor(
     public modal: ModalController,public toast:ToastController,public navCtrl: NavController, public navParams: NavParams,public provider:ProductStorageProvider
 

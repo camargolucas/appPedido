@@ -1,3 +1,4 @@
+import { ApiData } from './../../utilitarios/apiData';
 import {AutoCompleteService} from 'ionic2-auto-complete';
 import { Http } from '@angular/http';
 import {Injectable} from "@angular/core";
@@ -7,18 +8,16 @@ import { map } from 'rxjs/operator/map';
 
 
 @Injectable()
-export class CompleteServiceProvider  implements AutoCompleteService{
+export class CompleteServiceProvider extends ApiData implements AutoCompleteService {
   labelAttribute = "NAME";
   formValueAttribute = ""
-  URL = "http://apprequestapi.kinghost.net:21093/products/"
-  URL_TEST = "http://localhost:21093/products/search/name/"
-  constructor(public http: Http) {}
+  constructor(public http: Http) {super()}
 
 
 
 
   getResults(keyword:string) {
-    return this.http.get(this.URL + 'search/name/' + keyword)
+    return this.http.get(this.URL + 'products/search/name/' + keyword)
       .map(
         result =>
         {

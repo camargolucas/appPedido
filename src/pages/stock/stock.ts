@@ -31,6 +31,7 @@ export class StockPage {
   private tipo = "";
   private editar: boolean = true;
   private idCategoria: number = 1;
+  public date:string = new Date().toLocaleDateString();
 
   public nomeCategoria = "Estoque";
 
@@ -111,6 +112,16 @@ export class StockPage {
     return this.editar;
   }
 
+
+
+  insertDataBase(){
+
+
+
+
+
+  }
+
   showConfirm() {
     const confirm = this.alertCtrl.create({
       title: "Deseja enviar o estoque? ",
@@ -126,6 +137,8 @@ export class StockPage {
           text: "Sim",
           handler: () => {
             this.editar = false;
+
+            console.log(this.arrRet)
           }
         }
       ]

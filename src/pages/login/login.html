@@ -1,5 +1,5 @@
 <ion-content padding>
-  <div>
+  <div class="div-components">
     <form [formGroup]="formLogin">
       <div class="title">
         <ion-title>
@@ -7,24 +7,29 @@
         </ion-title>
       </div>
       <ion-item class="ion-item" no-lines>
-        <ion-label floating color="primary">
+        <ion-label color="primary">
           <ion-icon name="md-people"></ion-icon>
           Usuário
         </ion-label>
-        <ion-input type="text" formControlName="usuario"> </ion-input>
+        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>
         <hr>
       </ion-item>
       <ion-item class="ion-item" no-lines>
-        <ion-label floating color="primary">
+        <ion-label  color="primary">
           <ion-icon name="md-lock" left></ion-icon>
           Senha
         </ion-label>
-        <ion-input type="password" formControlName="senha"> </ion-input>
+        <ion-input type="password" formControlName="senha" #senha> </ion-input>
         <hr>
       </ion-item>
       <div padding>
-        <button ion-button block (click)="login()" round [disabled]="formLogin.invalid">Entrar</button>
+        <button ion-button block (click)="loginWithEmail()" round [disabled]="formLogin.invalid">Entrar</button>
       </div>
+      <div padding>
+        <button ion-button (click)="openSignUp()" round clear >Cadastre-se</button>
+      </div>
+
+
 
     </form>
   </div>

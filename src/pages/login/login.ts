@@ -1,7 +1,18 @@
+import { SignupPage } from './../signup/signup';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { TabsPage } from "./../tabs/tabs";
-import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Form, MenuController, Menu } from "ionic-angular";
+import { Component, ViewChild } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  Form,
+  MenuController,
+  Menu,
+  ToastController,
+  ModalController
+} from "ionic-angular";
+import { AngularFireAuth } from "angularfire2/auth";
 
 /**
  * Generated class for the LoginPage page.
@@ -15,31 +26,28 @@ import { IonicPage, NavController, NavParams, Form, MenuController, Menu } from 
   selector: "page-login",
   templateUrl: "login.html"
 })
+
 export class LoginPage {
+  @ViewChild("usuario") email;
+  @ViewChild("senha") password;
   formLogin: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu:MenuController) {
-/*     let appEl = <HTMLElement>document.getElementsByTagName("ION-APP")[0],
-      appElHeight = appEl.clientHeight;
+  public user: any;
 
-    Keyboard.disableScroll(true);
-
-    window.addEventListener("native.keyboardshow", e => {
-      appEl.style.height = appElHeight - (<any>e).keyboardHeight + "px";
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public menu: MenuController,
+    public firebaseAuth: AngularFireAuth,
+    public toast:ToastController,
+    public modal:ModalController
+  ) {
+    this.menu.enable(false);
+    this.firebaseAuth.user.subscribe(data => {
+      this.user = data;
     });
-
-    window.addEventListener("native.keyboardhide", () => {
-      appEl.style.height = "100%";
-    }); */
-
-    this.menu.enable(false)
-
   }
 
-  ionViewDidLoad() {
-
-  }
-
-
+  ionViewDidLoad() {}
 
   ngOnInit() {
     this.formLogin = new FormGroup({
@@ -48,8 +56,33 @@ export class LoginPage {
     });
   }
 
-  login() {
-    this.navCtrl.push(TabsPage);
-    this.menu.enable(true)
+
+
+  loginWithEmail(): void {
+    this.firebaseAuth.auth.signInWithEmailAndPassword(this.email.value, this.password.value)
+    .then((result)=>{
+      console.log(result)
+      this.navCtrl.push(TabsPage);
+      this.menu.enable(true);
+    })
+    .catch((erro:any)=>{
+      this.showToast(erro)
+    })
+  }
+
+
+
+
+  private showToast(mensagem: string): void {
+    let toast = this.toast.create({duration: 3000,
+                                      position: 'botton'});
+    toast.setMessage(mensagem);
+    toast.present();
+  }
+
+
+  openSignUp(){
+    const myModal = this.modal.create(SignupPage)
+    myModal.present();
   }
 }

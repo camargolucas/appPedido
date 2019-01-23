@@ -7,12 +7,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="title"> Pedido </ion-title>
-    <button class="icon-cfg" ion-button menuToggle color="primary">
+    <button class="icon-cfg" ion-button menuToggle color="indigo">
       <ion-icon name="menu"></ion-icon>
     </button>
 
     <ion-buttons end>
-      <button class="icon-cfg" ion-button color="primary" (click)="addProduct()">
+      <button class="icon-cfg" ion-button color="indigo" (click)="addProduct()">
         <ion-icon name="md-add"></ion-icon>
       </button>
     </ion-buttons>
@@ -22,11 +22,13 @@
 
 <ion-content class="background-img">
 
-  <ion-segment color="indigo" (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
-    <ion-segment-button value="F"> Fruta </ion-segment-button>
-    <ion-segment-button value="V"> Verdura </ion-segment-button>
-    <ion-segment-button value="L"> Legume </ion-segment-button>
-  </ion-segment>
+  <div>
+    <ion-segment color="indigo" (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
+      <ion-segment-button value="F"> Fruta </ion-segment-button>
+      <ion-segment-button value="V"> Verdura </ion-segment-button>
+      <ion-segment-button value="L"> Legume </ion-segment-button>
+    </ion-segment>
+  </div>
 
   <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">
     <ion-grid>

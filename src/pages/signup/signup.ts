@@ -1,5 +1,19 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Http } from "@angular/http";
+import { Usuario } from "./../../model/Usuario";
+import { AngularFireAuth } from "angularfire2/auth";
+import { FormControl, Validators } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
+import { Component, ViewChild } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ToastController
+} from "ionic-angular";
+
+import { ApiData } from "../../utilitarios/apiData";
+import { UserProvider } from "../../providers/user/user";
+import { extend } from "@mobiscroll/angular/src/js/core/core";
 
 /**
  * Generated class for the SignupPage page.
@@ -10,16 +24,74 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html',
+  selector: "page-signup",
+  templateUrl: "signup.html"
 })
-export class SignupPage {
+export class SignupPage extends UserProvider {
+  formSignUp: FormGroup;
+  usuario: Usuario;
+  /* userApi:UserProvider */
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild("email") email;
+  @ViewChild("senha") password;
+  @ViewChild("usuario") user;
+  @ViewChild("loja") loja;
+  constructor(
+    http: Http,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public firebaseauth: AngularFireAuth,
+    public toast: ToastController
+  ) {
+    super(http);
+
+    this.usuario = new Usuario();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+  ngOnInit() {
+    this.formSignUp = new FormGroup({
+      email: new FormControl("", Validators.required),
+      usuario: new FormControl("", Validators.required),
+      senha: new FormControl("", Validators.required),
+      loja: new FormControl("", Validators.required)
+    });
   }
 
+  insertUserFb(): void {
+    this.firebaseauth.auth
+      .createUserWithEmailAndPassword(this.email.value, this.password.value)
+      .then(ret => {
+
+      })
+      .catch((erro: any) => {
+        console.log(erro);
+      });
+  }
+
+  insertUserDb() {
+    this.usuario.nomeUsuario = this.user.value;
+    this.usuario.senha = this.password.value;
+    this.usuario.loja = this.loja.value;
+    this.usuario.email = this.email.value;
+
+  return this.insert(this.usuario)
+      .then(ret => {
+        this.insertUserFb();
+        this.showToast("Cadastrado com Sucesso !");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+
+  createUser(){
+    this.insertUserDb()
+  }
+
+  private showToast(mensagem: string): void {
+    let toast = this.toast.create({ duration: 3000, position: "botton" });
+    toast.setMessage(mensagem);
+    toast.present();
+  }
 }
