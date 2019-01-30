@@ -5,7 +5,7 @@ import { Utilitarios } from './../utilitarios/utilitarios';
 import { ModalProductPage } from './../pages/modal-product/modal-product';
 import { MbscModule } from '@mobiscroll/angular';
 import { EditProductPage } from './../pages/edit-product/edit-product';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -17,6 +17,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProductStorageProvider } from '../providers/product-storage/product-storage';
 import { IonicStorageModule } from '@ionic/storage';
+
+import { SQLite } from '@ionic-native/sqlite/ngx';
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'ionic2-auto-complete';
 import { CompleteServiceProvider } from '../providers/complete-service/complete-service';
@@ -27,7 +30,7 @@ import { MorePage } from '../pages/more/more';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserProvider } from '../providers/user/user';
-
+import { ProductProvider } from '../providers/product/product';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCdcciBxo_3dsnem8ltRTcMVStKOZX12xM",
@@ -88,7 +91,8 @@ export const firebaseConfig = {
     ProductStorageProvider,
     CompleteServiceProvider,
     Utilitarios,
-    UserProvider
+    UserProvider,
+    ProductProvider,
   ]
 })
 export class AppModule {}

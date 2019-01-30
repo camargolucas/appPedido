@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ɵisPromise } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 import { ApiData } from "./../../utilitarios/apiData";
 import { Usuario } from "../../model/Usuario";
@@ -15,23 +15,41 @@ export class UserProvider extends ApiData {
     super();
   }
 
-
-
   insert(usuario: Usuario) {
-    const strUsuario = JSON.stringify(usuario);
-    let URL_API = URL + "/users/insert/" + encodeURIComponent(strUsuario) + "";
+    let usuarioData = JSON.stringify(usuario);
 
-    return new Promise(() => {
-      this.http.post(URL_API, this.requestOptions).subscribe(
-        value => {
-          console.log(value);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    return this.http.post(
+      this.API_URL + "users/insert/" + encodeURIComponent(usuarioData) + "",
+      this.requestOptions
+    );
+  }
+
+  public getByEmail(usuario: Usuario) {
+    let usuarioData = JSON.stringify(usuario);
+
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(this.API_URL + "users/get/" + encodeURIComponent(usuarioData))
+        .subscribe(
+          result => {
+            resolve(result.json());
+            console.log(result.json)
+          },
+          error => {
+            reject(error.json);
+          }
+        );
     });
   }
 
-
+  /*  insert(usuario: Usuario) {
+    const strUsuario = JSON.stringify(usuario);
+    let URL_API = URL + "/users/insert/" + encodeURIComponent(strUsuario) + "";
+    this.http.post(URL_API +  'insert/' + strUsuario + '', {"title": "something"} , this.requestOptions)
+    .subscribe(data => {
+      console.log(data['_body']);
+     }, error => {
+      console.log(error);
+    });
+  } */
 }

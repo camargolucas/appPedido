@@ -41,7 +41,8 @@ export class SignupPage extends UserProvider {
     public navCtrl: NavController,
     public navParams: NavParams,
     public firebaseauth: AngularFireAuth,
-    public toast: ToastController
+    public toast: ToastController,
+
   ) {
     super(http);
 
@@ -68,27 +69,27 @@ export class SignupPage extends UserProvider {
       });
   }
 
-  insertUserDb() {
-    this.usuario.nomeUsuario = this.user.value;
-    this.usuario.senha = this.password.value;
-    this.usuario.loja = this.loja.value;
-    this.usuario.email = this.email.value;
+  insertUser() {
 
-  return this.insert(this.usuario)
-      .then(ret => {
-        this.insertUserFb();
-        this.showToast("Cadastrado com Sucesso !");
+
+      this.usuario.nomeUsuario = this.user.value;
+      this.usuario.senha = this.password.value;
+      this.usuario.loja = this.loja.value;
+      this.usuario.email = this.email.value;
+
+      this.insert(this.usuario)
+      .toPromise()
+      .then(()=>{
+        this.insertUserFb()
+        this.showToast('Cadastrado com sucesso')
+        this.navCtrl.pop();
       })
-      .catch(err => {
+
+      .catch((err)=>{
         console.log(err);
-      });
-  }
+      })
 
-
-  createUser(){
-    this.insertUserDb()
-  }
-
+}
   private showToast(mensagem: string): void {
     let toast = this.toast.create({ duration: 3000, position: "botton" });
     toast.setMessage(mensagem);

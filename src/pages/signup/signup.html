@@ -24,7 +24,7 @@
         <ion-item class="ion-item" no-lines>
           <ion-label>
             <ion-icon name="md-people"></ion-icon>
-            Usuário
+            Nome
           </ion-label>
           <ion-input type="text" formControlName="usuario" #usuario></ion-input>
         </ion-item>
@@ -56,7 +56,7 @@
           <ion-input type="number" pattern="[0-9]*" formControlName="loja" #loja></ion-input>
         </ion-item>
       </div>
-      <button ion-button round [disabled]="formSignUp.invalid" (click)="createUser()">Cadastrar</button>
+      <button ion-button round [disabled]="formSignUp.invalid"  (click)="insertUser()">Cadastrar</button>
     </form>
   </div>
 

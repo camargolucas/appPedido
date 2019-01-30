@@ -1,13 +1,13 @@
 import { RequestOptions, Headers } from "@angular/http";
 
 export class ApiData {
-  readonly URL: string;
+  readonly API_URL: string;
   readonly requestOptions:any
   private headers
 
   constructor() {
-    //this.URL = "http://apprequestapi.kinghost.net:21093/";
-    this.URL = "http://localhost:21093/";
+    //this.API_URL = "http://apprequestapi.kinghost.net:21093/";
+    this.API_URL = "http://localhost:21093/"; // TESTE API LOCAL
 
     this.headers = new Headers();
     this.headers.append("Accept", "application/json");

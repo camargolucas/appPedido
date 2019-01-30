@@ -17,7 +17,7 @@ export class CompleteServiceProvider extends ApiData implements AutoCompleteServ
 
 
   getResults(keyword:string) {
-    return this.http.get(this.URL + 'products/search/name/' + keyword)
+    return this.http.get(this.API_URL + 'products/search/name/' + keyword)
       .map(
         result =>
         {

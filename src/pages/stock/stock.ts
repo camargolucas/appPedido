@@ -41,7 +41,8 @@ export class StockPage {
     public provider: ProductStorageProvider,
     public toast: ToastController,
     public modal: ModalController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public storage: ProductStorageProvider
   ) {
     this.tipo = 'F'
   }
@@ -82,12 +83,11 @@ export class StockPage {
 
   loadData(value) {
     this.provider
-      .getAll()
+      .getAll(this.nomeCategoria)
       .then(results => {
         this.arrRet = results;
-
         this.arrProdutos = results.filter(data => {
-          return (data.produto.nome["TIPO"] == value && data.produto.categoriaProduto.nomeCategoria == 'Estoque');
+          return (data.produto.nome["TIPO"] == value );//&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
@@ -115,10 +115,19 @@ export class StockPage {
 
 
   insertDataBase(){
+    this.storage.get('Usuario')
+    .then((ret)=>{
 
+      let idUsuario = ret['idUsuario']
+      let dataEnvio = this.date;
 
+      let arr = [{
+        arrProduto :this.arrProdutos,
+        idUsuario:idUsuario,
+        dataEnvio: dataEnvio
+      }]
 
-
+    })
 
   }
 
@@ -137,7 +146,7 @@ export class StockPage {
           text: "Sim",
           handler: () => {
             this.editar = false;
-
+            this.insertDataBase()
             console.log(this.arrRet)
           }
         }

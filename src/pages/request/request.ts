@@ -65,11 +65,11 @@ export class RequestPage {
 
   loadData(value) {
     this.provider
-      .getAll()
+      .getAll(this.nomeCategoria)
       .then(results => {
         this.arrRet = results;
         this.arrProdutos = results.filter(data => {
-          return (data.produto.nome["TIPO"] == value && data.produto.categoriaProduto.nomeCategoria == 'Pedido');
+          return (data.produto.nome["TIPO"] == value); // && data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
@@ -78,7 +78,8 @@ export class RequestPage {
   }
   editProduct(item: ListaProduto) {
     this.navCtrl.push(EditProductPage, {
-      key: item.key,
+      key: item.key
+      ,
       produto: item.produto,
       nomeCategoria: this.nomeCategoria,
     });

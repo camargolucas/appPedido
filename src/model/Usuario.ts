@@ -1,5 +1,6 @@
-export class Usuario {
+import { CategoriaItem } from "./CategoriaItem";
 
+export class Usuario {
   idUsuario: number;
   idUsuarioFb: string;
   nomeUsuario: string;
@@ -7,5 +8,6 @@ export class Usuario {
   senha: string;
   loja: number;
   idCargo: number;
-  ativo: boolean
+  ativo: boolean;
+  categoriaItem = new CategoriaItem();
 }

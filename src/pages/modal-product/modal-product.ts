@@ -12,7 +12,7 @@ import { CompleteServiceProvider } from "../../providers/complete-service/comple
 import { ProductStorageProvider } from "../../providers/product-storage/product-storage";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Produto } from "../../model/Produto";
-import { CategoriaProduto } from "./../../model/CategoriaProduto";
+import { CategoriaItem } from "../../model/CategoriaItem";
 
 /**
  * Generated class for the ModalProductPage page.
@@ -33,6 +33,8 @@ export class ModalProductPage {
   private arrUnidade: any;
   private arrTipo: any;
   private classCssImg:string;
+  private nomeCategoria:string;
+  private idCategoria:number;
 
   constructor(
     public navCtrl: NavController,
@@ -44,23 +46,23 @@ export class ModalProductPage {
     public view: ViewController
   ) {
     this.model = new Produto();
-    this.model.categoriaProduto = new CategoriaProduto();
+    this.model.categoriaItem = new CategoriaItem();
 
     this.arrTipo = this.utilitarios.getArrayTipo();
     this.arrUnidade = this.utilitarios.getArrayUnidade();
 
     // Carrego variaveis com a caategoria do produto para separar Produtos de Estoque e Produtos de Pedido
-    let idCategoria = navParams.data["idCategoria"];
-    let nomeCategoria = navParams.data["nomeCategoria"];
-    this.model.categoriaProduto.idCategoria = idCategoria;
-    this.model.categoriaProduto.nomeCategoria = nomeCategoria;
+     this.idCategoria = navParams.data["idCategoria"];
+     this.nomeCategoria = navParams.data["nomeCategoria"];
+    this.model.categoriaItem.idCategoria = this.idCategoria;
+    this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
 
 
     this.model.unidade = "KILO";
 
     // Verifico em qual tela esta sendo aberto a inclusao para indicar ao css qual imagem de fundo ele deve utilizar
-    if (nomeCategoria === 'Estoque') this.classCssImg = 'Estoque-Background'
-    else this.classCssImg = 'Pedido-Background'
+    if (this.nomeCategoria === 'Estoque') this.classCssImg = 'Estoque-Background'
+    else if(this.nomeCategoria === 'Pedido') this.classCssImg = 'Pedido-Background'
   }
 
   ionViewDidLoad(){
@@ -71,7 +73,8 @@ export class ModalProductPage {
     document.getElementById('content').className = this.classCssImg;
   }
 
-  ngOnInit(): void {
+  ngOnInit():
+   void {
     this.myForm = new FormGroup({
       qtd: new FormControl("", Validators.required),
       products: new FormControl("", Validators.required),
@@ -107,6 +110,9 @@ export class ModalProductPage {
   }
 
   insertProduct() {
+    this.model.categoriaItem.nomeCategoria = this.nomeCategoria
+    this.model.categoriaItem.idCategoria = this.idCategoria
+
     return this.storage.insert(this.model);
   }
 }
