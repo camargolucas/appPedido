@@ -33,7 +33,6 @@ export class UserProvider extends ApiData {
         .subscribe(
           result => {
             resolve(result.json());
-            console.log(result.json)
           },
           error => {
             reject(error.json);

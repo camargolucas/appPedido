@@ -123,13 +123,18 @@ export class StockPage {
       let idUsuario = ret['idUsuario']
       let dataEnvio = this.date;
 
-      let arr = [{
+
+
+      let Produtos = [{
         arrProduto :this.arrProdutos,
         idUsuario:idUsuario,
         dataEnvio: dataEnvio
       }]
 
-      this.s
+
+
+
+      this.apiProduct.insert(Produtos)
     })
 
 
