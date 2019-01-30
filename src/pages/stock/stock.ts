@@ -132,8 +132,6 @@ export class StockPage {
       }]
 
 
-
-
       this.apiProduct.insert(Produtos)
     })
 

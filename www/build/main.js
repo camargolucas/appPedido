@@ -117,10 +117,16 @@ var LoginPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["m" /* Component */])({
             selector: "page-login",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\login\login.html"*/'<ion-content padding>\n  <div class="div-components">\n    <form [formGroup]="formLogin">\n      <div class="title">\n        <ion-title>\n          <h1>Bem Vindo</h1>\n        </ion-title>\n      </div>\n      <ion-item class="ion-item" no-lines>\n        <ion-label color="primary">\n          <ion-icon name="md-mail"></ion-icon>\n          Email\n        </ion-label>\n        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>\n        <hr>\n      </ion-item>\n      <ion-item class="ion-item" no-lines>\n        <ion-label  color="primary">\n          <ion-icon name="md-lock" left></ion-icon>\n          Senha\n        </ion-label>\n        <ion-input type="password" formControlName="senha" #senha> </ion-input>\n        <hr>\n      </ion-item>\n      <div padding>\n        <button ion-button block (click)="loginWithEmail()" round [disabled]="formLogin.invalid">Entrar</button>\n      </div>\n      <div padding>\n        <button ion-button (click)="openSignUp()" round clear >Cadastre-se</button>\n      </div>\n    </form>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\login\login.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["g" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["AngularFireAuth"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["AngularFireAuth"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["h" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["h" /* ModalController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__providers_user_user__["a" /* UserProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_user_user__["a" /* UserProvider */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["k" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["g" /* MenuController */],
+            __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["AngularFireAuth"],
+            __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
+            __WEBPACK_IMPORTED_MODULE_0__providers_user_user__["a" /* UserProvider */]])
     ], LoginPage);
     return LoginPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -251,10 +257,9 @@ var UserProvider = /** @class */ (function (_super) {
     };
     UserProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], UserProvider);
     return UserProvider;
-    var _a;
 }(__WEBPACK_IMPORTED_MODULE_2__utilitarios_apiData__["a" /* ApiData */]));
 
 //# sourceMappingURL=user.js.map
@@ -920,16 +925,17 @@ var ProductProvider = /** @class */ (function (_super) {
     }
     ProductProvider.prototype.insert = function (product) {
         var productData = JSON.stringify(product);
-        this.http.post(this.API_URL + '/products/insertEstoque/' + productData, this.requestOptions)
+        this.http.post(this.API_URL + 'products/insertEstoque/' + productData, this.requestOptions)
             .subscribe(function (ret) {
             console.log(ret);
         });
     };
     ProductProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], ProductProvider);
     return ProductProvider;
+    var _a;
 }(__WEBPACK_IMPORTED_MODULE_2__utilitarios_apiData__["a" /* ApiData */]));
 
 //# sourceMappingURL=product.js.map
@@ -1776,10 +1782,9 @@ var CompleteServiceProvider = /** @class */ (function (_super) {
     };
     CompleteServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], CompleteServiceProvider);
     return CompleteServiceProvider;
-    var _a;
 }(__WEBPACK_IMPORTED_MODULE_0__utilitarios_apiData__["a" /* ApiData */]));
 
 //# sourceMappingURL=complete-service.js.map
