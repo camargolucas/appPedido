@@ -1,17 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { ApiData } from '../../utilitarios/apiData';
+import { Produto } from '../../model/Produto';
 
-/*
-  Generated class for the ProductProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+
 @Injectable()
-export class ProductProvider {
+export class ProductProvider extends ApiData{
 
-  constructor(public http: HttpClient) {
-    console.log('Hello ProductProvider Provider');
+  constructor(public http: Http) {
+    super()
+
+  }
+
+
+
+  insert(product:any){
+    let productData = JSON.stringify(product)
+
+
+    this.http.post(this.API_URL + '/products/insertEstoque/' + productData  , this.requestOptions)
+    .subscribe((ret)=>{
+      console.log(ret)
+    })
+
   }
 
 }

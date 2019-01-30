@@ -1,3 +1,4 @@
+import { ProductProvider } from './../../providers/product/product';
 
 import { ProductStorageProvider } from "./../../providers/product-storage/product-storage";
 import { Component, ɵConsole, Optional } from "@angular/core";
@@ -42,7 +43,8 @@ export class StockPage {
     public toast: ToastController,
     public modal: ModalController,
     public alertCtrl: AlertController,
-    public storage: ProductStorageProvider
+    public storage: ProductStorageProvider,
+    public apiProduct: ProductProvider
   ) {
     this.tipo = 'F'
   }
@@ -87,7 +89,7 @@ export class StockPage {
       .then(results => {
         this.arrRet = results;
         this.arrProdutos = results.filter(data => {
-          return (data.produto.nome["TIPO"] == value );//&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
+          return (data.produto.nome["TIPO"] == value ); //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
@@ -127,7 +129,9 @@ export class StockPage {
         dataEnvio: dataEnvio
       }]
 
+      this.s
     })
+
 
   }
 
