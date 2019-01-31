@@ -17,9 +17,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProductStorageProvider } from '../providers/product-storage/product-storage';
 import { IonicStorageModule } from '@ionic/storage';
-
-import { SQLite } from '@ionic-native/sqlite/ngx';
-
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'ionic2-auto-complete';
 import { CompleteServiceProvider } from '../providers/complete-service/complete-service';

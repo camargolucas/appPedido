@@ -17,9 +17,9 @@ export class ProductProvider extends ApiData{
 
   insert(product:any){
     let productData = JSON.stringify(product)
+    console.log(productData)
 
-
-    this.http.post(this.API_URL + 'products/insertEstoque/' + productData  , this.requestOptions)
+    this.http.post(this.API_URL + "products/insertEstoque/" + encodeURIComponent(productData) + ""  , this.requestOptions)
     .subscribe((ret)=>{
       console.log(ret)
 
