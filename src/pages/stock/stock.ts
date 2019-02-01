@@ -123,10 +123,12 @@ export class StockPage {
       let idUsuario = ret['idUsuario']
       let dataEnvio = this.date;
 
-
+      let arrEstoque = this.arrRet.filter((data)=>{
+        return data.produto.categoriaItem.nomeCategoria = 'Estoque'
+      })
 
       let Produtos = [{
-        arrProduto :this.arrProdutos,
+        arrProduto :arrEstoque,
         idUsuario:idUsuario,
         dataEnvio: dataEnvio
       }]
