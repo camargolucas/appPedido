@@ -58,8 +58,7 @@ page-request {
   }
 
   ion-fab {
-    z-index: 100;
-    position: fixed;
+    top: 82% !important;
   }
 
   .scroll-content {

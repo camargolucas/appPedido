@@ -7,14 +7,14 @@ webpackJsonp([8],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_user_user__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_Usuario__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_Usuario__ = __webpack_require__(353);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -115,7 +115,7 @@ var LoginPage = /** @class */ (function () {
     ], LoginPage.prototype, "password", void 0);
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["m" /* Component */])({
-            selector: "page-login",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\login\login.html"*/'<ion-content padding>\n  <div class="div-components">\n    <form [formGroup]="formLogin">\n      <div class="title">\n        <ion-title>\n          <h1>Bem Vindo</h1>\n        </ion-title>\n      </div>\n      <ion-item class="ion-item" no-lines>\n        <ion-label color="primary">\n          <ion-icon name="md-mail"></ion-icon>\n          Email\n        </ion-label>\n        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>\n        <hr>\n      </ion-item>\n      <ion-item class="ion-item" no-lines>\n        <ion-label  color="primary">\n          <ion-icon name="md-lock" left></ion-icon>\n          Senha\n        </ion-label>\n        <ion-input type="password" formControlName="senha" #senha> </ion-input>\n        <hr>\n      </ion-item>\n      <div padding>\n        <button ion-button block (click)="loginWithEmail()" round [disabled]="formLogin.invalid">Entrar</button>\n      </div>\n      <div padding>\n        <button ion-button (click)="openSignUp()" round clear >Cadastre-se</button>\n      </div>\n    </form>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\login\login.html"*/
+            selector: "page-login",template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\login\login.html"*/'<ion-content padding>\n\n  <div class="div-components">\n\n    <form [formGroup]="formLogin">\n\n      <div class="title">\n\n        <ion-title>\n\n          <h1>Bem Vindo</h1>\n\n        </ion-title>\n\n      </div>\n\n      <ion-item class="ion-item" no-lines>\n\n        <ion-label color="primary">\n\n          <ion-icon name="md-mail"></ion-icon>\n\n          Email\n\n        </ion-label>\n\n        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>\n\n        <hr>\n\n      </ion-item>\n\n      <ion-item class="ion-item" no-lines>\n\n        <ion-label  color="primary">\n\n          <ion-icon name="md-lock" left></ion-icon>\n\n          Senha\n\n        </ion-label>\n\n        <ion-input type="password" formControlName="senha" #senha> </ion-input>\n\n        <hr>\n\n      </ion-item>\n\n      <div padding>\n\n        <button ion-button block (click)="loginWithEmail()" round [disabled]="formLogin.invalid">Entrar</button>\n\n      </div>\n\n      <div padding>\n\n        <button ion-button (click)="openSignUp()" round clear >Cadastre-se</button>\n\n      </div>\n\n    </form>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["k" /* NavParams */],
@@ -142,8 +142,8 @@ var LoginPage = /** @class */ (function () {
 
 var ApiData = /** @class */ (function () {
     function ApiData() {
-        this.API_URL = "http://apprequestapi.kinghost.net:21093/";
-        //this.API_URL = "http://localhost:21093/"; // TESTE API LOCAL
+        //this.API_URL = "http://apprequestapi.kinghost.net:21093/";
+        this.API_URL = "http://localhost:21093/"; // TESTE API LOCAL
         this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Headers */]();
         this.headers.append("Accept", "application/json");
         this.headers.append("Content-Type", "application/json");
@@ -271,10 +271,10 @@ var UserProvider = /** @class */ (function (_super) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__request_request__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__more_more__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__request_request__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__more_more__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stock_stock__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stock_stock__ = __webpack_require__(199);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -297,7 +297,7 @@ var TabsPage = /** @class */ (function () {
         this.tabMais = __WEBPACK_IMPORTED_MODULE_1__more_more__["a" /* MorePage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n\n\n  <!--  <ion-tab [root]="tabHome" tabTitle="Inicio" tabIcon="home"></ion-tab> -->\n  <ion-tab [root]="tabEstoque" tabTitle="Estoque" tabIcon="ios-archive"></ion-tab>\n  <ion-tab [root]="tabRequest" tabTitle="Pedidos" tabIcon="ios-basket"></ion-tab>\n  <ion-tab [root]="tabMais" tabTitle="Outros" tabIcon="ios-list"></ion-tab>\n\n</ion-tabs>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n\n\n\n\n\n\n  <!--  <ion-tab [root]="tabHome" tabTitle="Inicio" tabIcon="home"></ion-tab> -->\n\n  <ion-tab [root]="tabEstoque" tabTitle="Estoque" tabIcon="ios-archive"></ion-tab>\n\n  <ion-tab [root]="tabRequest" tabTitle="Pedidos" tabIcon="ios-basket"></ion-tab>\n\n  <ion-tab [root]="tabMais" tabTitle="Outros" tabIcon="ios-list"></ion-tab>\n\n\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -308,13 +308,77 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 195:
+/***/ 173:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utilitarios_apiData__ = __webpack_require__(139);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ProductProvider = /** @class */ (function (_super) {
+    __extends(ProductProvider, _super);
+    function ProductProvider(http) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        return _this;
+    }
+    ProductProvider.prototype.insert = function (product) {
+        var productData = JSON.stringify(product);
+        console.log(productData);
+        this.http.post(this.API_URL + "products/insertEstoque/" + encodeURIComponent(productData) + "", this.requestOptions)
+            .subscribe(function (ret) {
+            console.log(ret);
+        });
+    };
+    ProductProvider.prototype.insertRequest = function (product) {
+        var productData = JSON.stringify(product);
+        this.http.post(this.API_URL + "products/insertPedido/" + encodeURIComponent(productData) + "", this.requestOptions)
+            .subscribe(function (ret) {
+            console.log(ret);
+        });
+    };
+    ProductProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    ], ProductProvider);
+    return ProductProvider;
+    var _a;
+}(__WEBPACK_IMPORTED_MODULE_2__utilitarios_apiData__["a" /* ApiData */]));
+
+//# sourceMappingURL=product.js.map
+
+/***/ }),
+
+/***/ 196:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_Usuario__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_Usuario__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(16);
@@ -422,7 +486,7 @@ var SignupPage = /** @class */ (function (_super) {
     ], SignupPage.prototype, "loja", void 0);
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["m" /* Component */])({
-            selector: "page-signup",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\signup\signup.html"*/'<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>signup</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="scroll-content" padding>\n  <div class="div-components">\n    <form [formGroup]="formSignUp">\n\n      <ion-title>\n        <h1>Cadastrar</h1>\n      </ion-title>\n      <div>\n        <ion-item class="ion-item" no-lines>\n          <ion-label>\n            <ion-icon name="md-people"></ion-icon>\n            Nome\n          </ion-label>\n          <ion-input type="text" formControlName="usuario" #usuario></ion-input>\n        </ion-item>\n      </div>\n      <div>\n        <ion-item class="ion-item" no-lines>\n          <ion-label>\n            <ion-icon name="md-mail"></ion-icon>\n            Email\n          </ion-label>\n          <ion-input type="text" formControlName="email" #email></ion-input>\n        </ion-item>\n      </div>\n      <div class="div-senha">\n        <ion-item class="ion-item" no-lines>\n          <ion-label>\n            <ion-icon name="md-lock" left></ion-icon>\n            Senha\n          </ion-label>\n          <ion-input type="password" formControlName="senha" #senha></ion-input>\n        </ion-item>\n      </div>\n      <div class="div-loja">\n        <ion-item class="ion-item" no-lines>\n          <ion-label>\n            <ion-icon name="md-bookmark" left></ion-icon>\n            Loja\n          </ion-label>\n          <ion-input type="number" pattern="[0-9]*" formControlName="loja" #loja></ion-input>\n        </ion-item>\n      </div>\n      <button ion-button round [disabled]="formSignUp.invalid"  (click)="insertUser()">Cadastrar</button>\n    </form>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\signup\signup.html"*/
+            selector: "page-signup",template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\signup\signup.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>signup</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="scroll-content" padding>\n\n  <div class="div-components">\n\n    <form [formGroup]="formSignUp">\n\n\n\n      <ion-title>\n\n        <h1>Cadastrar</h1>\n\n      </ion-title>\n\n      <div>\n\n        <ion-item class="ion-item" no-lines>\n\n          <ion-label>\n\n            <ion-icon name="md-people"></ion-icon>\n\n            Nome\n\n          </ion-label>\n\n          <ion-input type="text" formControlName="usuario" #usuario></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div>\n\n        <ion-item class="ion-item" no-lines>\n\n          <ion-label>\n\n            <ion-icon name="md-mail"></ion-icon>\n\n            Email\n\n          </ion-label>\n\n          <ion-input type="text" formControlName="email" #email></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="div-senha">\n\n        <ion-item class="ion-item" no-lines>\n\n          <ion-label>\n\n            <ion-icon name="md-lock" left></ion-icon>\n\n            Senha\n\n          </ion-label>\n\n          <ion-input type="password" formControlName="senha" #senha></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="div-loja">\n\n        <ion-item class="ion-item" no-lines>\n\n          <ion-label>\n\n            <ion-icon name="md-bookmark" left></ion-icon>\n\n            Loja\n\n          </ion-label>\n\n          <ion-input type="number" pattern="[0-9]*" formControlName="loja" #loja></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <button ion-button round [disabled]="formSignUp.invalid"  (click)="insertUser()">Cadastrar</button>\n\n    </form>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\signup\signup.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */],
             __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["j" /* NavController */],
@@ -437,7 +501,7 @@ var SignupPage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 196:
+/***/ 197:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -447,6 +511,7 @@ var SignupPage = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_product_storage_product_storage__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_product_edit_product__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_product_product__ = __webpack_require__(173);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -462,6 +527,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the RequestPage page.
  *
@@ -469,15 +535,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var RequestPage = /** @class */ (function () {
-    function RequestPage(modal, toast, navCtrl, navParams, provider) {
+    function RequestPage(modal, toast, navCtrl, navParams, provider, alertCtrl, productApi) {
         this.modal = modal;
         this.toast = toast;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.provider = provider;
+        this.alertCtrl = alertCtrl;
+        this.productApi = productApi;
         this.idCategoria = 2;
         this.nomeCategoria = 'Pedido';
         this.tipo = "";
+        this.date = new Date().toLocaleDateString();
         this.tipo = 'F';
     }
     RequestPage.prototype.isAvaible = function () {
@@ -535,20 +604,56 @@ var RequestPage = /** @class */ (function () {
                 .present();
         });
     };
+    RequestPage.prototype.showConfirm = function () {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: 'Deseja finalizar o Pedido?',
+            message: 'Lembre-se, se voce finalizar o pedido, ele não poderá ser alterado !',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    handler: function () {
+                    }
+                },
+                {
+                    text: 'Confirmar',
+                    handler: function () {
+                        _this.insertDatabase();
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    RequestPage.prototype.insertDatabase = function () {
+        var idUsuario;
+        this.provider.get('Usuario')
+            .then(function (ret) {
+            idUsuario = ret['idUsuario'];
+        });
+        var arrProduto = {
+            Produto: this.arrRet,
+            idUsuario: idUsuario,
+            dataEnvio: this.date
+        };
+        this.productApi.insertRequest(arrProduto);
+        console.log(arrProduto);
+    };
     RequestPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-request',template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\request\request.html"*/'<!--\n  Generated template for the RequestPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-toolbar>\n    <ion-title class="title"> Pedido </ion-title>\n    <button class="icon-cfg" ion-button menuToggle color="indigo">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-buttons end>\n      <button class="icon-cfg" ion-button color="indigo" (click)="addProduct()">\n        <ion-icon name="md-add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content class="background-img">\n\n  <div>\n    <ion-segment color="indigo" (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">\n      <ion-segment-button value="F"> Fruta </ion-segment-button>\n      <ion-segment-button value="V"> Verdura </ion-segment-button>\n      <ion-segment-button value="L"> Legume </ion-segment-button>\n    </ion-segment>\n  </div>\n\n  <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">\n    <ion-grid>\n      <ion-row>\n        <ion-col name="Produto" class="size-title" align-self-center col-8>\n          Produto\n        </ion-col>\n\n        <ion-col name="Qtd" align-self-center align="right"> Qtd </ion-col>\n        <ion-col name="Und" align="right"> Und </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <div *ngFor="let item of arrProdutos" class="card">\n    <ion-list>\n      <ion-item-sliding>\n        <ion-item class="item">\n          <ion-grid>\n            <div>\n              <ion-row>\n                <ion-col class="ion-col" align-self-start col-8>\n                  <h4>{{ item.produto.nome.NAME }}</h4>\n                </ion-col>\n                <ion-col align-self-center align="right">\n                  <h4>{{ item.produto.qtd }}</h4>\n                </ion-col>\n\n                <ion-col align="right">\n                  <h4>{{ item.produto.unidade }}</h4>\n                </ion-col>\n              </ion-row>\n            </div>\n          </ion-grid>\n        </ion-item>\n        <ion-item-options side="right" (ionSwipe)="removeProduct(item)">\n          <button ion-button expandable color="danger" (click)="removeProduct(item)">\n            <ion-icon name="trash"></ion-icon>Excluir\n          </button>\n          <button ion-button (click)="editProduct(item)">\n            <ion-icon name="create"></ion-icon>Editar\n          </button>\n        </ion-item-options>\n      </ion-item-sliding>\n\n    </ion-list>\n\n  </div>\n  <!--  <div class="ion-fab">\n    <ion-fab bottom right mini>\n      <button ion-fab color="indigo" (click)="addProduct()" round small>\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-fab>\n  </div> -->\n\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\request\request.html"*/,
+            selector: 'page-request',template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\request\request.html"*/'<!--\n\n  Generated template for the RequestPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-toolbar>\n\n    <ion-title class="title"> Pedido </ion-title>\n\n    <button class="icon-cfg" ion-button menuToggle color="indigo">\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n\n\n    <ion-buttons end>\n\n      <button class="icon-cfg" ion-button color="indigo" (click)="addProduct()">\n\n        <ion-icon name="md-add"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="background-img">\n\n\n\n  <div>\n\n    <ion-segment color="indigo" (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">\n\n      <ion-segment-button value="F"> Fruta </ion-segment-button>\n\n      <ion-segment-button value="V"> Verdura </ion-segment-button>\n\n      <ion-segment-button value="L"> Legume </ion-segment-button>\n\n    </ion-segment>\n\n  </div>\n\n\n\n  <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col name="Produto" class="size-title" align-self-center col-8>\n\n          Produto\n\n        </ion-col>\n\n\n\n        <ion-col name="Qtd" align-self-center align="right"> Qtd </ion-col>\n\n        <ion-col name="Und" align="right"> Und </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n  <div *ngFor="let item of arrProdutos" class="card">\n\n    <ion-list>\n\n      <ion-item-sliding>\n\n        <ion-item class="item">\n\n          <ion-grid>\n\n            <div>\n\n              <ion-row>\n\n                <ion-col class="ion-col" align-self-start col-8>\n\n                  <h4>{{ item.produto.nome.NAME }}</h4>\n\n                </ion-col>\n\n                <ion-col align-self-center align="right">\n\n                  <h4>{{ item.produto.qtd }}</h4>\n\n                </ion-col>\n\n\n\n                <ion-col align="right">\n\n                  <h4>{{ item.produto.unidade }}</h4>\n\n                </ion-col>\n\n              </ion-row>\n\n            </div>\n\n          </ion-grid>\n\n        </ion-item>\n\n        <ion-item-options side="right" (ionSwipe)="removeProduct(item)">\n\n          <button ion-button expandable color="danger" (click)="removeProduct(item)">\n\n            <ion-icon name="trash"></ion-icon>Excluir\n\n          </button>\n\n          <button ion-button (click)="editProduct(item)">\n\n            <ion-icon name="create"></ion-icon>Editar\n\n          </button>\n\n        </ion-item-options>\n\n      </ion-item-sliding>\n\n\n\n    </ion-list>\n\n\n\n  </div>\n\n   <div class="ion-fab">\n\n    <ion-fab bottom right mini>\n\n      <button ion-fab color="indigo" (click)="showConfirm()"  round small>\n\n        <ion-icon name="done-all"></ion-icon>\n\n      </button>\n\n    </ion-fab>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\request\request.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* ModalController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["m" /* ToastController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_product_storage_product_storage__["a" /* ProductStorageProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* ModalController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["m" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_product_storage_product_storage__["a" /* ProductStorageProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_product_storage_product_storage__["a" /* ProductStorageProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__providers_product_product__["a" /* ProductProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_product_product__["a" /* ProductProvider */]) === "function" && _g || Object])
     ], RequestPage);
     return RequestPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=request.js.map
 
 /***/ }),
 
-/***/ 197:
+/***/ 198:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -592,7 +697,7 @@ var MorePage = /** @class */ (function () {
     };
     MorePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-more',template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\more\more.html"*/'<!--\n  Generated template for the MorePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle color = "primary">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-card>\n    <ion-card-header>\n      <h1>Outros</h1>\n    </ion-card-header>\n\n    <ion-list>\n      <button ion-item (click)="clear()" clear>\n        <ion-icon name="trash" item-start clear color="primary"></ion-icon>\n        <h2>Limpar</h2>\n      </button>\n\n      <button ion-item (click)="leave()" clear>\n        <ion-icon name="md-walk" item-start clear color="primary"></ion-icon>\n        <h2>Sair</h2>\n      </button>\n    </ion-list>\n  </ion-card>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\more\more.html"*/,
+            selector: 'page-more',template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\more\more.html"*/'<!--\n\n  Generated template for the MorePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar>\n\n      <button ion-button menuToggle color = "primary">\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title></ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      <h1>Outros</h1>\n\n    </ion-card-header>\n\n\n\n    <ion-list>\n\n      <button ion-item (click)="clear()" clear>\n\n        <ion-icon name="trash" item-start clear color="primary"></ion-icon>\n\n        <h2>Limpar</h2>\n\n      </button>\n\n\n\n      <button ion-item (click)="leave()" clear>\n\n        <ion-icon name="md-walk" item-start clear color="primary"></ion-icon>\n\n        <h2>Sair</h2>\n\n      </button>\n\n    </ion-list>\n\n  </ion-card>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\more\more.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */]])
@@ -604,12 +709,12 @@ var MorePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 198:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StockPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_product_product__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_product_product__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(20);
@@ -753,19 +858,25 @@ var StockPage = /** @class */ (function () {
     };
     StockPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: "page-stock",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\stock\stock.html"*/'<!--\n  Generated template for the StockPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-toolbar>\n      <ion-title class="title"> Estoque </ion-title>\n      <button class="icon-cfg" ion-button  menuToggle color="primary">\n        <ion-icon name="menu"></ion-icon>\n      </button>\n\n    <ion-buttons end>\n      <button class="icon-cfg" ion-button color="primary" (click)="addProduct()">\n        <ion-icon name="md-add"></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n  </ion-toolbar>\n\n\n</ion-header>\n\n\n\n\n<ion-content class="scroll-content">\n  <ion-segment (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">\n    <ion-segment-button value="F">\n      Fruta\n    </ion-segment-button>\n    <ion-segment-button value="V">\n      Verdura\n    </ion-segment-button>\n    <ion-segment-button value="L">\n      Legume\n    </ion-segment-button>\n  </ion-segment>\n\n  <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">\n    <ion-grid>\n      <ion-row>\n        <ion-col name="Produto" class="size-title" align-self-center col-8>\n          Produto\n        </ion-col>\n\n        <ion-col name="Qtd" align-self-center align="right">\n          Qtd\n        </ion-col>\n        <ion-col name="Und" align="right">\n          Und\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <div *ngFor="let item of arrProdutos " class="card">\n    <ion-list>\n      <ion-item-sliding>\n        <ion-item class="item">\n          <ion-grid>\n            <div>\n              <ion-row>\n\n                <ion-col class="ion-col" align-self-start col-8>\n                  <h4>{{ item.produto.nome.NAME }}</h4>\n                </ion-col>\n                <ion-col align-self-center align="right">\n                  <h4> {{ item.produto.qtd }}</h4>\n                </ion-col>\n\n                <ion-col align="right">\n                  <h4>{{ item.produto.unidade }}</h4>\n                </ion-col>\n\n              </ion-row>\n            </div>\n\n          </ion-grid>\n        </ion-item>\n        <ion-item-options *ngIf="isAvaible()" side="right" (ionSwipe)="removeProduct(item)">\n          <button ion-button expandable color="danger" (click)="removeProduct(item)">\n            <ion-icon name="trash"></ion-icon>Excluir\n          </button>\n          <button ion-button (click)="editProduct(item)">\n            <ion-icon name="create"></ion-icon>Editar\n          </button>\n        </ion-item-options>\n      </ion-item-sliding>\n    </ion-list>\n  </div>\n\n\n\n  <!--  <div *ngIf="isAvaible()" >\n    <ion-fab left bottom >\n      <button ion-fab color="primary"  (click)="addProduct()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-fab>\n  </div>\n  <div *ngIf="arrRet && arrRet.length">\n    <ion-fab right bottom>\n      <button ion-fab color="secondary" (click)="showConfirm()">\n        <ion-icon name="md-done-all"></ion-icon>\n      </button>\n    </ion-fab>\n  </div> -->\n\n  <ion-fab *ngIf="arrRet && arrRet.length" bottom left clear>\n      <button ion-fab color = "secondary"  (click)="showConfirm()" clear>\n        <ion-icon name="md-done-all"> </ion-icon>\n      </button>\n    </ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\stock\stock.html"*/
+            selector: "page-stock",template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\stock\stock.html"*/'<!--\n\n  Generated template for the StockPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-toolbar>\n\n    <ion-title class="title"> Estoque </ion-title>\n\n    <button class="icon-cfg" ion-button menuToggle color="primary">\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n\n\n    <ion-buttons end>\n\n      <button class="icon-cfg" ion-button color="primary" (click)="addProduct()">\n\n        <ion-icon name="md-add"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n\n\n\n\n\n\n<ion-content class="scroll-content">\n\n  <ion-segment (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">\n\n    <ion-segment-button value="F">\n\n      Fruta\n\n    </ion-segment-button>\n\n    <ion-segment-button value="V">\n\n      Verdura\n\n    </ion-segment-button>\n\n    <ion-segment-button value="L">\n\n      Legume\n\n    </ion-segment-button>\n\n  </ion-segment>\n\n\n\n  <div class="cfg-title" *ngIf="arrProdutos && arrProdutos.length">\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col name="Produto" class="size-title" align-self-center col-8>\n\n          Produto\n\n        </ion-col>\n\n\n\n        <ion-col name="Qtd" align-self-center align="right">\n\n          Qtd\n\n        </ion-col>\n\n        <ion-col name="Und" align="right">\n\n          Und\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n  <div *ngFor="let item of arrProdutos " class="card">\n\n    <ion-list>\n\n      <ion-item-sliding>\n\n        <ion-item class="item">\n\n          <ion-grid>\n\n            <div>\n\n              <ion-row>\n\n\n\n                <ion-col class="ion-col" align-self-start col-8>\n\n                  <h4>{{ item.produto.nome.NAME }}</h4>\n\n                </ion-col>\n\n                <ion-col align-self-center align="right">\n\n                  <h4> {{ item.produto.qtd }}</h4>\n\n                </ion-col>\n\n\n\n                <ion-col align="right">\n\n                  <h4>{{ item.produto.unidade }}</h4>\n\n                </ion-col>\n\n\n\n              </ion-row>\n\n            </div>\n\n\n\n          </ion-grid>\n\n        </ion-item>\n\n        <ion-item-options *ngIf="isAvaible()" side="right" (ionSwipe)="removeProduct(item)">\n\n          <button ion-button expandable color="danger" (click)="removeProduct(item)">\n\n            <ion-icon name="trash"></ion-icon>Excluir\n\n          </button>\n\n          <button ion-button (click)="editProduct(item)">\n\n            <ion-icon name="create"></ion-icon>Editar\n\n          </button>\n\n        </ion-item-options>\n\n      </ion-item-sliding>\n\n    </ion-list>\n\n  </div>\n\n\n\n\n\n\n\n  <!--  <div *ngIf="isAvaible()" >\n\n    <ion-fab left bottom >\n\n      <button ion-fab color="primary"  (click)="addProduct()">\n\n        <ion-icon name="add"></ion-icon>\n\n      </button>\n\n    </ion-fab>\n\n  </div>\n\n  <div *ngIf="arrRet && arrRet.length">\n\n    <ion-fab right bottom>\n\n      <button ion-fab color="secondary" (click)="showConfirm()">\n\n        <ion-icon name="md-done-all"></ion-icon>\n\n      </button>\n\n    </ion-fab>\n\n  </div> -->\n\n\n\n  <ion-fab *ngIf="arrRet && arrRet.length" bottom left clear>\n\n    <button ion-fab color="secondary" (click)="showConfirm()" clear>\n\n      <ion-icon name="md-done-all"> </ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\stock\stock.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* ModalController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__providers_product_product__["a" /* ProductProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_product_product__["a" /* ProductProvider */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
+            __WEBPACK_IMPORTED_MODULE_0__providers_product_product__["a" /* ProductProvider */]])
     ], StockPage);
     return StockPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=stock.js.map
 
 /***/ }),
 
-/***/ 209:
+/***/ 210:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -778,11 +889,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 209;
+webpackEmptyAsyncContext.id = 210;
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -795,11 +906,11 @@ var map = {
 		6
 	],
 	"../pages/menu/menu.module": [
-		800,
+		801,
 		5
 	],
 	"../pages/modal-product/modal-product.module": [
-		801,
+		800,
 		4
 	],
 	"../pages/more/more.module": [
@@ -830,12 +941,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 254;
+webpackAsyncContext.id = 255;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 351:
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -850,12 +961,12 @@ var Produto = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 352:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Usuario; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CategoriaItem__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CategoriaItem__ = __webpack_require__(354);
 
 var Usuario = /** @class */ (function () {
     function Usuario() {
@@ -868,7 +979,7 @@ var Usuario = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 353:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -880,62 +991,6 @@ var CategoriaItem = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=CategoriaItem.js.map
-
-/***/ }),
-
-/***/ 366:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utilitarios_apiData__ = __webpack_require__(139);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var ProductProvider = /** @class */ (function (_super) {
-    __extends(ProductProvider, _super);
-    function ProductProvider(http) {
-        var _this = _super.call(this) || this;
-        _this.http = http;
-        return _this;
-    }
-    ProductProvider.prototype.insert = function (product) {
-        var productData = JSON.stringify(product);
-        console.log(productData);
-        this.http.post(this.API_URL + "products/insertEstoque/" + encodeURIComponent(productData) + "", this.requestOptions)
-            .subscribe(function (ret) {
-            console.log(ret);
-        });
-    };
-    ProductProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]])
-    ], ProductProvider);
-    return ProductProvider;
-}(__WEBPACK_IMPORTED_MODULE_2__utilitarios_apiData__["a" /* ApiData */]));
-
-//# sourceMappingURL=product.js.map
 
 /***/ }),
 
@@ -986,7 +1041,7 @@ var MenuPage = /** @class */ (function () {
     ], MenuPage.prototype, "nav", void 0);
     MenuPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-menu',template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\menu\menu.html"*/'<!--\n  Generated template for the MenuPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">\n        <!--   <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon> -->\n        {{ p.title }}\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n<!-- main navigation -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\menu\menu.html"*/,
+            selector: 'page-menu',template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\menu\menu.html"*/'<!--\n\n  Generated template for the MenuPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">\n\n        <!--   <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon> -->\n\n        {{ p.title }}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- main navigation -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\menu\menu.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
     ], MenuPage);
@@ -1018,8 +1073,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* unused harmony export firebaseConfig */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_menu_menu__ = __webpack_require__(410);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_request_request__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_stock_stock__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_request_request__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_stock_stock__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utilitarios_utilitarios__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_modal_product_modal_product__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mobiscroll_angular__ = __webpack_require__(411);
@@ -1035,20 +1090,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_status_bar__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_splash_screen__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_product_storage_product_storage__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_storage__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_storage__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic2_auto_complete__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic2_auto_complete__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_complete_service_complete_service__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_http__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_login_login__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_signup_signup__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_more_more__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_signup_signup__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_more_more__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angularfire2__ = __webpack_require__(797);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angularfire2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angularfire2_auth__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_angularfire2_auth__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_user_user__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_product_product__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_product_product__ = __webpack_require__(173);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1118,8 +1173,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/edit-product/edit-product.module#EditProductPageModule', name: 'EditProductPage', segment: 'edit-product', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modal-product/modal-product.module#ModalProductPageModule', name: 'ModalProductPage', segment: 'modal-product', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/more/more.module#MorePageModule', name: 'MorePage', segment: 'more', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/request/request.module#RequestPageModule', name: 'RequestPage', segment: 'request', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
@@ -1177,7 +1232,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_ListaProduto__ = __webpack_require__(438);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1332,7 +1387,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\app\app.html"*/'<ion-menu [content]="content">\n    <ion-header>\n      <ion-toolbar>\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n    </ion-header>\n\n    <ion-content>\n      <ion-list>\n        <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">\n          <!--   <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon> -->\n          {{ p.title }}\n        </button>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n\n  <!-- main navigation -->\n  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n<!-- <ion-nav [root]="rootPage"></ion-nav>\n -->\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\app\app.html"*/'<ion-menu [content]="content">\n\n    <ion-header>\n\n      <ion-toolbar>\n\n        <ion-title>Menu</ion-title>\n\n      </ion-toolbar>\n\n    </ion-header>\n\n\n\n    <ion-content>\n\n      <ion-list>\n\n        <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">\n\n          <!--   <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon> -->\n\n          {{ p.title }}\n\n        </button>\n\n      </ion-list>\n\n    </ion-content>\n\n  </ion-menu>\n\n\n\n  <!-- main navigation -->\n\n  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n\n\n<!-- <ion-nav [root]="rootPage"></ion-nav>\n\n -->\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -1367,7 +1422,7 @@ var ContactPage = /** @class */ (function () {
     }
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\contact\contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n<!--  <ion-list>\n    <ion-card>\n      <ion-card-content>\n\n        <ion-item>\n          <ion-label fixed>Produto</ion-label>\n          <ion-input\n            type="Text"\n            placeholder="Digite o Produto"\n            text-right\n          ></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label fixed>Quantidade</ion-label>\n            <ion-input\n              type="number"\n              placeholder="Digite a Qtd"\n              text-right\n              value = "1"\n            ></ion-input>\n          </ion-item>\n\n\n        <ion-item>\n          <ion-label >Tipo</ion-label>\n          <ion-select [(ngModel)]="arrTipo.toString" >\n              <ion-option *ngFor="let item of arrTipo" value="{{item.value}}">{{item.tipo}}</ion-option>\n          </ion-select>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Und. Medida</ion-label>\n          <ion-select [(ngModel)]="arrUnidade.toString" >\n              <ion-option *ngFor="let item of arrUnidade" value="{{item.value}}">{{item.und}}</ion-option>\n          </ion-select>\n        </ion-item>\n      </ion-card-content>\n    </ion-card>\n  </ion-list> -->\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\contact\contact.html"*/
+            selector: 'page-contact',template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Contact\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n<!--  <ion-list>\n\n    <ion-card>\n\n      <ion-card-content>\n\n\n\n        <ion-item>\n\n          <ion-label fixed>Produto</ion-label>\n\n          <ion-input\n\n            type="Text"\n\n            placeholder="Digite o Produto"\n\n            text-right\n\n          ></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n            <ion-label fixed>Quantidade</ion-label>\n\n            <ion-input\n\n              type="number"\n\n              placeholder="Digite a Qtd"\n\n              text-right\n\n              value = "1"\n\n            ></ion-input>\n\n          </ion-item>\n\n\n\n\n\n        <ion-item>\n\n          <ion-label >Tipo</ion-label>\n\n          <ion-select [(ngModel)]="arrTipo.toString" >\n\n              <ion-option *ngFor="let item of arrTipo" value="{{item.value}}">{{item.tipo}}</ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label>Und. Medida</ion-label>\n\n          <ion-select [(ngModel)]="arrUnidade.toString" >\n\n              <ion-option *ngFor="let item of arrUnidade" value="{{item.value}}">{{item.und}}</ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list> -->\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\contact\contact.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]])
     ], ContactPage);
@@ -1461,7 +1516,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["m" /* Component */])({
-            selector: "page-home",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar> <ion-title></ion-title> </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-card *ngFor="let item of arrProdutos">\n      <ion-card-content color="primary">\n       <ion-grid>\n        <ion-row>\n          <ion-col align-self-start>\n            <h3>Produto:</h3>\n          </ion-col>\n          <ion-col justify-content-end>\n            <p align="right" *ngIf="item.produto.nome.name">{{ item.produto.nome.name}}</p>\n          </ion-col>\n        </ion-row>\n\n        <ion-row>\n          <ion-col align-self-start>\n            <h3>Quantidade:</h3> </ion-col>\n          <ion-col align-self-end>\n            <p align="right" >{{ item.produto.qtd }}</p>\n          </ion-col>\n        </ion-row>\n\n       <!--  <ion-row>\n            <ion-col align-self-start> <h3>Tipo:</h3> </ion-col>\n            <ion-col align-self-end>\n              <p align="right">{{ item.produto.tipo }}</p>\n            </ion-col>\n          </ion-row>\n -->\n          <ion-row>\n              <ion-col align-self-start> <h3>Unidade:</h3> </ion-col>\n              <ion-col align-self-end>\n                <p align="right">{{ item.produto.unidade }}</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n      </ion-card-content>\n\n      <ion-row text-center>\n        <ion-col>\n          <button ion-button icon-left clear small (click)="editProduct(item)">\n            <ion-icon name="create"></ion-icon>\n            <div>Editar</div>\n          </button>\n        </ion-col>\n        <ion-col>\n          <button\n            ion-button\n            icon-left\n            clear\n            small\n            (click)="removeProduct(item)"\n          >\n            <ion-icon name="trash"></ion-icon>\n            <div>Excluir</div>\n          </button>\n        </ion-col>\n      </ion-row>\n    </ion-card>\n  </ion-list>\n\n  <ion-fab right bottom>\n    <button ion-fab color="primary" (click)="addProduct()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>\n\n\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\home\home.html"*/
+            selector: "page-home",template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\home\home.html"*/'<ion-header>\n\n\n\n    <ion-navbar> <ion-title></ion-title> </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-card *ngFor="let item of arrProdutos">\n\n      <ion-card-content color="primary">\n\n       <ion-grid>\n\n        <ion-row>\n\n          <ion-col align-self-start>\n\n            <h3>Produto:</h3>\n\n          </ion-col>\n\n          <ion-col justify-content-end>\n\n            <p align="right" *ngIf="item.produto.nome.name">{{ item.produto.nome.name}}</p>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row>\n\n          <ion-col align-self-start>\n\n            <h3>Quantidade:</h3> </ion-col>\n\n          <ion-col align-self-end>\n\n            <p align="right" >{{ item.produto.qtd }}</p>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n       <!--  <ion-row>\n\n            <ion-col align-self-start> <h3>Tipo:</h3> </ion-col>\n\n            <ion-col align-self-end>\n\n              <p align="right">{{ item.produto.tipo }}</p>\n\n            </ion-col>\n\n          </ion-row>\n\n -->\n\n          <ion-row>\n\n              <ion-col align-self-start> <h3>Unidade:</h3> </ion-col>\n\n              <ion-col align-self-end>\n\n                <p align="right">{{ item.produto.unidade }}</p>\n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-grid>\n\n      </ion-card-content>\n\n\n\n      <ion-row text-center>\n\n        <ion-col>\n\n          <button ion-button icon-left clear small (click)="editProduct(item)">\n\n            <ion-icon name="create"></ion-icon>\n\n            <div>Editar</div>\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button\n\n            ion-button\n\n            icon-left\n\n            clear\n\n            small\n\n            (click)="removeProduct(item)"\n\n          >\n\n            <ion-icon name="trash"></ion-icon>\n\n            <div>Excluir</div>\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n  <ion-fab right bottom>\n\n    <button ion-fab color="primary" (click)="addProduct()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n</ion-content>\n\n\n\n\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
@@ -1488,8 +1543,8 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utilitarios_utilitarios__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic2_auto_complete__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_Produto__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic2_auto_complete__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_Produto__ = __webpack_require__(352);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1586,7 +1641,7 @@ var EditProductPage = /** @class */ (function () {
     ], EditProductPage.prototype, "searchbar", void 0);
     EditProductPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: "page-edit-product",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\edit-product\edit-product.html"*/'\n\n<ion-header>\n    <ion-toolbar>\n      <ion-title>\n        Editar\n      </ion-title>\n      <ion-buttons clear start>\n          <button ion-button (click)="closeModal()">\n            <span ion-text color="primary" showWhen="ios">Cancel</span>\n           <!--  <ion-icon name="md-close" ></ion-icon> -->\n          </button>\n        </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n\n\n<ion-content id=\'content\' class="Pedido-Background"  padding>\n  <form [formGroup]="myForm" novalidate>\n    <div>\n      <ion-label class="label-product" stacked>Produto</ion-label>\n      <ion-auto-complete\n        type="text"\n        name="produto"\n        [(ngModel)]="nomeProd"\n        [dataProvider]="completeService"\n        formControlName="products"\n        [options]="{ placeholder : \'Digite o Produto\' }"\n        #searchbar\n        formControlName="products"\n      ></ion-auto-complete>\n    </div>\n    <hr />\n\n    <!--  <ion-item>\n    <ion-label stacked>Produto</ion-label>\n    <ion-input type="text" name ="nome" [(ngModel)]="model.nome" placeholder="Digite o Produto"></ion-input>\n  </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked>Quantidade</ion-label>\n      <ion-input\n        id="qtd"\n        type="number"\n        name="qtd"\n        [(ngModel)]="model.qtd"\n        placeholder="Digite a quantidade"\n        formControlName="qtd"\n      ></ion-input>\n    </ion-item>\n\n   <!--  <ion-item>\n      <ion-label stacked>Tipo</ion-label>\n      <ion-select\n        name="tipo"\n        [(ngModel)]="model.tipo"\n        placeholder="Escolha o Tipo"\n        formControlName="tipo"\n      >\n        <ion-option *ngFor="let item of arrTipo" value="{{ item.tipo }}">{{\n          item.tipo\n        }}</ion-option>\n      </ion-select>\n    </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked>Und. Medida</ion-label>\n      <ion-select\n        name="unidade"\n        [(ngModel)]="model.unidade"\n        placeholder="Escolha a Unidade"\n        formControlName="und"\n      >\n        <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}">{{\n          item.und\n        }}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button type="submit" ion-button block (click)="save()" [disabled]="myForm.invalid">Salvar</button>\n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\edit-product\edit-product.html"*/
+            selector: "page-edit-product",template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\edit-product\edit-product.html"*/'\n\n\n\n<ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>\n\n        Editar\n\n      </ion-title>\n\n      <ion-buttons clear start>\n\n          <button ion-button (click)="closeModal()">\n\n            <span ion-text color="primary" showWhen="ios">Cancel</span>\n\n           <!--  <ion-icon name="md-close" ></ion-icon> -->\n\n          </button>\n\n        </ion-buttons>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n\n\n<ion-content id=\'content\' class="Pedido-Background"  padding>\n\n  <form [formGroup]="myForm" novalidate>\n\n    <div>\n\n      <ion-label class="label-product" stacked>Produto</ion-label>\n\n      <ion-auto-complete\n\n        type="text"\n\n        name="produto"\n\n        [(ngModel)]="nomeProd"\n\n        [dataProvider]="completeService"\n\n        formControlName="products"\n\n        [options]="{ placeholder : \'Digite o Produto\' }"\n\n        #searchbar\n\n        formControlName="products"\n\n      ></ion-auto-complete>\n\n    </div>\n\n    <hr />\n\n\n\n    <!--  <ion-item>\n\n    <ion-label stacked>Produto</ion-label>\n\n    <ion-input type="text" name ="nome" [(ngModel)]="model.nome" placeholder="Digite o Produto"></ion-input>\n\n  </ion-item> -->\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Quantidade</ion-label>\n\n      <ion-input\n\n        id="qtd"\n\n        type="number"\n\n        name="qtd"\n\n        [(ngModel)]="model.qtd"\n\n        placeholder="Digite a quantidade"\n\n        formControlName="qtd"\n\n      ></ion-input>\n\n    </ion-item>\n\n\n\n   <!--  <ion-item>\n\n      <ion-label stacked>Tipo</ion-label>\n\n      <ion-select\n\n        name="tipo"\n\n        [(ngModel)]="model.tipo"\n\n        placeholder="Escolha o Tipo"\n\n        formControlName="tipo"\n\n      >\n\n        <ion-option *ngFor="let item of arrTipo" value="{{ item.tipo }}">{{\n\n          item.tipo\n\n        }}</ion-option>\n\n      </ion-select>\n\n    </ion-item> -->\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Und. Medida</ion-label>\n\n      <ion-select\n\n        name="unidade"\n\n        [(ngModel)]="model.unidade"\n\n        placeholder="Escolha a Unidade"\n\n        formControlName="und"\n\n      >\n\n        <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}">{{\n\n          item.und\n\n        }}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n    <button type="submit" ion-button block (click)="save()" [disabled]="myForm.invalid">Salvar</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\edit-product\edit-product.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavParams */],
@@ -1614,8 +1669,8 @@ var EditProductPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_complete_service_complete_service__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_product_storage_product_storage__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_Produto__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_CategoriaItem__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_Produto__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_CategoriaItem__ = __webpack_require__(354);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1712,12 +1767,17 @@ var ModalProductPage = /** @class */ (function () {
     };
     ModalProductPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: "page-modal-product",template:/*ion-inline-start:"C:\DemarchiApp\RequestApp\src\pages\modal-product\modal-product.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Inserir Produto\n    </ion-title>\n    <ion-buttons clear start>\n      <button ion-button (click)="closeModal()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <!--  <ion-icon name="md-close" ></ion-icon> -->\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content id=\'content\' class="Pedido-Background" padding>\n  <form [formGroup]="myForm">\n    <div>\n      <ion-label class="label-product" stacked>Produto</ion-label>\n      <ion-auto-complete type="text" name="produto" [(ngModel)]="model.nome" [dataProvider]="completeService"\n        formControlName="products" [options]="{ autocomplete  : \'on\' , placeholder : \'Digite o Produto\'}"></ion-auto-complete>\n    </div>\n    <hr>\n\n    <ion-item>\n      <ion-label stacked>Quantidade</ion-label>\n      <ion-input type="number" pattern="[0-9]*" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade" formControlName="qtd"></ion-input>\n    </ion-item>\n\n    <!--  <ion-item>\n        <ion-label stacked>Tipo</ion-label>\n        <ion-select name="tipo" [(ngModel)]="model.tipo" placeholder="Escolha o Tipo" formControlName="tipo">\n          <ion-option *ngFor="let item of arrTipo" value="{{ item.tipo }}">{{\n            item.tipo\n          }}</ion-option>\n        </ion-select>\n      </ion-item> -->\n\n    <ion-item>\n      <ion-label stacked>Und. Medida</ion-label>\n      <ion-select name="unidade" [(ngModel)]="model.unidade" placeholder="Escolha a Unidade" formControlName="und">\n        <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}"> {{\n          item.und\n          }}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button type="submit" ion-button block (click)="save()" [disabled]="myForm.invalid">Salvar</button>\n\n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\DemarchiApp\RequestApp\src\pages\modal-product\modal-product.html"*/
+            selector: "page-modal-product",template:/*ion-inline-start:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\modal-product\modal-product.html"*/'<ion-header>\n\n  <ion-toolbar>\n\n    <ion-title>\n\n      Inserir Produto\n\n    </ion-title>\n\n    <ion-buttons clear start>\n\n      <button ion-button (click)="closeModal()">\n\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n\n        <!--  <ion-icon name="md-close" ></ion-icon> -->\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content id=\'content\' class="Pedido-Background" padding>\n\n  <form [formGroup]="myForm">\n\n    <div>\n\n      <ion-label class="label-product" stacked>Produto</ion-label>\n\n      <ion-auto-complete type="text" name="produto" [(ngModel)]="model.nome" [dataProvider]="completeService"\n\n        formControlName="products" [options]="{ autocomplete  : \'on\' , placeholder : \'Digite o Produto\'}"></ion-auto-complete>\n\n    </div>\n\n    <hr>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Quantidade</ion-label>\n\n      <ion-input type="number" pattern="[0-9]*" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade" formControlName="qtd"></ion-input>\n\n    </ion-item>\n\n\n\n    <!--  <ion-item>\n\n        <ion-label stacked>Tipo</ion-label>\n\n        <ion-select name="tipo" [(ngModel)]="model.tipo" placeholder="Escolha o Tipo" formControlName="tipo">\n\n          <ion-option *ngFor="let item of arrTipo" value="{{ item.tipo }}">{{\n\n            item.tipo\n\n          }}</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Und. Medida</ion-label>\n\n      <ion-select name="unidade" [(ngModel)]="model.unidade" placeholder="Escolha a Unidade" formControlName="und">\n\n        <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}"> {{\n\n          item.und\n\n          }}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n    <button type="submit" ion-button block (click)="save()" [disabled]="myForm.invalid">Salvar</button>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Desenvolver11\Documents\GitHub\requestAppCl\requestApp\src\pages\modal-product\modal-product.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_complete_service_complete_service__["a" /* CompleteServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_complete_service_complete_service__["a" /* CompleteServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers_product_storage_product_storage__["a" /* ProductStorageProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_product_storage_product_storage__["a" /* ProductStorageProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__utilitarios_utilitarios__["a" /* Utilitarios */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__utilitarios_utilitarios__["a" /* Utilitarios */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ViewController */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_complete_service_complete_service__["a" /* CompleteServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_0__utilitarios_utilitarios__["a" /* Utilitarios */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ViewController */]])
     ], ModalProductPage);
     return ModalProductPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=modal-product.js.map
