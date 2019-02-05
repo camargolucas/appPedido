@@ -51,12 +51,13 @@ export class SignupPage extends UserProvider {
   }
 
   ngOnInit() {
+    let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.formSignUp = new FormGroup({
-      email: new FormControl("", Validators.required),
-      usuario: new FormControl("", Validators.required),
-      login: new FormControl("", Validators.required),
-      senha: new FormControl("", Validators.required),
-      loja: new FormControl("", Validators.required)
+      email: new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
+      usuario: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(3), Validators.maxLength(16)]),
+      login: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(5), Validators.maxLength(16)] ),
+      senha: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(16)]),
+      loja: new FormControl("", [Validators.required])
     });
   }
 

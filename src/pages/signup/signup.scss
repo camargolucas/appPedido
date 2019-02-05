@@ -44,4 +44,11 @@ page-signup {
   .div-components{
     padding-top: 30%;
   }
+
+  .error{
+    font-size: 10px;
+    color: map-get($colors , danger);
+    padding-left: 20px;
+
+  }
 }

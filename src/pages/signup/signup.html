@@ -28,6 +28,12 @@
           </ion-label>
           <ion-input type="text" formControlName="usuario" #usuario></ion-input>
         </ion-item>
+        <div class="error" *ngIf="formSignUp.get('usuario').hasError('minlength') && formSignUp.get('usuario').touched">
+          Mínimo 3 caracteres
+        </div>
+        <div class="error" *ngIf="formSignUp.get('usuario').hasError('maxlength') && formSignUp.get('usuario').touched">
+          Máximo 16 caracteres
+        </div>
       </div>
       <div>
         <ion-item class="ion-item" no-lines>
@@ -37,7 +43,18 @@
           </ion-label>
           <ion-input type="text" formControlName="login" #login></ion-input>
         </ion-item>
+        <div class="error" *ngIf="formSignUp.get('login').hasError('minlength') && formSignUp.get('login').touched">
+          Mínimo 5 caracteres
+        </div>
+        <div class="error" *ngIf="formSignUp.get('login').hasError('maxlength') && formSignUp.get('login').touched">
+          Máximo 16 caracteres
+        </div>
+        <div class="error" *ngIf="formSignUp.get('login').hasError('pattern') && formSignUp.get('login').touched">
+          Não é possivel carácteres especiais
+        </div>
+
       </div>
+
       <div>
         <ion-item class="ion-item" no-lines>
           <ion-label>
@@ -46,7 +63,11 @@
           </ion-label>
           <ion-input type="text" formControlName="email" #email></ion-input>
         </ion-item>
+        <div class="error" *ngIf="formSignUp.get('email').hasError('pattern') && formSignUp.get('email').touched">
+          Email inválido
+        </div>
       </div>
+
       <div class="div-senha">
         <ion-item class="ion-item" no-lines>
           <ion-label>
@@ -55,6 +76,12 @@
           </ion-label>
           <ion-input type="password" formControlName="senha" #senha></ion-input>
         </ion-item>
+        <div class="error" *ngIf="formSignUp.get('senha').hasError('minlength') && formSignUp.get('senha').touched">
+          Mínimo 5 caracteres
+        </div>
+        <div class="error" *ngIf="formSignUp.get('senha').hasError('maxlength') && formSignUp.get('senha').touched">
+          Máximo 16 caracteres
+        </div>
       </div>
       <div class="div-loja">
         <ion-item class="ion-item" no-lines>
@@ -62,10 +89,10 @@
             <ion-icon name="md-bookmark" left></ion-icon>
             Loja
           </ion-label>
-          <ion-input type="number" pattern="[0-9]*" formControlName="loja" #loja></ion-input>
+          <ion-input type="number" min="1" pattern="[1-9]*" formControlName="loja" #loja></ion-input>
         </ion-item>
       </div>
-      <button ion-button round [disabled]="formSignUp.invalid"  (click)="insertUser()">Cadastrar</button>
+      <button ion-button round [disabled]="formSignUp.invalid" (click)="insertUser()">Cadastrar</button>
     </form>
   </div>
 

@@ -1,3 +1,4 @@
+import { ProductStorageProvider } from './../providers/product-storage/product-storage';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,7 +18,7 @@ export class MyApp {
   //rootPage = '';
   rootPage:any = LoginPage
   public navCtrl: NavController;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, product:ProductStorageProvider) {
     this.pages = [
       { title: 'Estoque / Pedido', component: TabsPage },
     ];
@@ -28,7 +29,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      product.insertDatabaseProducts();
     });
+
   }
 
 

@@ -77,7 +77,7 @@ export class LoginPage {
       this.model.apelidoUsuario = ret[0]["apelidoUsuario"];
       this.model.categoriaItem.idCategoria = this.idCategoria;
       this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
-      console.log(this.model)
+
       this.storage.insertUser(this.model);
 
   }

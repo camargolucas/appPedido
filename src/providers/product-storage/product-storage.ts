@@ -6,10 +6,15 @@ import localForage from "localforage";
 import { Produto } from "../../model/Produto";
 import { ListaProduto } from "../../model/ListaProduto";
 import { Usuario } from "../../model/Usuario";
+import { ProductProvider } from "../product/product";
 
 @Injectable()
 export class ProductStorageProvider {
-  constructor(private storage: Storage, private datePipe: DatePipe) {}
+  constructor(
+    private storage: Storage,
+    private datePipe: DatePipe,
+    public produto: ProductProvider
+  ) {}
 
   public insert(produto: any) {
     let key = this.datePipe.transform(new Date(), "ddMMyyyyHHmmss");
@@ -26,27 +31,28 @@ export class ProductStorageProvider {
   }
 
   public get(key: string) {
-    return this.storage.get(key);
+
+      return(this.storage.get(key));
+
   }
 
   public clear() {
     return this.storage.clear();
   }
 
-  public insertUser(user:any){
+  public insertUser(user: any) {
     //let key = this.datePipe.transform(new Date(), "ddMMyyyyHHmmss");
-    let key = 'Usuario'
-    return this.saveUser(key, user)
-
+    let key = "Usuario";
+    return this.saveUser(key, user);
   }
 
-  public saveUser(key:string, user:Usuario){
-    return this.storage.set(key, user)
+  public saveUser(key: string, user: Usuario) {
+    return this.storage.set(key, user);
   }
 
-  public getAll(categoria:string) {
+  public getAll(categoria: string) {
     let produtos: ListaProduto[] = [];
-    let teste:ListaProduto[]=[];
+    let arrProduto: ListaProduto[] = [];
 
     return this.storage
       .forEach((value: Produto, key: string, iterationNumber: Number) => {
@@ -56,21 +62,29 @@ export class ProductStorageProvider {
         produtos.push(produto);
       })
 
-
       .then(() => {
-        teste = produtos.filter((value)=>{
-          return value.produto.categoriaItem.nomeCategoria === categoria
-        })
+        arrProduto = produtos.filter(value => {
+          return value.produto.categoriaItem.nomeCategoria === categoria;
+        });
 
-        return Promise.resolve(teste);
+        return Promise.resolve(arrProduto);
       })
       .catch(error => {
-        return Promise.reject(teste);
+        return Promise.reject(arrProduto);
       });
   }
+  public insertDatabaseProducts() {
+    this.produto.getAllProducts().then(products => {
+      let key = "ProductsDb";
 
+      return this.saveProductsDataBase(key, products);
+    });
+  }
+
+  public saveProductsDataBase(key: string, products: any) {
+    return this.storage.set(key, products);
+  }
 }
-
 
 /* export class Produto{
   id:number

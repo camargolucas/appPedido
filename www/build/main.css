@@ -30824,6 +30824,12 @@ page-signup .div-components {
   padding-top: 30%;
 }
 
+page-signup .error {
+  font-size: 10px;
+  color: #f53d3d;
+  padding-left: 20px;
+}
+
 page-stock .title {
   text-align: center;
   font-size: 30px;
