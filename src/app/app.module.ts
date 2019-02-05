@@ -28,6 +28,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserProvider } from '../providers/user/user';
 import { ProductProvider } from '../providers/product/product';
+import { Network } from '@ionic-native/network/ngx';
+import { CheckNetworkProvider } from '../providers/check-network/check-network';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCdcciBxo_3dsnem8ltRTcMVStKOZX12xM",
@@ -83,6 +85,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatePipe,
     ProductStorageProvider,
@@ -90,6 +93,7 @@ export const firebaseConfig = {
     Utilitarios,
     UserProvider,
     ProductProvider,
+    CheckNetworkProvider,
   ]
 })
 export class AppModule {}
