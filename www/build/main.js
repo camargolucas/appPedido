@@ -1146,12 +1146,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_angularfire2_auth__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_user_user__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_product_product__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_network_ngx__ = __webpack_require__(806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_check_network_check_network__ = __webpack_require__(807);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_check_network_check_network___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__providers_check_network_check_network__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1248,6 +1253,7 @@ var AppModule = /** @class */ (function () {
             providers: [
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_30__ionic_native_network_ngx__["a" /* Network */],
                 { provide: __WEBPACK_IMPORTED_MODULE_7__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_9_ionic_angular__["d" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_14__angular_common__["d" /* DatePipe */],
                 __WEBPACK_IMPORTED_MODULE_17__providers_product_storage_product_storage__["a" /* ProductStorageProvider */],
@@ -1255,6 +1261,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__utilitarios_utilitarios__["a" /* Utilitarios */],
                 __WEBPACK_IMPORTED_MODULE_28__providers_user_user__["a" /* UserProvider */],
                 __WEBPACK_IMPORTED_MODULE_29__providers_product_product__["a" /* ProductProvider */],
+                __WEBPACK_IMPORTED_MODULE_31__providers_check_network_check_network__["CheckNetworkProvider"],
             ]
         })
     ], AppModule);
@@ -1599,6 +1606,13 @@ var EditProductPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=edit-product.js.map
+
+/***/ }),
+
+/***/ 807:
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\DemarchiApp\\RequestApp\\src\\providers\\check-network\\check-network.js'");
 
 /***/ }),
 
