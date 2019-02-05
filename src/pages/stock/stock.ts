@@ -1,4 +1,4 @@
-import { ProductProvider } from './../../providers/product/product';
+import { ProductProvider } from "./../../providers/product/product";
 
 import { ProductStorageProvider } from "./../../providers/product-storage/product-storage";
 import { Component, ɵConsole, Optional } from "@angular/core";
@@ -32,12 +32,12 @@ export class StockPage {
   private tipo = "";
   private editar: boolean = true;
   private idCategoria: number = 1;
-  public date:string = new Date().toLocaleDateString();
+  public date: string = new Date().toLocaleDateString();
 
   public nomeCategoria = "Estoque";
 
   constructor(
-     public navCtrl: NavController ,
+    public navCtrl: NavController,
     public navParams: NavParams,
     public provider: ProductStorageProvider,
     public toast: ToastController,
@@ -46,13 +46,10 @@ export class StockPage {
     public storage: ProductStorageProvider,
     public apiProduct: ProductProvider
   ) {
-    this.tipo = 'F'
+    this.tipo = "F";
   }
 
-
-
   ionViewDidEnter() {
-
     this.loadData(this.tipo);
   }
 
@@ -64,7 +61,7 @@ export class StockPage {
     this.navCtrl.push(EditProductPage, {
       key: item.key,
       produto: item.produto,
-      nomeCategoria: this.nomeCategoria,
+      nomeCategoria: this.nomeCategoria
     });
   }
 
@@ -89,7 +86,7 @@ export class StockPage {
       .then(results => {
         this.arrRet = results;
         this.arrProdutos = results.filter(data => {
-          return (data.produto.nome["TIPO"] == value ); //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
+          return data.produto.nome["TIPO"] == value; //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
@@ -100,9 +97,9 @@ export class StockPage {
   addProduct() {
     const myModal = this.modal.create(ModalProductPage, {
       tipoProduto: this.tipo,
-      idCategoria:this.idCategoria,
-      nomeCategoria:this.nomeCategoria,
-    } );
+      idCategoria: this.idCategoria,
+      nomeCategoria: this.nomeCategoria
+    });
 
     myModal.onDidDismiss(() => {
       this.loadData(this.tipo);
@@ -110,34 +107,23 @@ export class StockPage {
     myModal.present();
   }
 
- public isAvaible() {
+  public isAvaible() {
     return this.editar;
   }
 
-
-
-  insertDataBase(){
-    this.storage.get('Usuario')
-    .then((ret)=>{
-
-      let idUsuario = ret['idUsuario']
+  insertDataBase() {
+    this.storage.get("Usuario").then(ret => {
+      let idUsuario = ret["idUsuario"];
       let dataEnvio = this.date;
 
-      let arrEstoque = this.arrRet.filter((data)=>{
-        return data.produto.categoriaItem.nomeCategoria = 'Estoque'
-      })
-
-      let Produtos = [{
-        arrProduto :arrEstoque,
-        idUsuario:idUsuario,
+      let Produtos = {
+        arrProduto: this.arrRet,
+        idUsuario: idUsuario,
         dataEnvio: dataEnvio
-      }]
+      };
 
-
-      this.apiProduct.insert(Produtos)
-    })
-
-
+      this.apiProduct.insert(Produtos);
+    });
   }
 
   showConfirm() {
@@ -155,8 +141,8 @@ export class StockPage {
           text: "Sim",
           handler: () => {
             this.editar = false;
-            this.insertDataBase()
-            console.log(this.arrRet)
+            this.insertDataBase();
+
           }
         }
       ]

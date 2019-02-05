@@ -9,5 +9,6 @@ export class Usuario {
   loja: number;
   idCargo: number;
   ativo: boolean;
+  apelidoUsuario:string;
   categoriaItem = new CategoriaItem();
 }

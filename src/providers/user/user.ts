@@ -24,7 +24,7 @@ export class UserProvider extends ApiData {
     );
   }
 
-  public getByEmail(usuario: Usuario) {
+  public getUser(usuario: any) {
     let usuarioData = JSON.stringify(usuario);
 
     return new Promise((resolve, reject) => {
@@ -39,6 +39,13 @@ export class UserProvider extends ApiData {
           }
         );
     });
+  }
+
+  getByName(usuario:Usuario){
+    let usuarioData = JSON.stringify(usuario)
+    this.http.get(this.API_URL + "users/getByName/" + usuarioData + "")
+
+
   }
 
   /*  insert(usuario: Usuario) {

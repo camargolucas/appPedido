@@ -2,8 +2,8 @@ import { RequestOptions, Headers } from "@angular/http";
 
 export class ApiData {
   readonly API_URL: string;
-  readonly requestOptions:any
-  private headers
+  readonly requestOptions: any;
+  private headers;
 
   constructor() {
     //this.API_URL = "http://apprequestapi.kinghost.net:21093/";
@@ -15,6 +15,5 @@ export class ApiData {
     this.headers.append("Access-Control-Allow-Origin", "*");
 
     this.requestOptions = new RequestOptions({ headers: this.headers });
-
   }
 }

@@ -36,6 +36,7 @@ export class SignupPage extends UserProvider {
   @ViewChild("senha") password;
   @ViewChild("usuario") user;
   @ViewChild("loja") loja;
+  @ViewChild("login") login;
   constructor(
     http: Http,
     public navCtrl: NavController,
@@ -53,6 +54,7 @@ export class SignupPage extends UserProvider {
     this.formSignUp = new FormGroup({
       email: new FormControl("", Validators.required),
       usuario: new FormControl("", Validators.required),
+      login: new FormControl("", Validators.required),
       senha: new FormControl("", Validators.required),
       loja: new FormControl("", Validators.required)
     });
@@ -76,11 +78,12 @@ export class SignupPage extends UserProvider {
       this.usuario.senha = this.password.value;
       this.usuario.loja = this.loja.value;
       this.usuario.email = this.email.value;
+      this.usuario.apelidoUsuario = this.login.value;
 
       this.insert(this.usuario)
       .toPromise()
       .then(()=>{
-        this.insertUserFb()
+        //this.insertUserFb()
         this.showToast('Cadastrado com sucesso')
         this.navCtrl.pop();
       })
