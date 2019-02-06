@@ -105,7 +105,7 @@ export class  EditProductPage {
             position: "botton",
           })
           .present();
-      });
+      })
 }
 
   private saveProduct() {

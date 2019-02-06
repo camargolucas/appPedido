@@ -12,6 +12,7 @@ npm-debug.log*
 .sass-cache/
 temp/
 www/
+www/build
 $RECYCLE.BIN/
 
 
