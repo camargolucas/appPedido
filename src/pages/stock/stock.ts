@@ -31,10 +31,10 @@ export class StockPage {
   private arrProdutos: ListaProduto[];
   private tipo = "";
   private editar: boolean = true;
-  private idCategoria: number = 1;
   public date: string = new Date().toLocaleDateString();
 
-  public nomeCategoria = "Estoque";
+  readonly idCategoria: number = 1;
+  readonly nomeCategoria = "Estoque";
 
   constructor(
     public navCtrl: NavController,

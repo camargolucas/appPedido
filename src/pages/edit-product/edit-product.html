@@ -1,34 +1,24 @@
-
-
 <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Editar
-      </ion-title>
-      <ion-buttons clear start>
-          <button ion-button (click)="closeModal()">
-            <span ion-text color="primary" showWhen="ios">Cancel</span>
-           <!--  <ion-icon name="md-close" ></ion-icon> -->
-          </button>
-        </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Editar
+    </ion-title>
+    <ion-buttons clear start>
+      <button ion-button (click)="closeModal()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <!--  <ion-icon name="md-close" ></ion-icon> -->
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 
-<ion-content id='content' class="Pedido-Background"  padding>
+<ion-content id='content' class="Pedido-Background" padding>
   <form [formGroup]="myForm" novalidate>
     <div>
       <ion-label class="label-product" stacked>Produto</ion-label>
-      <ion-auto-complete
-        type="text"
-        name="produto"
-        [(ngModel)]="nomeProd"
-        [dataProvider]="completeService"
-        formControlName="products"
-        [options]="{ placeholder : 'Digite o Produto' }"
-        #searchbar
-        formControlName="products"
-      ></ion-auto-complete>
+      <ion-auto-complete type="text" name="produto" [(ngModel)]="nomeProd" [dataProvider]="completeService"
+        formControlName="products" [options]="{ placeholder : 'Digite o Produto' }" #searchbar formControlName="products"></ion-auto-complete>
     </div>
     <hr />
 
@@ -39,17 +29,11 @@
 
     <ion-item>
       <ion-label stacked>Quantidade</ion-label>
-      <ion-input
-        id="qtd"
-        type="number"
-        name="qtd"
-        [(ngModel)]="model.qtd"
-        placeholder="Digite a quantidade"
-        formControlName="qtd"
-      ></ion-input>
+      <ion-input id="qtd" type="number" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade"
+        formControlName="qtd" min="1" pattern="[1-9]*"></ion-input>
     </ion-item>
 
-   <!--  <ion-item>
+    <!--  <ion-item>
       <ion-label stacked>Tipo</ion-label>
       <ion-select
         name="tipo"
@@ -65,15 +49,10 @@
 
     <ion-item>
       <ion-label stacked>Und. Medida</ion-label>
-      <ion-select
-        name="unidade"
-        [(ngModel)]="model.unidade"
-        placeholder="Escolha a Unidade"
-        formControlName="und"
-      >
+      <ion-select name="unidade" [(ngModel)]="model.unidade" placeholder="Escolha a Unidade" formControlName="und">
         <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}">{{
           item.und
-        }}</ion-option>
+          }}</ion-option>
       </ion-select>
     </ion-item>
 
