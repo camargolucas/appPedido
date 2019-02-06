@@ -112,7 +112,6 @@ export class ModalProductPage {
   insertProduct() {
     this.model.categoriaItem.nomeCategoria = this.nomeCategoria
     this.model.categoriaItem.idCategoria = this.idCategoria
-    console.log(this.model)
 
     return this.storage.insert(this.model);
   }

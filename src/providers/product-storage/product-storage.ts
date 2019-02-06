@@ -1,3 +1,4 @@
+import { CategoriaItem } from './../../model/CategoriaItem';
 import { DatePipe } from "@angular/common";
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
@@ -10,11 +11,16 @@ import { ProductProvider } from "../product/product";
 
 @Injectable()
 export class ProductStorageProvider {
+ // produto:Produto;
+  categoria:CategoriaItem
   constructor(
     private storage: Storage,
     private datePipe: DatePipe,
-    public produto: ProductProvider
-  ) {}
+    public produtoProv: ProductProvider
+  ) {
+   // this.produto = new Produto()
+    this.categoria = new CategoriaItem()
+  }
 
   public insert(produto: any) {
     let key = this.datePipe.transform(new Date(), "ddMMyyyyHHmmss");
@@ -74,10 +80,22 @@ export class ProductStorageProvider {
       });
   }
   public insertDatabaseProducts() {
-    this.produto.getAllProducts().then(products => {
+    this.produtoProv.getAllProducts().then(products => {
       let key = "ProductsDb";
 
-      return this.saveProductsDataBase(key, products);
+
+      this.categoria.idCategoria = 4
+      this.categoria.nomeCategoria = 'ProdutosDb'
+
+      let arrProdutos = {
+        categoriaItem:this.categoria,
+        Produtos:products
+      }
+
+      console.log(arrProdutos)
+
+
+      return this.saveProductsDataBase(key, arrProdutos);
     });
   }
 

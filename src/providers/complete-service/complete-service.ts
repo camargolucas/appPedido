@@ -29,7 +29,7 @@ export class CompleteServiceProvider extends ApiData
 
     //Pesquisa os dados do produto que está armazenado em cache
     return this.product.get("ProductsDb").then(v => {
-      return (arrProdutos = v.filter(value => {
+      return (arrProdutos = v.Produtos.filter(value => {
         return value.NAME.toLowerCase().startsWith(keyword.toLowerCase());
       }));
     });
