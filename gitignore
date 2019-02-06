@@ -8,11 +8,11 @@
 *.tmp.*
 log.txt
 npm-debug.log*
-.sourcemaps/
+.sourcemaps/*
 .sass-cache/
 temp/
-www/
-www/build
+.www/*
+*.html*
 $RECYCLE.BIN/
 
 
