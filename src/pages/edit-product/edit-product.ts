@@ -110,6 +110,7 @@ export class  EditProductPage {
 
   private saveProduct() {
       this.model.nome = this.nomeProd
+      console.log('todo')
       return this.storage.update(this.key, this.model);
   }
   closeModal() {
