@@ -1,22 +1,24 @@
 import { AlertController, Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
-import { Network } from '@ionic-native/network/ngx';
 
 @Injectable()
 export class CheckNetworkProvider {
 
   constructor(
-    public network: Network,
-    public alertCtrl: AlertController,
+    public alert: AlertController,
     public platform: Platform) {}
 
   checkNetwork() {
-    let conectado = this.network.onConnect;
-
-    if(!conectado){
+    // Verifica se está sem conexão com a internet
+    window.addEventListener ('offline', () => { 
+      let alert = this.alert.create({
+        title:    'Atenção',
+        message:  'Sem conexão com o servidor',
+        buttons:  ['OK']
+      });
+      alert.present();
+      console.log('Sem internet!');
       return false;
-    }else{
-      return true;
-    }
+    });
   }
 }
