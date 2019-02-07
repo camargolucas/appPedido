@@ -34,7 +34,7 @@ export class StockPage {
   public date: string = new Date().toLocaleDateString();
 
   readonly idCategoria: number = 1;
-  readonly nomeCategoria = "Estoque";
+  readonly nomeCategoria = "Estoque"
 
   constructor(
     public navCtrl: NavController,
