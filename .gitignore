@@ -40,3 +40,10 @@ www/build/3.js
 .sourcemaps/main.js.map
 www/build/6.js
 www/build/main.js
+www/build/vendor.js.map
+.sourcemaps/main.js.map
+www/build/4.js
+www/build/5.js
+www/build/6.js
+www/build/main.js
+www/build/main.js.map
