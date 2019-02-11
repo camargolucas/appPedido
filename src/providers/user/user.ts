@@ -41,11 +41,29 @@ export class UserProvider extends ApiData {
     });
   }
 
-  getByName(usuario:Usuario){
-    let usuarioData = JSON.stringify(usuario)
-    this.http.get(this.API_URL + "users/getByName/" + usuarioData + "")
+  getByName(usuario: Usuario) {
+    let usuarioData = JSON.stringify(usuario);
+    this.http.get(this.API_URL + "users/getByName/" + usuarioData + "");
+  }
 
-
+  getSentStock(data: any) {
+    let strData = JSON.stringify(data);
+    console.log(strData)
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(
+          this.API_URL + "users/getSentStock/" + encodeURIComponent(strData) + ""
+        )
+        .subscribe(
+          result => {
+            resolve(result.json());
+            console.log(result.json())
+          },
+          error => {
+            console.log(error.json())
+          }
+        );
+    });
   }
 
   /*  insert(usuario: Usuario) {

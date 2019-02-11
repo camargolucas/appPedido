@@ -1,3 +1,4 @@
+import { Usuario } from "./../../model/Usuario";
 import { ProductProvider } from "./../../providers/product/product";
 
 import { ProductStorageProvider } from "./../../providers/product-storage/product-storage";
@@ -13,6 +14,8 @@ import {
 import { EditProductPage } from "../edit-product/edit-product";
 import { ModalProductPage } from "../modal-product/modal-product";
 import { ListaProduto } from "../../model/ListaProduto";
+import { UserProvider } from "../../providers/user/user";
+import { Rules } from "../../Rules/rules";
 
 /**
  * Generated class for the StockPage page.
@@ -30,11 +33,12 @@ export class StockPage {
   private arrRet: ListaProduto[];
   private arrProdutos: ListaProduto[];
   private tipo = "";
-  private editar: boolean = true;
+  public editar: boolean;
   public date: string = new Date().toLocaleDateString();
-
-  readonly idCategoria: number = 1;
-  readonly nomeCategoria = "Estoque"
+  private idCategoria: number;
+  private nomeCategoria: string;
+  public idUsuario: number;
+  public usuario: Usuario;
 
   constructor(
     public navCtrl: NavController,
@@ -44,8 +48,19 @@ export class StockPage {
     public modal: ModalController,
     public alertCtrl: AlertController,
     public storage: ProductStorageProvider,
-    public apiProduct: ProductProvider
+    public apiProduct: ProductProvider,
+    public userApi: UserProvider,
+    public rules: Rules
   ) {
+    this.nomeCategoria = this.rules["categorias"]["estoque"]["categoriaItem"][
+      "nomeCategoria"
+    ];
+    this.idCategoria = this.rules["categorias"]["estoque"]["categoriaItem"][
+      "idCategoria"
+    ];
+
+    this.verifyStock();
+
     this.tipo = "F";
   }
 
@@ -111,9 +126,31 @@ export class StockPage {
     return this.editar;
   }
 
+  verifyStock() {
+    this.provider.get("Usuario").then(value => {
+      let id = value["idUsuario"];
+      let date = this.date;
+
+      let arrUser = {
+        idUsuario: id,
+        data: date
+      };
+
+      this.userApi.getSentStock(arrUser).then(result => {
+        let ENVIOS = result[0]["ENVIOS"];
+
+        if (ENVIOS < this.rules.ENVIOS) {
+          this.editar = true;
+        } else {
+          this.editar = false;
+        }
+      });
+    });
+  }
+
   insertDataBase() {
-    this.storage.get("Usuario").then(ret => {
-      let idUsuario = ret["idUsuario"];
+    this.storage.get("Usuario").then(value => {
+      let idUsuario = value['idUsuario']
       let dataEnvio = this.date;
 
       let Produtos = {
@@ -142,7 +179,6 @@ export class StockPage {
           handler: () => {
             this.editar = false;
             this.insertDataBase();
-
           }
         }
       ]
