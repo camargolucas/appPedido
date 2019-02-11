@@ -13,6 +13,7 @@ import { ProductStorageProvider } from "../../providers/product-storage/product-
 import { Produto } from "../../model/Produto";
 import { EditProductPage } from "../edit-product/edit-product";
 import { ProductProvider } from "../../providers/product/product";
+import { Rules } from "../../Rules/rules";
 
 /**
  * Generated class for the RequestPage page.
@@ -28,8 +29,8 @@ import { ProductProvider } from "../../providers/product/product";
 })
 export class RequestPage {
   private Produto: Produto;
-  private idCategoria: number = 2;
-  private nomeCategoria: string = "Pedido";
+  private idCategoria: number;
+  private nomeCategoria: string;
   private arrProdutos: ListaProduto[];
   private arrRet: ListaProduto[];
   private tipo = "";
@@ -41,8 +42,11 @@ export class RequestPage {
     public navParams: NavParams,
     public provider: ProductStorageProvider,
     public alertCtrl: AlertController,
-    public productApi: ProductProvider
+    public productApi: ProductProvider,
+    public rules:Rules
   ) {
+    this.nomeCategoria = this.rules['categorias']['pedido']['categoriaItem']['nomeCategoria'];
+    this.idCategoria = this.rules['categorias']['pedido']['categoriaItem']['idCategoria'];
     this.tipo = "F";
   }
 

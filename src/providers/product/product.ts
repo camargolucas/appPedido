@@ -44,9 +44,8 @@ export class ProductProvider extends ApiData {
 
   getAllProducts() {
     return new Promise((resolve, reject) => {
-      this.http.get(this.API_URL + "products/getAll")
-      .subscribe(ret => {
-        resolve(ret.json())
+      this.http.get(this.API_URL + "products/getAll").subscribe(ret => {
+        resolve(ret.json());
       });
     });
   }
