@@ -30,6 +30,7 @@ import { UserProvider } from '../providers/user/user';
 import { ProductProvider } from '../providers/product/product';
 import { Network } from '@ionic-native/network/ngx';
 import { CheckNetworkProvider } from '../providers/check-network/check-network';
+import { Rules } from '../Rules/rules';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCdcciBxo_3dsnem8ltRTcMVStKOZX12xM",
@@ -91,6 +92,7 @@ export const firebaseConfig = {
     ProductStorageProvider,
     CompleteServiceProvider,
     Utilitarios,
+    Rules,
     UserProvider,
     ProductProvider,
     CheckNetworkProvider,

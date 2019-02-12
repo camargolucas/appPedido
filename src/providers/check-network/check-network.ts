@@ -9,6 +9,7 @@ export class CheckNetworkProvider {
     public platform: Platform) {}
 
   checkNetwork() {
+
     // Verifica se está sem conexão com a internet
     window.addEventListener ('offline', () => { 
       let alert = this.alert.create({
@@ -18,6 +19,10 @@ export class CheckNetworkProvider {
       });
       alert.present();
       console.log('Sem internet!');
+
+    let connected = this.network.onConnect;
+
+    if(!connected){
       return false;
     });
   }
