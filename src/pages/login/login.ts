@@ -77,7 +77,7 @@ export class LoginPage {
       this.model.apelidoUsuario = ret[0]["apelidoUsuario"];
       this.model.categoriaItem.idCategoria = this.idCategoria;
       this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
-
+      this.model.token = ret[0]["token"];
       this.storage.insertUser(this.model);
 
   }
@@ -99,6 +99,7 @@ export class LoginPage {
   }
 
   login() {
+
     let arrUser = {
       login: this.userLogin.value,
       password: this.password.value
@@ -107,6 +108,7 @@ export class LoginPage {
     this.userApi
       .getUser(arrUser)
       .then(ret => {
+
         if (ret == "") {
           this.showToast("Usuário Inválido");
         } else {
@@ -114,6 +116,7 @@ export class LoginPage {
           this.menu.enable(true);
           this.userData(ret)
         }
+
       })
       .catch(err => {
         this.showToast('Não foi possivel acessar !')

@@ -11,4 +11,5 @@ export class Usuario {
   ativo: boolean;
   apelidoUsuario:string;
   categoriaItem = new CategoriaItem();
+  token: string;
 }
