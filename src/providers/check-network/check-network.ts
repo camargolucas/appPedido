@@ -11,9 +11,9 @@ export class CheckNetworkProvider {
     public platform: Platform) {}
 
   checkNetwork() {
-    let conectado = this.network.onConnect;
+    let connected = this.network.onConnect;
 
-    if(!conectado){
+    if(!connected){
       return false;
     }else{
       return true;
