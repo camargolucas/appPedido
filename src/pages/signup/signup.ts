@@ -53,11 +53,11 @@ export class SignupPage extends UserProvider {
   ngOnInit() {
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.formSignUp = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
+      email:   new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
       usuario: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(3), Validators.maxLength(16)]),
-      login: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(5), Validators.maxLength(16)] ),
-      senha: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(16)]),
-      loja: new FormControl("", [Validators.required])
+      login:   new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(5), Validators.maxLength(16)] ),
+      senha:   new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(16)]),
+      loja:    new FormControl("", [Validators.required])
     });
   }
 
@@ -73,26 +73,30 @@ export class SignupPage extends UserProvider {
   }
 
   insertUser() {
-
-
-      this.usuario.nomeUsuario = this.user.value;
-      this.usuario.senha = this.password.value;
-      this.usuario.loja = this.loja.value;
-      this.usuario.email = this.email.value;
+      this.usuario.nomeUsuario    = this.user.value;
+      this.usuario.senha          = this.password.value;
+      this.usuario.loja           = this.loja.value;
+      this.usuario.email          = this.email.value;
       this.usuario.apelidoUsuario = this.login.value;
-
       this.insert(this.usuario)
       .toPromise()
-      .then(()=>{
-        //this.insertUserFb()
-        this.showToast('Cadastrado com sucesso')
-        this.navCtrl.pop();
+      .then(ret => {
+        var obj              = JSON.stringify(ret);
+        let returnCheckEmail = obj[22];
+        let returnCheckLogin = obj[36];
+
+        if (returnCheckEmail == '0' && returnCheckLogin == '0') {
+          this.showToast('Cadastrado com sucesso')
+          this.navCtrl.pop();
+        } else {
+          this.showToast('Já existe um usuário cadastrado')
+        }
+
       })
 
       .catch((err)=>{
         console.log(err);
       })
-
 }
   private showToast(mensagem: string): void {
     let toast = this.toast.create({ duration: 3000, position: "botton" });
