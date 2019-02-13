@@ -81,9 +81,9 @@ export class SignupPage extends UserProvider {
       this.insert(this.usuario)
       .toPromise()
       .then(ret => {
-        var obj              = JSON.stringify(ret);
-        let returnCheckEmail = obj[22];
-        let returnCheckLogin = obj[36];
+        var obj              = ret.json();
+        let returnCheckEmail = obj[0]['email'];
+        let returnCheckLogin = obj[0]['apelido'];
 
         if (returnCheckEmail == '0' && returnCheckLogin == '0') {
           this.showToast('Cadastrado com sucesso')
