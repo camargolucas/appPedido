@@ -31,6 +31,8 @@ export class SignupPage extends UserProvider {
   formSignUp: FormGroup;
   usuario: Usuario;
   /* userApi:UserProvider */
+  public isButtonVisible = true;
+  public status:boolean = true;
 
   @ViewChild("email") email;
   @ViewChild("senha") password;
@@ -42,12 +44,13 @@ export class SignupPage extends UserProvider {
     public navCtrl: NavController,
     public navParams: NavParams,
     public firebaseauth: AngularFireAuth,
-    public toast: ToastController,
+    public toast: ToastController,    
 
   ) {
     super(http);
 
     this.usuario = new Usuario();
+    this.setStatus(true);
   }
 
   ngOnInit() {
@@ -72,7 +75,16 @@ export class SignupPage extends UserProvider {
       });
   }
 
+  setStatus(status:boolean) {
+    this.status = status;    
+  }
+
+  enableButton() {
+    return this.status;    
+  }
+
   insertUser() {
+      this.setStatus(false);
       this.usuario.nomeUsuario    = this.user.value;
       this.usuario.senha          = this.password.value;
       this.usuario.loja           = this.loja.value;
@@ -87,9 +99,10 @@ export class SignupPage extends UserProvider {
 
         if (returnCheckEmail == '0' && returnCheckLogin == '0') {
           this.showToast('Cadastrado com sucesso')
-          this.navCtrl.pop();
+          this.navCtrl.pop();          
         } else {
           this.showToast('Já existe um usuário cadastrado')
+          this.setStatus(true);
         }
 
       })
@@ -102,5 +115,5 @@ export class SignupPage extends UserProvider {
     let toast = this.toast.create({ duration: 3000, position: "botton" });
     toast.setMessage(mensagem);
     toast.present();
-  }
+  }  
 }
