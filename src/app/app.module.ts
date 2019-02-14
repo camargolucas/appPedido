@@ -31,6 +31,7 @@ import { ProductProvider } from '../providers/product/product';
 import { Network } from '@ionic-native/network/ngx';
 import { CheckNetworkProvider } from '../providers/check-network/check-network';
 import { Rules } from '../Rules/rules';
+import { TabStateProvider } from '../providers/tab-state/tab-state';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCdcciBxo_3dsnem8ltRTcMVStKOZX12xM",
@@ -96,6 +97,7 @@ export const firebaseConfig = {
     UserProvider,
     ProductProvider,
     CheckNetworkProvider,
+    TabStateProvider,
   ]
 })
 export class AppModule {}
