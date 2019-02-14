@@ -14,6 +14,7 @@ import { Produto } from "../../model/Produto";
 import { EditProductPage } from "../edit-product/edit-product";
 import { ProductProvider } from "../../providers/product/product";
 import { Rules } from "../../Rules/rules";
+import { UserProvider } from "../../providers/user/user";
 
 /**
  * Generated class for the RequestPage page.
@@ -34,7 +35,11 @@ export class RequestPage {
   private arrProdutos: ListaProduto[];
   private arrRet: ListaProduto[];
   private tipo = "";
+  private add: boolean;
+  private send: boolean;
   public date: string = new Date().toLocaleDateString();
+  public idUsuario: number;
+
   constructor(
     public modal: ModalController,
     public toast: ToastController,
@@ -43,16 +48,28 @@ export class RequestPage {
     public provider: ProductStorageProvider,
     public alertCtrl: AlertController,
     public productApi: ProductProvider,
-    public rules:Rules
+    public rules: Rules,
+    public userApi: UserProvider
   ) {
-    this.nomeCategoria = this.rules['categorias']['pedido']['categoriaItem']['nomeCategoria'];
-    this.idCategoria = this.rules['categorias']['pedido']['categoriaItem']['idCategoria'];
+    this.nomeCategoria = this.rules["categorias"]["pedido"]["categoriaItem"][
+      "nomeCategoria"
+    ];
+    this.idCategoria = this.rules["categorias"]["pedido"]["categoriaItem"][
+      "idCategoria"
+    ];
     this.tipo = "F";
   }
 
-  private isAvaible() {}
 
-  ionViewDidEnter() {
+
+  async ionViewDidEnter() {
+    await this.provider.get("Usuario").then(value => {
+      this.idUsuario = value["idUsuario"];
+    });
+
+    //this.verifyStock(this.idUsuario, this.date);
+    this.verifyRequest(this.idUsuario, this.date)
+
     this.loadData(this.tipo);
   }
 
@@ -70,6 +87,58 @@ export class RequestPage {
     });
     myModal.present();
   }
+
+
+  public isAvaibleSend() {
+    return this.send;
+  }
+
+  async verifyRequest(idUser: number, dateNow: string) {
+    let id = idUser;
+    let date = dateNow;
+    let ENVIOS: any;
+
+    let arrUser = {
+      idUsuario: id,
+      data: date
+    };
+
+    //Verifico quantos pedidos ja foram lançados no dia atual.
+    await this.userApi.getSentRequest(arrUser).then(result => {
+      ENVIOS = result[0]["ENVIOS"];
+
+      if (ENVIOS < this.rules.ENVIOS) {
+        this.send = true;
+      } else {
+        this.send = false;
+      }
+    });
+    return this.send;
+
+  }
+
+  /* async verifyStock(idUser: number, dateNow: string) {
+    let id = idUser;
+    let date = dateNow;
+    let ENVIOS: any;
+
+    let arrUser = {
+      idUsuario: id,
+      data: date
+    };
+
+    await this.userApi.getSentStock(arrUser).then(result => {
+      ENVIOS = result[0]["ENVIOS"];
+
+      if (ENVIOS >= this.rules.ENVIOS) {
+        this.add = true;
+      } else {
+        this.add = false;
+      }
+    });
+
+    return this.add;
+  } */
 
   loadData(value) {
     this.provider
@@ -120,7 +189,15 @@ export class RequestPage {
         {
           text: "Confirmar",
           handler: () => {
-            this.insertDatabase();
+            this.verifyRequest(this.idUsuario, this.date).then(ret => {
+              if (ret == true) {
+                this.send = false;
+                this.add = false;
+                this.insertDatabase();
+              } else {
+                console.log("NÃO PODE ENVIAR");
+              }
+            });
           }
         }
       ]
@@ -129,15 +206,15 @@ export class RequestPage {
   }
 
   insertDatabase() {
-    this.provider.get("Usuario").then(ret => {
-      let idUsuario = ret["idUsuario"];
+    // this.provider.get("Usuario").then(ret => {
+    let idUsuario = this.idUsuario;
 
-      let Produtos = {
-        arrProduto: this.arrRet,
-        idUsuario: idUsuario,
-        dataEnvio: this.date
-      };
-      this.productApi.insertRequest(Produtos);
-    });
+    let Produtos = {
+      arrProduto: this.arrRet,
+      idUsuario: idUsuario,
+      dataEnvio: this.date
+    };
+    this.productApi.insertRequest(Produtos);
+    // });
   }
 }
