@@ -2,6 +2,8 @@ import { Injectable, ɵisPromise } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 import { ApiData } from "./../../utilitarios/apiData";
 import { Usuario } from "../../model/Usuario";
+import { ProductStorageProvider } from "../product-storage/product-storage";
+import { storage } from "firebase";
 
 /*
   Generated class for the UserProvider provider.
@@ -10,7 +12,9 @@ import { Usuario } from "../../model/Usuario";
   and Angular DI.
 */
 @Injectable()
+
 export class UserProvider extends ApiData {
+
   constructor(public http: Http) {
     super();
   }
@@ -48,7 +52,7 @@ export class UserProvider extends ApiData {
 
   getSentStock(data: any) {
     let strData = JSON.stringify(data);
-    console.log(strData)
+
     return new Promise((resolve, reject) => {
       this.http
         .get(
@@ -57,7 +61,25 @@ export class UserProvider extends ApiData {
         .subscribe(
           result => {
             resolve(result.json());
-            console.log(result.json())
+          },
+          error => {
+            console.log(error.json())
+          }
+        );
+    });
+  }
+
+  getSentRequest(data: any) {
+    let strData = JSON.stringify(data);
+
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(
+          this.API_URL + "users/getSentRequest/" + encodeURIComponent(strData) + ""
+        )
+        .subscribe(
+          result => {
+            resolve(result.json());
           },
           error => {
             console.log(error.json())

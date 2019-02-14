@@ -1,3 +1,4 @@
+import { TabsPage } from "./../tabs/tabs";
 import { Usuario } from "./../../model/Usuario";
 import { ProductProvider } from "./../../providers/product/product";
 
@@ -16,6 +17,7 @@ import { ModalProductPage } from "../modal-product/modal-product";
 import { ListaProduto } from "../../model/ListaProduto";
 import { UserProvider } from "../../providers/user/user";
 import { Rules } from "../../Rules/rules";
+import { TabStateProvider } from "../../providers/tab-state/tab-state";
 
 /**
  * Generated class for the StockPage page.
@@ -50,7 +52,8 @@ export class StockPage {
     public storage: ProductStorageProvider,
     public apiProduct: ProductProvider,
     public userApi: UserProvider,
-    public rules: Rules
+    public rules: Rules,
+    public tabState: TabStateProvider
   ) {
     this.nomeCategoria = this.rules["categorias"]["estoque"]["categoriaItem"][
       "nomeCategoria"
@@ -59,13 +62,17 @@ export class StockPage {
       "idCategoria"
     ];
 
-    this.verifyStock();
-
     this.tipo = "F";
+    //this.tabState.setState("tabRequest", true)
   }
-
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
     this.loadData(this.tipo);
+
+    await this.provider.get("Usuario").then(value => {
+      this.idUsuario = value["idUsuario"];
+    });
+
+    this.verifyToEnableTab();
   }
 
   onSegmentChange(value: any) {
@@ -126,41 +133,55 @@ export class StockPage {
     return this.editar;
   }
 
-  verifyStock() {
-    this.provider.get("Usuario").then(value => {
-      let id = value["idUsuario"];
-      let date = this.date;
+  public enableTab(tab: string, status: boolean) {
+    console.log(status);
+    this.tabState.setState(tab, status);
+  }
 
-      let arrUser = {
-        idUsuario: id,
-        data: date
-      };
-
-      this.userApi.getSentStock(arrUser).then(result => {
-        let ENVIOS = result[0]["ENVIOS"];
-
-        if (ENVIOS < this.rules.ENVIOS) {
-          this.editar = true;
-        } else {
-          this.editar = false;
-        }
-      });
+  async verifyToEnableTab() {
+    await this.verifyStock().then(ret => {
+      if (ret == true) {
+        this.enableTab("tabRequest", false);
+      } else this.enableTab("tabRequest", true);
     });
   }
 
-  insertDataBase() {
-    this.storage.get("Usuario").then(value => {
-      let idUsuario = value['idUsuario']
-      let dataEnvio = this.date;
+  async verifyStock() {
+    let id = this.idUsuario;
+    let date = this.date;
+    let ENVIOS: any;
+    let tabEnabled: boolean;
 
-      let Produtos = {
-        arrProduto: this.arrRet,
-        idUsuario: idUsuario,
-        dataEnvio: dataEnvio
-      };
+    let arrUser = {
+      idUsuario: id,
+      data: date
+    };
 
-      this.apiProduct.insert(Produtos);
+    await this.userApi.getSentStock(arrUser).then(result => {
+      ENVIOS = result[0]["ENVIOS"];
+
+      if (ENVIOS < this.rules.ENVIOS) {
+        this.editar = true;
+      } else {
+        this.editar = false;
+      }
     });
+
+    return this.editar;
+  }
+
+  public insertDataBase() {
+    let idUsuario = this.idUsuario;
+    let dataEnvio = this.date;
+
+    let Produtos = {
+      arrProduto: this.arrRet,
+      idUsuario: idUsuario,
+      dataEnvio: dataEnvio
+    };
+
+    this.apiProduct.insert(Produtos);
+    this.enableTab("tabRequest", true);
   }
 
   showConfirm() {
@@ -170,15 +191,19 @@ export class StockPage {
       buttons: [
         {
           text: "Não",
-          handler: () => {
-            this.editar = true;
-          }
+          handler: () => {}
         },
         {
           text: "Sim",
           handler: () => {
-            this.editar = false;
-            this.insertDataBase();
+            this.verifyStock().then(ret => {
+              if (ret == true) {
+                this.editar = false;
+                this.insertDataBase();
+              } else {
+                console.log("Ja foi enviado");
+              }
+            });
           }
         }
       ]
