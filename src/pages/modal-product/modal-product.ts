@@ -32,9 +32,9 @@ export class ModalProductPage {
   private myForm: FormGroup;
   private arrUnidade: any;
   private arrTipo: any;
-  private classCssImg:string;
-  private nomeCategoria:string;
-  private idCategoria:number;
+  private classCssImg: string;
+  private nomeCategoria: string;
+  private idCategoria: number;
 
   constructor(
     public navCtrl: NavController,
@@ -52,29 +52,29 @@ export class ModalProductPage {
     this.arrUnidade = this.utilitarios.getArrayUnidade();
 
     // Carrego variaveis com a caategoria do produto para separar Produtos de Estoque e Produtos de Pedido
-     this.idCategoria = navParams.data["idCategoria"];
-     this.nomeCategoria = navParams.data["nomeCategoria"];
+    this.idCategoria = navParams.data["idCategoria"];
+    this.nomeCategoria = navParams.data["nomeCategoria"];
     this.model.categoriaItem.idCategoria = this.idCategoria;
     this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
-
 
     this.model.unidade = "KILO";
 
     // Verifico em qual tela esta sendo aberto a inclusao para indicar ao css qual imagem de fundo ele deve utilizar
-    if (this.nomeCategoria === 'Estoque') this.classCssImg = 'Estoque-Background'
-    else if(this.nomeCategoria === 'Pedido') this.classCssImg = 'Pedido-Background'
+    if (this.nomeCategoria === "Estoque")
+      this.classCssImg = "Estoque-Background";
+    else if (this.nomeCategoria === "Pedido")
+      this.classCssImg = "Pedido-Background";
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     this.changeBackground();
   }
 
-  changeBackground(){
-    document.getElementById('content').className = this.classCssImg;
+  changeBackground() {
+    document.getElementById("content").className = this.classCssImg;
   }
 
-  ngOnInit():
-   void {
+  ngOnInit(): void {
     this.myForm = new FormGroup({
       qtd: new FormControl("", Validators.required),
       products: new FormControl("", Validators.required),
@@ -87,32 +87,41 @@ export class ModalProductPage {
   }
 
   save() {
-    this.insertProduct()
-      .then(() => {
-        this.toast
-          .create({
-            message: "Produto Salvo",
-            duration: 2000,
-            position: "botton"
-          })
-          .present();
-        this.navCtrl.pop();
-      })
-      .catch(() => {
-        this.toast
-          .create({
-            message: "Erro ao Salvar Produto",
-            duration: 3000,
-            position: "botton"
-          })
-          .present();
-      });
+    if (this.model.qtd > 0) {
+      this.insertProduct()
+        .then(ret => {
+            this.toast
+              .create({
+                message: "Produto Salvo",
+                duration: 2000,
+                position: "botton"
+              })
+              .present();
+            this.navCtrl.pop();
+        })
+        .catch(() => {
+          this.toast
+            .create({
+              message: "Erro ao Salvar Produto",
+              duration: 3000,
+              position: "botton"
+            })
+            .present();
+        });
+    } else {
+      this.toast
+        .create({
+          message: "Insira um valor válido !",
+          duration: 3000,
+          position: "botton"
+        })
+        .present();
+    }
   }
 
   insertProduct() {
-    this.model.categoriaItem.nomeCategoria = this.nomeCategoria
-    this.model.categoriaItem.idCategoria = this.idCategoria
-
+    this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
+    this.model.categoriaItem.idCategoria = this.idCategoria;
     return this.storage.insert(this.model);
   }
 }

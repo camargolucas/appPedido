@@ -2,6 +2,7 @@ import { Http } from "@angular/http";
 import { Injectable } from "@angular/core";
 import { ApiData } from "../../utilitarios/apiData";
 import { Produto } from "../../model/Produto";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class ProductProvider extends ApiData {
@@ -10,8 +11,9 @@ export class ProductProvider extends ApiData {
   }
 
   insert(product: any) {
+
     let productData = JSON.stringify(product);
-    this.http
+    return this.http
       .post(
         this.API_URL +
           "products/insertEstoque/" +
@@ -19,17 +21,12 @@ export class ProductProvider extends ApiData {
           "",
         this.requestOptions
       )
-      .subscribe(ret => {
-        console.log(ret);
-      },((error)=>{
-        console.log(error)
-      }));
   }
 
   insertRequest(product: any) {
     let productData = JSON.stringify(product);
 
-    this.http
+   return this.http
       .post(
         this.API_URL +
           "products/insertPedido/" +
@@ -37,9 +34,6 @@ export class ProductProvider extends ApiData {
           "",
         this.requestOptions
       )
-      .subscribe(ret => {
-        console.log(ret);
-      });
   }
 
   getAllProducts() {

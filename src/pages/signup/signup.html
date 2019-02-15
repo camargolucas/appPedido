@@ -89,7 +89,7 @@
             <ion-icon name="md-bookmark" left></ion-icon>
             Loja
           </ion-label>
-          <ion-input type="number" min="1" pattern="[1-9]*" formControlName="loja" #loja></ion-input>
+          <ion-input type="number" min="1" pattern="[0-9]*" formControlName="loja" #loja></ion-input>
         </ion-item>
       </div>
         <button *ngIf="enableButton()" ion-button round [disabled]="formSignUp.invalid" (click)="insertUser()">Cadastrar</button>
