@@ -20,6 +20,10 @@ export class MyApp {
   rootPage:any = LoginPage
   public navCtrl: NavController;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, product:ProductStorageProvider,public tabPage:TabStateProvider,) {
+
+    // ###########################################################################
+    // ## Todo novo menu que for adicionado deve ser colocado nesse array ###########
+    // ## utilizado no método openPage para nevageção no menu lateral ###############
     this.pages = [
       { title: 'Estoque / Pedido', component: TabsPage },
     ];
@@ -31,14 +35,17 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
+      //##########################################################################################
+      //## Quando o aplicativo é aberto, carrego os produtos do banco de dados no Cache do Usuario
+      //## sendo assim ele pode pesquisar prdutos offline ##########################################
       product.insertDatabaseProducts();
     });
 
 
 
   }
-
-
+  //#################################################################
+  //## Método para redirecionar as páginas do Menu lateral ##########
   openPage(page){
      this.nav.setRoot(page.component, {openTab: page.openTab})
   }

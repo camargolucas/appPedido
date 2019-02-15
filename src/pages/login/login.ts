@@ -1,3 +1,4 @@
+import { Rules } from './../../Rules/rules';
 import { Utilitarios } from "./../../utilitarios/utilitarios";
 import { CategoriaItem } from "./../../model/CategoriaItem";
 
@@ -17,7 +18,7 @@ import {
   ToastController,
   ModalController
 } from "ionic-angular";
-import { AngularFireAuth } from "angularfire2/auth";
+
 import { Usuario } from "../../model/Usuario";
 
 /**
@@ -46,18 +47,18 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public menu: MenuController,
-    public firebaseAuth: AngularFireAuth,
     public toast: ToastController,
     public modal: ModalController,
     public storage: ProductStorageProvider,
     public userApi: UserProvider,
-    public utilitarios: Utilitarios
+    public utilitarios: Utilitarios,
+    public rules:Rules
   ) {
     this.model = new Usuario();
     this.menu.enable(false);
-    this.firebaseAuth.user.subscribe(data => {
-      this.user = data;
-    });
+
+    this.nomeCategoria = this.rules.categorias.usuario.categoriaItem.nomeCategoria
+    this.idCategoria = this.rules.categorias.usuario.categoriaItem.idCategoria
   }
 
   ngOnInit() {
@@ -80,22 +81,6 @@ export class LoginPage {
 
       this.storage.insertUser(this.model);
 
-  }
-
-  loginWithEmail(): void {
-    const email = this.userLogin.value;
-    const password = this.password.value;
-
-    this.firebaseAuth.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(result => {
-        this.navCtrl.push(TabsPage);
-        this.menu.enable(true);
-        //this.userData(email, password);
-      })
-      .catch((erro: any) => {
-        console.log(erro);
-      });
   }
 
   login() {

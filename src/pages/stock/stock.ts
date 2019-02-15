@@ -134,7 +134,6 @@ export class StockPage {
   }
 
   public enableTab(tab: string, status: boolean) {
-    console.log(status);
     this.tabState.setState(tab, status);
   }
 
@@ -180,8 +179,21 @@ export class StockPage {
       dataEnvio: dataEnvio
     };
 
-    this.apiProduct.insert(Produtos);
+    this.apiProduct
+      .insert(Produtos)
+      .toPromise()
+      .then(ret => {
+        this.toast
+          .create({
+            message: "Estoque Enviado com sucesso",
+            duration: 3000,
+            position: "bottom"
+          })
+          .present();
+      });
+
     this.enableTab("tabRequest", true);
+
   }
 
   showConfirm() {
@@ -201,7 +213,13 @@ export class StockPage {
                 this.editar = false;
                 this.insertDataBase();
               } else {
-                console.log("Ja foi enviado");
+                this.toast
+                .create({
+                  message: "Estoque já foi enviado hoje !",
+                  duration: 3000,
+                  position: "bottom"
+                })
+                .present();
               }
             });
           }

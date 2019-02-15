@@ -1,6 +1,5 @@
 import { Http } from "@angular/http";
 import { Usuario } from "./../../model/Usuario";
-import { AngularFireAuth } from "angularfire2/auth";
 import { FormControl, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { Component, ViewChild } from "@angular/core";
@@ -41,7 +40,6 @@ export class SignupPage extends UserProvider {
     http: Http,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public firebaseauth: AngularFireAuth,
     public toast: ToastController,
 
   ) {
@@ -54,22 +52,11 @@ export class SignupPage extends UserProvider {
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.formSignUp = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
-      usuario: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(3), Validators.maxLength(16)]),
+      usuario: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9_ ]+$'), Validators.minLength(3), Validators.maxLength(16)]),
       login: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(5), Validators.maxLength(16)] ),
       senha: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(16)]),
-      loja: new FormControl("", [Validators.required])
+      loja: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')])
     });
-  }
-
-  insertUserFb(): void {
-    this.firebaseauth.auth
-      .createUserWithEmailAndPassword(this.email.value, this.password.value)
-      .then(ret => {
-
-      })
-      .catch((erro: any) => {
-        console.log(erro);
-      });
   }
 
   insertUser() {
@@ -84,7 +71,6 @@ export class SignupPage extends UserProvider {
       this.insert(this.usuario)
       .toPromise()
       .then(()=>{
-        //this.insertUserFb()
         this.showToast('Cadastrado com sucesso')
         this.navCtrl.pop();
       })

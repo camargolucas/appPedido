@@ -214,7 +214,19 @@ export class RequestPage {
       idUsuario: idUsuario,
       dataEnvio: this.date
     };
-    this.productApi.insertRequest(Produtos);
+    this.productApi.insertRequest(Produtos)
+    .toPromise()
+    .then(ret => {
+      this.toast
+        .create({
+          message: "Pedido Enviado com sucesso",
+          duration: 3000,
+          position: "bottom"
+        })
+        .present();
+    });
+
+
     // });
   }
 }

@@ -17,7 +17,6 @@ export class TabStateProvider {
   setState(tab: string, enabled: boolean) {
 
     this.zone.run(()=>{
-      console.log(enabled)
       this.states[tab] = enabled;
     })
 }
