@@ -32,8 +32,10 @@ export class SignupPage extends UserProvider {
 
   // Objeto do tipo Usuario
   usuario: Usuario;
-  /* userApi:UserProvider */
+
   public isButtonVisible = true;
+
+  // Variavel utilizada para habilitar e desabilitar o botao de cadastro
   public status:boolean = true;
 
 
@@ -74,16 +76,11 @@ export class SignupPage extends UserProvider {
     });
   }
 
-
-
-
-
-
-
-
   //############################################################
   // ## Funçao para inserir o usuario no banco de dados ########
   insertUser() {
+
+      // Seto o valor da variavel falso para desabilitar o botao
       this.setStatus(false);
 
       // Populo a modal de Usuario com os dados do campo
@@ -124,10 +121,14 @@ export class SignupPage extends UserProvider {
     toast.present();
   }
 
+   //########################################################################################################################
+  // ## Função utilizada para popular a variavel utilizada para habilitar e desabilitar o botão
   setStatus(status:boolean) {
     this.status = status;
   }
 
+   //########################################################################################################################
+  // ## Função utilizada para habiltar e desabilitar o botão de cadastro
   enableButton() {
     return this.status;
   }

@@ -10,32 +10,38 @@ export class ProductProvider extends ApiData {
     super();
   }
 
+  // ################################################
+  // ## Função que insere o Estoque no banco ########
   insert(product: any) {
-
+    // Transformo o JSON em String para enviar na URL
     let productData = JSON.stringify(product);
-    return this.http
-      .post(
-        this.API_URL +
-          "products/insertEstoque/" +
-          encodeURIComponent(productData) +
-          "",
-        this.requestOptions
-      )
+
+    return this.http.post(
+      this.API_URL +
+        "products/insertEstoque/" +
+        encodeURIComponent(productData) +
+        "",
+      this.requestOptions
+    );
   }
 
+  // ################################################
+  // ## Função que insere o Pedido no banco ########
   insertRequest(product: any) {
+    // Transformo o JSON em String para enviar na URL
     let productData = JSON.stringify(product);
 
-   return this.http
-      .post(
-        this.API_URL +
-          "products/insertPedido/" +
-          encodeURIComponent(productData) +
-          "",
-        this.requestOptions
-      )
+    return this.http.post(
+      this.API_URL +
+        "products/insertPedido/" +
+        encodeURIComponent(productData) +
+        "",
+      this.requestOptions
+    );
   }
 
+  // #####################################################
+  // ## Resgato todos os produtos da tabela de Produtos
   getAllProducts() {
     return new Promise((resolve, reject) => {
       this.http.get(this.API_URL + "products/getAll").subscribe(ret => {
