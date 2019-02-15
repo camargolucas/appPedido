@@ -29,15 +29,28 @@ import { UserProvider } from "../../providers/user/user";
   templateUrl: "request.html"
 })
 export class RequestPage {
-  private Produto: Produto;
+  // Utilizada para distinguir no cache a qual categoria os dados armazenados pertencem quando armazenada
   private idCategoria: number;
   private nomeCategoria: string;
+
+  // Array para carregar os produtos filtrados por TIPO do produto que estão no cache
   private arrProdutos: ListaProduto[];
+
+  // Array para carregar os produtos filtrados do cache por CATEGORIA que estão no cache
   private arrRet: ListaProduto[];
+
+  // Variavel utilizada para distinguir o tipo do produto (FRUTA, VERDURA e LEGUME) e setar as abas
   private tipo = "";
+
   private add: boolean;
+
+  // Variavel utilizada para verificar se pode ou não enviar o pedido e se pode inserir Produtos
   private send: boolean;
+
+  // Resgata a data do dia
   public date: string = new Date().toLocaleDateString();
+
+  // Utilizada para armazenar o id do Usuario logado
   public idUsuario: number;
 
   constructor(
@@ -51,48 +64,65 @@ export class RequestPage {
     public rules: Rules,
     public userApi: UserProvider
   ) {
+    // ##########################################################################################
+    // ## Preencho a variavel com o tipo de categoria correspondente ############################
     this.nomeCategoria = this.rules["categorias"]["pedido"]["categoriaItem"][
       "nomeCategoria"
     ];
     this.idCategoria = this.rules["categorias"]["pedido"]["categoriaItem"][
       "idCategoria"
     ];
+
+    // ## Seto como F(Fruta) para iniciar na aba Fruta
     this.tipo = "F";
   }
 
-
-
+  // ################################################
+  // ## Função ativada quando a View é carregada ####
   async ionViewDidEnter() {
+    // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];
     });
 
-    //this.verifyStock(this.idUsuario, this.date);
-    this.verifyRequest(this.idUsuario, this.date)
+    // ## Verifico se já foi enviado algum pedido do Usuario logado
+    this.verifyRequest(this.idUsuario, this.date);
 
+    // ## Listagem dos produtos conforme seu tipo
     this.loadData(this.tipo);
   }
 
+  // ##############################################
+  // ## Função ativada quando a aba é trocada #####
   onSegmentChange(value: any) {
+    // Lista os produtos conforme seu tipo
     this.loadData(value);
   }
 
+  // ###############################################################
+  // ## Função utilizada para abrir a modal de adicionar Produtos ##
   addProduct() {
+    // Criação da Modal
     const myModal = this.modal.create(ModalProductPage, {
       idCategoria: this.idCategoria,
       nomeCategoria: this.nomeCategoria
     });
+
+    // Quando a modal é finalizada é chamado novamente o metodo de listagem com os novos produtos
     myModal.onDidDismiss(() => {
       this.loadData(this.tipo);
     });
     myModal.present();
   }
 
-
+  // #######################################################################
+  // ## Utilizada para verificar se há possibilidade de envio do Pedido ####
   public isAvaibleSend() {
     return this.send;
   }
 
+  // ###################################################################################################
+  // ## Função para verificar no bano de dados se aquele usuario já enviou algum pedido no dia #########
   async verifyRequest(idUser: number, dateNow: string) {
     let id = idUser;
     let date = dateNow;
@@ -103,10 +133,11 @@ export class RequestPage {
       data: date
     };
 
-    //Verifico quantos pedidos ja foram lançados no dia atual.
+    // ## Verifico quantos pedidos ja foram lançados no dia atual.
     await this.userApi.getSentRequest(arrUser).then(result => {
       ENVIOS = result[0]["ENVIOS"];
 
+      // ## Se ainda não enviou nenhum pedido no dia ...
       if (ENVIOS < this.rules.ENVIOS) {
         this.send = true;
       } else {
@@ -114,7 +145,6 @@ export class RequestPage {
       }
     });
     return this.send;
-
   }
 
   /* async verifyStock(idUser: number, dateNow: string) {
@@ -140,6 +170,8 @@ export class RequestPage {
     return this.add;
   } */
 
+  // ########################################################################
+  // ## Função que carrega e filtra os dados no cache do Usuario ############
   loadData(value) {
     this.provider
       .getAll(this.nomeCategoria)
@@ -153,6 +185,9 @@ export class RequestPage {
         console.log(error);
       });
   }
+
+  // ###############################################################
+  // ## Função para chamar a pagina de Edição de produtos ##########
   editProduct(item: ListaProduto) {
     this.navCtrl.push(EditProductPage, {
       key: item.key,
@@ -161,6 +196,8 @@ export class RequestPage {
     });
   }
 
+  // ######################################################
+  // ## Função para remoção de produtos do Cache ##########
   removeProduct(item: ListaProduto) {
     this.provider.remove(item.key).then(() => {
       let index = this.arrProdutos.indexOf(item);
@@ -176,6 +213,8 @@ export class RequestPage {
     });
   }
 
+  // ########################################################################
+  // ## Função que mostra o pop up de confirmacção de Envio #################
   showConfirm() {
     const confirm = this.alertCtrl.create({
       title: "Deseja finalizar o Pedido?",
@@ -189,10 +228,13 @@ export class RequestPage {
         {
           text: "Confirmar",
           handler: () => {
+
+            // Verifico se já foi enviado Pedido deste usuário
             this.verifyRequest(this.idUsuario, this.date).then(ret => {
+              // Se for possivel o lancamento, seto a variavel de Send como falsa para impedir o
+              // usuário de enviar o pedido novamente. E insiro no Banco de Dados
               if (ret == true) {
                 this.send = false;
-                this.add = false;
                 this.insertDatabase();
               } else {
                 console.log("NÃO PODE ENVIAR");
@@ -205,16 +247,33 @@ export class RequestPage {
     confirm.present();
   }
 
+  // ###############################################################
+  // ## Função para inserir o Pedido no banco de dados ############
   insertDatabase() {
     // this.provider.get("Usuario").then(ret => {
     let idUsuario = this.idUsuario;
 
+    // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
       idUsuario: idUsuario,
       dataEnvio: this.date
     };
-    this.productApi.insertRequest(Produtos);
+
+    // ## Funcao da API que salva os dados no banco
+    this.productApi
+      .insertRequest(Produtos)
+      .toPromise() // Caso tenha inserido com sucesso ...
+      .then(ret => {
+        this.toast
+          .create({
+            message: "Pedido Enviado com sucesso",
+            duration: 3000,
+            position: "bottom"
+          })
+          .present();
+      });
+
     // });
   }
 }

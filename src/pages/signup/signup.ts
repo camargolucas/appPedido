@@ -1,6 +1,5 @@
 import { Http } from "@angular/http";
 import { Usuario } from "./../../model/Usuario";
-import { AngularFireAuth } from "angularfire2/auth";
 import { FormControl, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { Component, ViewChild } from "@angular/core";
@@ -28,12 +27,19 @@ import { extend } from "@mobiscroll/angular/src/js/core/core";
   templateUrl: "signup.html"
 })
 export class SignupPage extends UserProvider {
+  // Variavel utilizada para criar um grupo de formulários
   formSignUp: FormGroup;
+
+  // Objeto do tipo Usuario
   usuario: Usuario;
-  /* userApi:UserProvider */
+
   public isButtonVisible = true;
+
+  // Variavel utilizada para habilitar e desabilitar o botao de cadastro
   public status:boolean = true;
 
+
+  // Variaveis utilizadas para resgatar o valor do input
   @ViewChild("email") email;
   @ViewChild("senha") password;
   @ViewChild("usuario") user;
@@ -43,53 +49,48 @@ export class SignupPage extends UserProvider {
     http: Http,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public firebaseauth: AngularFireAuth,
-    public toast: ToastController,    
+    public toast: ToastController,
+
 
   ) {
     super(http);
 
+    // Instância do objeto Usuario
     this.usuario = new Usuario();
     this.setStatus(true);
   }
 
+  //#################################################
+  // ## Função ativada quando a tela é iniciada #####
   ngOnInit() {
+
+    // Validação dos formulários
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.formSignUp = new FormGroup({
-      email:   new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
-      usuario: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(3), Validators.maxLength(16)]),
-      login:   new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(5), Validators.maxLength(16)] ),
-      senha:   new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(16)]),
-      loja:    new FormControl("", [Validators.required])
+
+      email: new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
+      usuario: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9_ ]+$'), Validators.minLength(3), Validators.maxLength(16)]),
+      login: new FormControl("", [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$'), Validators.minLength(5), Validators.maxLength(16)] ),
+      senha: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(16)]),
+      loja: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')])
     });
   }
 
-  insertUserFb(): void {
-    this.firebaseauth.auth
-      .createUserWithEmailAndPassword(this.email.value, this.password.value)
-      .then(ret => {
-
-      })
-      .catch((erro: any) => {
-        console.log(erro);
-      });
-  }
-
-  setStatus(status:boolean) {
-    this.status = status;    
-  }
-
-  enableButton() {
-    return this.status;    
-  }
-
+  //############################################################
+  // ## Funçao para inserir o usuario no banco de dados ########
   insertUser() {
+
+      // Seto o valor da variavel falso para desabilitar o botao
       this.setStatus(false);
+
+      // Populo a modal de Usuario com os dados do campo
       this.usuario.nomeUsuario    = this.user.value;
       this.usuario.senha          = this.password.value;
       this.usuario.loja           = this.loja.value;
       this.usuario.email          = this.email.value;
       this.usuario.apelidoUsuario = this.login.value;
+
+       // ## Chamada da API para inserção no banco de dados
       this.insert(this.usuario)
       .toPromise()
       .then(ret => {
@@ -99,7 +100,7 @@ export class SignupPage extends UserProvider {
 
         if (returnCheckEmail == '0' && returnCheckLogin == '0') {
           this.showToast('Cadastrado com sucesso')
-          this.navCtrl.pop();          
+          this.navCtrl.pop();
         } else {
           this.showToast('Já existe um usuário cadastrado')
           this.setStatus(true);
@@ -111,9 +112,24 @@ export class SignupPage extends UserProvider {
         console.log(err);
       })
 }
+
+  //############################################################
+  // ## Função para mostrar mensagens na tela do Usuário #######
   private showToast(mensagem: string): void {
     let toast = this.toast.create({ duration: 3000, position: "botton" });
     toast.setMessage(mensagem);
     toast.present();
-  }  
+  }
+
+   //########################################################################################################################
+  // ## Função utilizada para popular a variavel utilizada para habilitar e desabilitar o botão
+  setStatus(status:boolean) {
+    this.status = status;
+  }
+
+   //########################################################################################################################
+  // ## Função utilizada para habiltar e desabilitar o botão de cadastro
+  enableButton() {
+    return this.status;
+  }
 }

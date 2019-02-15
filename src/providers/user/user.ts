@@ -12,14 +12,15 @@ import { storage } from "firebase";
   and Angular DI.
 */
 @Injectable()
-
 export class UserProvider extends ApiData {
-
   constructor(public http: Http) {
     super();
   }
 
+  // ######################################################
+  // ## Insere o usuario no banco de dado  ################
   insert(usuario: Usuario) {
+    // Objeto usuario transformado em string para ser enviado na URL
     let usuarioData = JSON.stringify(usuario);
 
     return this.http.post(
@@ -28,6 +29,8 @@ export class UserProvider extends ApiData {
     );
   }
 
+  // ###################################################################
+  // ## Resgata os dados do usuario que está logando no sistema ########
   public getUser(usuario: any) {
     let usuarioData = JSON.stringify(usuario);
 
@@ -50,39 +53,49 @@ export class UserProvider extends ApiData {
     this.http.get(this.API_URL + "users/getByName/" + usuarioData + "");
   }
 
+  // ############################################
+  // ## Resgata o estoque enviado  #########
   getSentStock(data: any) {
     let strData = JSON.stringify(data);
 
     return new Promise((resolve, reject) => {
       this.http
         .get(
-          this.API_URL + "users/getSentStock/" + encodeURIComponent(strData) + ""
+          this.API_URL +
+            "users/getSentStock/" +
+            encodeURIComponent(strData) +
+            ""
         )
         .subscribe(
           result => {
             resolve(result.json());
           },
           error => {
-            console.log(error.json())
+            console.log(error.json());
           }
         );
     });
   }
 
+  // ############################################
+  // ## Resgata os pedidos eviados  #############
   getSentRequest(data: any) {
     let strData = JSON.stringify(data);
 
     return new Promise((resolve, reject) => {
       this.http
         .get(
-          this.API_URL + "users/getSentRequest/" + encodeURIComponent(strData) + ""
+          this.API_URL +
+            "users/getSentRequest/" +
+            encodeURIComponent(strData) +
+            ""
         )
         .subscribe(
           result => {
             resolve(result.json());
           },
           error => {
-            console.log(error.json())
+            console.log(error.json());
           }
         );
     });
