@@ -92,8 +92,7 @@
           <ion-input type="number" min="1" pattern="[0-9]*" formControlName="loja" #loja></ion-input>
         </ion-item>
       </div>
-      <button ion-button round [disabled]="formSignUp.invalid" (click)="insertUser()">Cadastrar</button>
+        <button *ngIf="enableButton()" ion-button round [disabled]="formSignUp.invalid" (click)="insertUser()">Cadastrar</button>
     </form>
   </div>
-
 </ion-content>

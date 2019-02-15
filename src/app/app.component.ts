@@ -7,7 +7,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+
+import { CheckNetworkProvider } from './../providers/check-network/check-network';
 import { TabStateProvider } from '../providers/tab-state/tab-state';
+
 
 
 @Component({
@@ -19,7 +22,8 @@ export class MyApp {
   //rootPage = '';
   rootPage:any = LoginPage
   public navCtrl: NavController;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, product:ProductStorageProvider,public tabPage:TabStateProvider,) {
+
+  constructor(public network: CheckNetworkProvider, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, product:ProductStorageProvider,public tabPage:TabStateProvider,) {
 
     // ###########################################################################
     // ## Todo novo menu que for adicionado deve ser colocado nesse array ###########
@@ -41,7 +45,7 @@ export class MyApp {
       product.insertDatabaseProducts();
     });
 
-
+    this.network.checkNetwork();
 
   }
   //#################################################################
