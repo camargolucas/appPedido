@@ -22,6 +22,7 @@ export class MorePage {
 
 
   leave(){
+      // ## Saída do sistema
       this.app.getRootNav().setRoot(LoginPage);
   }
 

@@ -27,10 +27,13 @@ import { extend } from "@mobiscroll/angular/src/js/core/core";
   templateUrl: "signup.html"
 })
 export class SignupPage extends UserProvider {
+  // Variavel utilizada para criar um grupo de formulários
   formSignUp: FormGroup;
-  usuario: Usuario;
-  /* userApi:UserProvider */
 
+  // Objeto do tipo Usuario
+  usuario: Usuario;
+
+  // Variaveis utilizadas para resgatar o valor do input
   @ViewChild("email") email;
   @ViewChild("senha") password;
   @ViewChild("usuario") user;
@@ -45,10 +48,15 @@ export class SignupPage extends UserProvider {
   ) {
     super(http);
 
+    // Instância do objeto Usuario
     this.usuario = new Usuario();
   }
 
+  //#################################################
+  // ## Função ativada quando a tela é iniciada #####
   ngOnInit() {
+
+    // Validação dos formulários
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.formSignUp = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.pattern(EMAILPATTERN)]),
@@ -59,15 +67,18 @@ export class SignupPage extends UserProvider {
     });
   }
 
+  //############################################################
+  // ## Funçao para inserir o usuario no banco de dados ########
   insertUser() {
 
-
+      // Populo a modal de Usuario com os dados do campo
       this.usuario.nomeUsuario = this.user.value;
       this.usuario.senha = this.password.value;
       this.usuario.loja = this.loja.value;
       this.usuario.email = this.email.value;
       this.usuario.apelidoUsuario = this.login.value;
 
+      // ## Chamada da API para inserção no banco de dados
       this.insert(this.usuario)
       .toPromise()
       .then(()=>{
@@ -80,6 +91,8 @@ export class SignupPage extends UserProvider {
       })
 
 }
+  //############################################################
+  // ## Função para mostrar mensagens na tela do Usuário #######
   private showToast(mensagem: string): void {
     let toast = this.toast.create({ duration: 3000, position: "botton" });
     toast.setMessage(mensagem);
