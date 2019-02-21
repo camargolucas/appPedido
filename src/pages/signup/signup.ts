@@ -48,7 +48,7 @@ export class SignupPage extends UserProvider {
   @ViewChild("senha") password;
   @ViewChild("usuario") user;
   @ViewChild("loja") loja;
-  @ViewChild("login") login;
+  //@ViewChild("login") login;
   constructor(
     http: Http,
     public navCtrl: NavController,
@@ -83,12 +83,12 @@ export class SignupPage extends UserProvider {
         Validators.minLength(2),
         Validators.maxLength(16)
       ]),
-      login: new FormControl("", [
+      /* login: new FormControl("", [
         Validators.required,
         Validators.pattern("^(?=.*[a-zA-Z])[a-zA-Z0-9]+$"),
         Validators.minLength(2),
         Validators.maxLength(16)
-      ]),
+      ]), */
       senha: new FormControl("", [
         Validators.required,
         Validators.minLength(5),
@@ -112,7 +112,8 @@ export class SignupPage extends UserProvider {
     this.usuario.senha = this.password.value;
     this.usuario.loja = this.loja.value;
     this.usuario.email = this.email.value;
-    this.usuario.apelidoUsuario = this.login.value;
+    this.usuario.apelidoUsuario = this.email.value; // ## Alteração solicitada para não existir mais apelido do Funcionario
+                                                    // ## para evitar disperdicio foi mantido o campo e trocado pelo email
 
     // ## Chamada da API para inserção no banco de dados
     this.insert(this.usuario)
@@ -126,7 +127,7 @@ export class SignupPage extends UserProvider {
           this.showToast("Cadastrado com sucesso");
 
 
-          this.loginAuthencation(this.login.value, this.password.value).then(ret => {
+          this.loginAuthencation(this.email.value, this.password.value).then(ret => {
             // ## Redireciono o Usuario para a tela inicial
             this.navCtrl.push(TabsPage);
 
@@ -144,6 +145,7 @@ export class SignupPage extends UserProvider {
 
       .catch(err => {
         this.setStatus(true);
+        console.log(err)
         this.showToast("Não foi possivel cadastrar !");
       });
   }

@@ -67,9 +67,12 @@
           <button ion-button expandable color="danger" (click)="removeProduct(item)">
             <ion-icon name="trash"></ion-icon>Excluir
           </button>
+        </ion-item-options>
+        <ion-item-options *ngIf="isAvaibleSend()" side="left" (ionSwipe)="editProduct(item)">
           <button ion-button (click)="editProduct(item)">
             <ion-icon name="create"></ion-icon>Editar
           </button>
+
         </ion-item-options>
       </ion-item-sliding>
 
