@@ -12,4 +12,5 @@ export class Usuario {
   apelidoUsuario:string;
   categoriaItem = new CategoriaItem();
   token: string;
+  logado: number;
 }

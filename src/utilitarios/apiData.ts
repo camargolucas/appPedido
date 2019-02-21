@@ -6,7 +6,7 @@ export class ApiData {
   private headers;
 
   constructor() {
-    //this.API_URL = "http://apprequestapi.kinghost.net:21093/";
+   // this.API_URL = "http://apprequestapi.kinghost.net:21093/";
     this.API_URL = "http://localhost:21093/"; // TESTE API LOCAL
 
     this.headers = new Headers();

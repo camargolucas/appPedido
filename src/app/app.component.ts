@@ -16,14 +16,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   pages: Array<{title:string, component:any, openTab?:any}>;
   //rootPage = '';
-  rootPage:any = LoginPage
-  public navCtrl: NavController;
+  //rootPage:any = LoginPage
+
   constructor(
     public network: CheckNetworkProvider,
     platform: Platform,
     statusBar: StatusBar,
+    
     splashScreen: SplashScreen,
-    product:ProductStorageProvider) {
+    public product:ProductStorageProvider) {
     this.pages = [
       { title: 'Estoque / Pedido', component: TabsPage },
     ];
@@ -38,11 +39,43 @@ export class MyApp {
       product.insertDatabaseProducts();
     });
     this.network.checkNetwork();
+
+    this.checkUserTokenExists();
+
   }
 
 
   openPage(page){
      this.nav.setRoot(page.component, {openTab: page.openTab})
+  }
+
+
+
+  checkUserTokenExists(){
+
+    this.product.get("Usuario").then((ret)=>{
+      if (ret != null) {
+
+        if(ret.logado == 1){
+
+          console.log("Logged User : " + ret.apelidoUsuario);
+
+          this.nav.push(TabsPage);
+          //this.menu.enable(true);
+          
+        }else{
+          this.nav.push(LoginPage);
+        }
+      }else{
+        console.log("User not logged");
+        this.nav.push(LoginPage);
+      }
+      console.log("ret:  " + ret);
+
+    });
+
+
+
   }
 
 }

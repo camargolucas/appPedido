@@ -56,7 +56,8 @@ export class LoginPage {
     this.model = new Usuario();
     this.menu.enable(false);
     this.firebaseAuth.user.subscribe(data => {
-      this.user = data;
+    this.user = data;
+
     });
   }
 
@@ -78,6 +79,7 @@ export class LoginPage {
       this.model.categoriaItem.idCategoria = this.idCategoria;
       this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
       this.model.token = ret[0]["token"];
+      this.model.logado = ret[0]["logado"];
       this.storage.insertUser(this.model);
 
   }
