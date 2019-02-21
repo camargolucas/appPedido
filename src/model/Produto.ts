@@ -1,5 +1,6 @@
 
 import { CategoriaItem } from './CategoriaItem';
+import { Usuario } from './Usuario';
 export class Produto {
   id:number
   nome:string
@@ -7,4 +8,5 @@ export class Produto {
   unidade:string
   tipo:string
   categoriaItem:CategoriaItem
+  usuario:Usuario
 }

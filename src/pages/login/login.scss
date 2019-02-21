@@ -18,6 +18,9 @@ page-login {
   h1 {
     color: map-get($colors , primary );
   }
+  ion-label{
+    font-size: 16px !important;
+  }
 
   ion-input {
     font-weight: lighter;
@@ -32,7 +35,7 @@ page-login {
     border: 0px solid !important;
     background-color: rgba(255, 255, 255, 0.4);
     margin-bottom: 4px;
-    height: 55px;
+    height: 69px;
   }
 
   .div-components{

@@ -21,5 +21,6 @@ export class ApiData {
     this.headers.append("Access-Control-Allow-Origin", "*");
 
     this.requestOptions = new RequestOptions({ headers: this.headers });
+
   }
 }

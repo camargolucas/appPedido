@@ -37,7 +37,7 @@ export class LoginPage {
   // Variavel que indica qual campo do html possui esse id("usuario")
   @ViewChild("usuario") userLogin;
 
-   // Variavel que indica qual campo do html possui esse id("senha")
+  // Variavel que indica qual campo do html possui esse id("senha")
   @ViewChild("senha") password;
 
   // Utilizada para montar o grupo de formulario
@@ -49,7 +49,6 @@ export class LoginPage {
   // Utilizada para distinguir no cache a qual categoria os dados armazenados pertencem quando armazenada
   private nomeCategoria: string;
   private idCategoria: number;
-
 
   constructor(
     public navCtrl: NavController,
@@ -65,6 +64,8 @@ export class LoginPage {
     // #########################################
     // ## Instâncio um novo objeto na memoria ##
     this.model = new Usuario();
+    this.model.categoriaItem = new CategoriaItem();
+
     // ## Desativo o menu lateral;
     this.menu.enable(false);
 
@@ -89,7 +90,7 @@ export class LoginPage {
 
   // #######################################################################################
   // ## Função utilizada para armazenar no cache todos os dados do Usuário que está logado
-  userData(ret: any) {
+/*   userData(ret: any) {
     this.model.nomeUsuario = ret[0]["nomeUsuario"];
     this.model.loja = ret[0]["loja"];
     this.model.email = ret[0]["email"];
@@ -101,30 +102,29 @@ export class LoginPage {
 
     // ## Insere no storage/cache os dados armazenados na model (Usuario)
     this.storage.insertUser(this.model);
-  }
+  } */
 
 
   login() {
-    // ## Dados resgatados diretamento dos campos
-    let arrUser = {
-      login: this.userLogin.value,
-      password: this.password.value
-    };
-
-    this.userApi
-      .getUser(arrUser)
+    return this.userApi
+      .loginAuthencation(this.userLogin.value, this.password.value)
       .then(ret => {
-        // ## Verifico no retorno da API se existe o usuario cadastrado no Banco
+
+        // ## Se retornar vazio significa que o usuario não esta cadastrado
         if (ret == "") {
           this.showToast("Usuário Inválido");
         } else {
+
           // ## Redireciono o Usuario para a tela inicial
           this.navCtrl.push(TabsPage);
+
           // ## Ativo o menu lateral
           this.menu.enable(true);
+
           // ## Carrego os dados do Usuario no cache
-          this.userData(ret);
+          this.storage.insertUser(ret);
         }
+
       })
       .catch(err => {
         this.showToast("Não foi possivel acessar !");
@@ -142,8 +142,8 @@ export class LoginPage {
   // ########################################################
   // ## Função para abrir a pagina de Cadastro de Usuário ###
   openSignUp() {
-    // ## Crio uma modal como tela de cadastro
-    const myModal = this.modal.create(SignupPage);
-    myModal.present();
+    // ## Redireciono para pagina de Cadastro
+    this.navCtrl.push(SignupPage);
+
   }
 }

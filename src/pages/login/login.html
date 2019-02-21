@@ -7,15 +7,15 @@
         </ion-title>
       </div>
       <ion-item class="ion-item" no-lines>
-        <ion-label color="primary">
-          <ion-icon name="md-mail"></ion-icon>
-          Email
+        <ion-label stacked color="primary">
+          <ion-icon name="md-contact"></ion-icon>
+          Usuário / Email
         </ion-label>
         <ion-input type="text" formControlName="usuario" #usuario> </ion-input>
         <hr>
       </ion-item>
       <ion-item class="ion-item" no-lines>
-        <ion-label  color="primary">
+        <ion-label stacked color="primary">
           <ion-icon name="md-lock" left></ion-icon>
           Senha
         </ion-label>
@@ -26,7 +26,7 @@
         <button ion-button block (click)="login()" round [disabled]="formLogin.invalid">Entrar</button>
       </div>
       <div padding>
-        <button ion-button (click)="openSignUp()" round clear >Cadastre-se</button>
+        <button ion-button (click)="openSignUp()" round clear>Cadastre-se</button>
       </div>
     </form>
   </div>

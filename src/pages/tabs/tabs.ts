@@ -5,7 +5,7 @@ import { Component, ViewChild, NgZone } from "@angular/core";
 import { ContactPage } from "../contact/contact";
 import { HomePage } from "../home/home";
 import { StockPage } from "../stock/stock";
-import { Nav } from "ionic-angular";
+import { Nav, MenuController } from "ionic-angular";
 import { TabStateProvider } from "../../providers/tab-state/tab-state";
 
 @Component({
@@ -21,6 +21,7 @@ export class TabsPage {
   //tab3Root = ContactPage;
 
   constructor( public tabState:TabStateProvider) {
+
   }
 
 
