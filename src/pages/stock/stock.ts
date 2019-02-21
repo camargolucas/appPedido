@@ -18,6 +18,7 @@ import { ListaProduto } from "../../model/ListaProduto";
 import { UserProvider } from "../../providers/user/user";
 import { Rules } from "../../Rules/rules";
 import { TabStateProvider } from "../../providers/tab-state/tab-state";
+import { sortBy } from "sort-by-typescript";
 
 /**
  * Generated class for the StockPage page.
@@ -86,7 +87,6 @@ export class StockPage {
   // ################################################
   // ## Função ativada quando a View é carregada ####
   async ionViewDidEnter() {
-
     // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];
@@ -139,17 +139,21 @@ export class StockPage {
     this.provider
       .getAll(this.nomeCategoria)
       .then(results => {
-
         // ## Filtro todos os produtos lancados de todos os tipos pelo usuario logado
-        this.arrRet = results.filter(data =>{
-          return (data.produto.usuario.idUsuario == idUser)
+        this.arrRet = results.filter(data => {
+          return data.produto.usuario.idUsuario == idUser;
         });
 
         // Filtro os produtos por TIPO e por Usuario
         this.arrProdutos = results.filter(data => {
           // Listo pelo tipo do produto e pelo usuario que adicionou o produto
-          return (data.produto.nome["TIPO"] == value && data.produto.usuario.idUsuario == idUser); //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
+          return (
+            data.produto.nome["TIPO"] == value &&
+            data.produto.usuario.idUsuario == idUser
+          ); //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
+        // ## Ordeno o array pelo nome em ordem alfabetica
+        this.arrProdutos.sort(sortBy("produto.nome.NAME"));
       })
       .catch(error => {
         console.log(error);
@@ -224,14 +228,14 @@ export class StockPage {
     let idUsuario = this.idUsuario;
     let dataEnvio = this.date;
 
-     // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
+    // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
       idUsuario: idUsuario,
       dataEnvio: dataEnvio
     };
 
-     // ## Funcao da API que salva os dados no banco
+    // ## Funcao da API que salva os dados no banco
     this.apiProduct
       .insert(Produtos)
       .toPromise() // Caso tenha inserido com sucesso ...
@@ -262,34 +266,33 @@ export class StockPage {
         {
           text: "Sim",
           handler: () => {
-
             // Verifico se já foi enviado Estoque deste usuário
             this.verifyStock()
-            .then(ret => {
-              // Se for possivel o lancamento, seto a variavel de Editar como falsa para impedir o
-              // usuário de enviar o pedido novamente. E insiro no Banco de Dados
-              if (ret == true) {
-                this.editar = false;
-                this.insertDataBase();
-              } else {
+              .then(ret => {
+                // Se for possivel o lancamento, seto a variavel de Editar como falsa para impedir o
+                // usuário de enviar o pedido novamente. E insiro no Banco de Dados
+                if (ret == true) {
+                  this.editar = false;
+                  this.insertDataBase();
+                } else {
+                  this.toast
+                    .create({
+                      message: "Estoque já foi enviado hoje !",
+                      duration: 3000,
+                      position: "bottom"
+                    })
+                    .present();
+                }
+              })
+              .catch(() => {
                 this.toast
-                  .create({
-                    message: "Estoque já foi enviado hoje !",
-                    duration: 3000,
-                    position: "bottom"
-                  })
-                  .present();
-              }
-            })
-            .catch(()=>{
-              this.toast
                   .create({
                     message: "Não foi possivel enviar o estoque !",
                     duration: 3000,
                     position: "bottom"
                   })
                   .present();
-            });
+              });
           }
         }
       ]
