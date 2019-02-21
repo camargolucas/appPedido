@@ -49,33 +49,27 @@ export class MyApp {
      this.nav.setRoot(page.component, {openTab: page.openTab})
   }
 
-
-
+  //####################################################################
+  //Função para verificar se usuário já esta logado
   checkUserTokenExists(){
-
+    //Obtendo dados do usuário
     this.product.get("Usuario").then((ret)=>{
+      //Se o usuário é nulo
       if (ret != null) {
-
+        //Se o logado é 1 significa que o usuário esta logado 
+        //e redireciona para a página de Estoque
         if(ret.logado == 1){
-
-          console.log("Logged User : " + ret.apelidoUsuario);
-
+          //Redireciona para a página de Stok
           this.nav.push(TabsPage);
-          //this.menu.enable(true);
-          
         }else{
+          //Se não esta logado o usuário é redirecionado para a página de login.
           this.nav.push(LoginPage);
         }
       }else{
-        console.log("User not logged");
+        //Se os dados são Nulos o usuário é redirecionado para a página de login.
         this.nav.push(LoginPage);
       }
-      console.log("ret:  " + ret);
-
     });
-
-
-
   }
-
+ //####################################################################
 }
