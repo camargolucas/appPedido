@@ -14,6 +14,7 @@ import { Produto } from "../../model/Produto";
 import { EditProductPage } from "../edit-product/edit-product";
 import { ProductProvider } from "../../providers/product/product";
 import { Rules } from "../../Rules/rules";
+import { UserProvider } from "../../providers/user/user";
 
 /**
  * Generated class for the RequestPage page.
@@ -28,13 +29,30 @@ import { Rules } from "../../Rules/rules";
   templateUrl: "request.html"
 })
 export class RequestPage {
-  private Produto: Produto;
+  // Utilizada para distinguir no cache a qual categoria os dados armazenados pertencem quando armazenada
   private idCategoria: number;
   private nomeCategoria: string;
+
+  // Array para carregar os produtos filtrados por TIPO do produto que estão no cache
   private arrProdutos: ListaProduto[];
+
+  // Array para carregar os produtos filtrados do cache por CATEGORIA que estão no cache
   private arrRet: ListaProduto[];
+
+  // Variavel utilizada para distinguir o tipo do produto (FRUTA, VERDURA e LEGUME) e setar as abas
   private tipo = "";
+
+  private add: boolean;
+
+  // Variavel utilizada para verificar se pode ou não enviar o pedido e se pode inserir Produtos
+  private send: boolean;
+
+  // Resgata a data do dia
   public date: string = new Date().toLocaleDateString();
+
+  // Utilizada para armazenar o id do Usuario logado
+  public idUsuario: number;
+
   constructor(
     public modal: ModalController,
     public toast: ToastController,
@@ -43,47 +61,141 @@ export class RequestPage {
     public provider: ProductStorageProvider,
     public alertCtrl: AlertController,
     public productApi: ProductProvider,
-    public rules:Rules
+    public rules: Rules,
+    public userApi: UserProvider
   ) {
-    this.nomeCategoria = this.rules['categorias']['pedido']['categoriaItem']['nomeCategoria'];
-    this.idCategoria = this.rules['categorias']['pedido']['categoriaItem']['idCategoria'];
+    // ##########################################################################################
+    // ## Preencho a variavel com o tipo de categoria correspondente ############################
+    this.nomeCategoria = this.rules["categorias"]["pedido"]["categoriaItem"][
+      "nomeCategoria"
+    ];
+    this.idCategoria = this.rules["categorias"]["pedido"]["categoriaItem"][
+      "idCategoria"
+    ];
+
+    // ## Seto como F(Fruta) para iniciar na aba Fruta
     this.tipo = "F";
   }
 
-  private isAvaible() {}
+  // ################################################
+  // ## Função ativada quando a View é carregada ####
+  async ionViewDidEnter() {
+    // Armazeno o id do Usuario logado na variavel idUsuario
+    await this.provider.get("Usuario").then(value => {
+      this.idUsuario = value["idUsuario"];
+    });
 
-  ionViewDidEnter() {
-    this.loadData(this.tipo);
+    // ## Verifico se já foi enviado algum pedido do Usuario logado
+    this.verifyRequest(this.idUsuario, this.date);
+
+    // ## Listagem dos produtos conforme seu tipo
+    this.loadData(this.tipo, this.idUsuario);
   }
 
+  // ##############################################
+  // ## Função ativada quando a aba é trocada #####
   onSegmentChange(value: any) {
-    this.loadData(value);
+    // Lista os produtos conforme seu tipo
+    this.loadData(value, this.idUsuario);
   }
 
+  // ###############################################################
+  // ## Função utilizada para abrir a modal de adicionar Produtos ##
   addProduct() {
+    // Criação da Modal
     const myModal = this.modal.create(ModalProductPage, {
       idCategoria: this.idCategoria,
       nomeCategoria: this.nomeCategoria
     });
+
+    // Quando a modal é finalizada é chamado novamente o metodo de listagem com os novos produtos
     myModal.onDidDismiss(() => {
-      this.loadData(this.tipo);
+      this.loadData(this.tipo, this.idUsuario);
     });
     myModal.present();
   }
 
-  loadData(value) {
+  // #######################################################################
+  // ## Utilizada para verificar se há possibilidade de envio do Pedido ####
+  public isAvaibleSend() {
+    return this.send;
+  }
+
+  // ###################################################################################################
+  // ## Função para verificar no bano de dados se aquele usuario já enviou algum pedido no dia #########
+  async verifyRequest(idUser: number, dateNow: string) {
+    let id = idUser;
+    let date = dateNow;
+    let ENVIOS: any;
+
+    let arrUser = {
+      idUsuario: id,
+      data: date
+    };
+
+    // ## Verifico quantos pedidos ja foram lançados no dia atual.
+    await this.userApi.getSentRequest(arrUser).then(result => {
+      ENVIOS = result[0]["ENVIOS"];
+
+      // ## Se ainda não enviou nenhum pedido no dia ...
+      if (ENVIOS < this.rules.ENVIOS) {
+        this.send = true;
+      } else {
+        this.send = false;
+      }
+    });
+    return this.send;
+  }
+
+  /* async verifyStock(idUser: number, dateNow: string) {
+    let id = idUser;
+    let date = dateNow;
+    let ENVIOS: any;
+
+    let arrUser = {
+      idUsuario: id,
+      data: date
+    };
+
+    await this.userApi.getSentStock(arrUser).then(result => {
+      ENVIOS = result[0]["ENVIOS"];
+
+      if (ENVIOS >= this.rules.ENVIOS) {
+        this.add = true;
+      } else {
+        this.add = false;
+      }
+    });
+
+    return this.add;
+  } */
+
+  // ########################################################################
+  // ## Função que carrega e filtra os dados no cache do Usuario ############
+  loadData(value, idUser) {
     this.provider
       .getAll(this.nomeCategoria)
       .then(results => {
-        this.arrRet = results;
+        // Filtro todos os produtos lancados de todos os tipos pelo usuario logado
+        this.arrRet = results.filter(data => {
+          return data.produto.usuario.idUsuario == idUser;
+        });
+
+        // Filtro os produtos por TIPO e por Usuario
         this.arrProdutos = results.filter(data => {
-          return data.produto.nome["TIPO"] == value; // && data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
+          return (
+            data.produto.nome["TIPO"] == value &&
+            data.produto.usuario.idUsuario == idUser
+          ); // && data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
         console.log(error);
       });
   }
+
+  // ###############################################################
+  // ## Função para chamar a pagina de Edição de produtos ##########
   editProduct(item: ListaProduto) {
     this.navCtrl.push(EditProductPage, {
       key: item.key,
@@ -92,11 +204,13 @@ export class RequestPage {
     });
   }
 
+  // ######################################################
+  // ## Função para remoção de produtos do Cache ##########
   removeProduct(item: ListaProduto) {
     this.provider.remove(item.key).then(() => {
       let index = this.arrProdutos.indexOf(item);
       this.arrProdutos.splice(index, 1);
-      this.loadData(this.tipo);
+      this.loadData(this.tipo, this.idUsuario);
       this.toast
         .create({
           message: "Produto Removido",
@@ -107,6 +221,8 @@ export class RequestPage {
     });
   }
 
+  // ########################################################################
+  // ## Função que mostra o pop up de confirmacção de Envio #################
   showConfirm() {
     const confirm = this.alertCtrl.create({
       title: "Deseja finalizar o Pedido?",
@@ -120,7 +236,33 @@ export class RequestPage {
         {
           text: "Confirmar",
           handler: () => {
-            this.insertDatabase();
+            // Verifico se já foi enviado Pedido deste usuário
+            this.verifyRequest(this.idUsuario, this.date)
+              .then(ret => {
+                // Se for possivel o lancamento, seto a variavel de Send como falsa para impedir o
+                // usuário de enviar o pedido novamente. E insiro no Banco de Dados
+                if (ret == true) {
+                  this.send = false;
+                  this.insertDatabase();
+                } else {
+                  this.toast
+                    .create({
+                      message: "Pedido já foi enviado hoje !",
+                      duration: 3000,
+                      position: "bottom"
+                    })
+                    .present();
+                }
+              })
+              .catch(() => {
+                this.toast
+                  .create({
+                    message: "Não foi possivel enviar o estoque !",
+                    duration: 3000,
+                    position: "bottom"
+                  })
+                  .present();
+              });
           }
         }
       ]
@@ -128,16 +270,33 @@ export class RequestPage {
     confirm.present();
   }
 
+  // ###############################################################
+  // ## Função para inserir o Pedido no banco de dados ############
   insertDatabase() {
-    this.provider.get("Usuario").then(ret => {
-      let idUsuario = ret["idUsuario"];
+    // this.provider.get("Usuario").then(ret => {
+    let idUsuario = this.idUsuario;
 
-      let Produtos = {
-        arrProduto: this.arrRet,
-        idUsuario: idUsuario,
-        dataEnvio: this.date
-      };
-      this.productApi.insertRequest(Produtos);
-    });
+    // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
+    let Produtos = {
+      arrProduto: this.arrRet,
+      idUsuario: idUsuario,
+      dataEnvio: this.date
+    };
+
+    // ## Funcao da API que salva os dados no banco
+    this.productApi
+      .insertRequest(Produtos)
+      .toPromise() // Caso tenha inserido com sucesso ...
+      .then(ret => {
+        this.toast
+          .create({
+            message: "Pedido Enviado com sucesso",
+            duration: 3000,
+            position: "bottom"
+          })
+          .present();
+      });
+
+    // });
   }
 }

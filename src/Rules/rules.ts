@@ -9,7 +9,7 @@ export class Rules {
   //////////////////////////////////////////////////////////////////////////////////////////
   // CATEGORIA DOS OBJETOS DECLARADOS NO SISTEMA, TODOS DEVEM SER DO TIPO: CATEGORIA ITEM
   //////////////////////////////////////////////////////////////////////////////////////////
- readonly categoriaItem: CategoriaItem;
+ private categoriaItem: CategoriaItem;
  readonly categorias = {
     estoque: {
       categoriaItem: {

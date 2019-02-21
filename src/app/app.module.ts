@@ -24,21 +24,15 @@ import { HttpModule } from '@angular/http';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { MorePage } from '../pages/more/more';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+/* import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth'; */
 import { UserProvider } from '../providers/user/user';
 import { ProductProvider } from '../providers/product/product';
 import { Network } from '@ionic-native/network/ngx';
 import { CheckNetworkProvider } from '../providers/check-network/check-network';
 import { Rules } from '../Rules/rules';
+import { TabStateProvider } from '../providers/tab-state/tab-state';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyCdcciBxo_3dsnem8ltRTcMVStKOZX12xM",
-  authDomain: "request-app-907fc.firebaseapp.com",
-  databaseURL: "https://request-app-907fc.firebaseio.com",
-  storageBucket: "",
-  messagingSenderId: "447443219945"
-};
 
 @NgModule({
   declarations: [
@@ -63,9 +57,7 @@ export const firebaseConfig = {
     IonicStorageModule.forRoot(),
     FormsModule,
     AutoCompleteModule,
-    HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    HttpModule
 
   ],
   bootstrap: [IonicApp],
@@ -96,6 +88,7 @@ export const firebaseConfig = {
     UserProvider,
     ProductProvider,
     CheckNetworkProvider,
+    TabStateProvider,
   ]
 })
 export class AppModule {}

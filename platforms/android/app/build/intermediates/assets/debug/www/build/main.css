@@ -30768,8 +30768,7 @@ page-request .cfg-title ion-col[name='Und'] {
 }
 
 page-request ion-fab {
-  z-index: 100;
-  position: fixed;
+  top: 82% !important;
 }
 
 page-request .scroll-content {
@@ -30823,6 +30822,12 @@ page-signup .div-senha {
 
 page-signup .div-components {
   padding-top: 30%;
+}
+
+page-signup .error {
+  font-size: 10px;
+  color: #f53d3d;
+  padding-left: 20px;
 }
 
 page-stock .title {

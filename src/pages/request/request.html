@@ -11,7 +11,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-buttons end>
+    <ion-buttons *ngIf="isAvaibleSend()"  end>
       <button class="icon-cfg" ion-button color="indigo" (click)="addProduct()">
         <ion-icon name="md-add"></ion-icon>
       </button>
@@ -63,7 +63,7 @@
             </div>
           </ion-grid>
         </ion-item>
-        <ion-item-options side="right" (ionSwipe)="removeProduct(item)">
+        <ion-item-options *ngIf="isAvaibleSend()" side="right" (ionSwipe)="removeProduct(item)">
           <button ion-button expandable color="danger" (click)="removeProduct(item)">
             <ion-icon name="trash"></ion-icon>Excluir
           </button>
@@ -76,7 +76,7 @@
     </ion-list>
 
   </div>
-   <div class="ion-fab">
+   <div *ngIf="arrRet && arrRet.length && isAvaibleSend()" class="ion-fab">
     <ion-fab bottom right mini>
       <button ion-fab color="indigo" (click)="showConfirm()"  round small>
         <ion-icon name="md-done-all"></ion-icon>
