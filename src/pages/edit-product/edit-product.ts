@@ -95,7 +95,7 @@ export class EditProductPage {
       //   tipo: new FormControl('',Validators.required),
       und: new FormControl("", Validators.required)
     });
-    this.searchbar.setFocus();
+
   }
 
   // ##############################################################
