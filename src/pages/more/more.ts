@@ -1,7 +1,9 @@
+import { TabsPage } from './../tabs/tabs';
 import { ProductStorageProvider } from './../../providers/product-storage/product-storage';
 import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the MorePage page.
@@ -16,18 +18,13 @@ import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-
   templateUrl: 'more.html',
 })
 export class MorePage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, public provider:ProductStorageProvider
-    ,public viewCtrl:ViewController,public app:App) {
+  constructor(public navParams: NavParams,public viewCtrl:ViewController,public app:App) {
   }
 
 
   leave(){
       // ## Saída do sistema
       this.app.getRootNav().setRoot(LoginPage);
-  }
-
-  clear(){
-    this.provider.clear();
   }
 
 }

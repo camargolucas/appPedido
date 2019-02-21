@@ -10,5 +10,5 @@ export class Usuario {
   idCargo: number;
   ativo: boolean;
   apelidoUsuario:string;
-  categoriaItem = new CategoriaItem();
+  categoriaItem:CategoriaItem
 }

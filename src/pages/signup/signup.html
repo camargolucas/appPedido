@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Cadastro</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -29,7 +29,7 @@
           <ion-input type="text" formControlName="usuario" #usuario></ion-input>
         </ion-item>
         <div class="error" *ngIf="formSignUp.get('usuario').hasError('minlength') && formSignUp.get('usuario').touched">
-          Mínimo 3 caracteres
+          Mínimo 2 caracteres
         </div>
         <div class="error" *ngIf="formSignUp.get('usuario').hasError('maxlength') && formSignUp.get('usuario').touched">
           Máximo 16 caracteres
@@ -38,13 +38,13 @@
       <div>
         <ion-item class="ion-item" no-lines>
           <ion-label>
-            <ion-icon name="md-people"></ion-icon>
-            Login
+            <ion-icon name="md-contact"></ion-icon>
+            Usuário
           </ion-label>
           <ion-input type="text" formControlName="login" #login></ion-input>
         </ion-item>
         <div class="error" *ngIf="formSignUp.get('login').hasError('minlength') && formSignUp.get('login').touched">
-          Mínimo 5 caracteres
+          Mínimo 2 caracteres
         </div>
         <div class="error" *ngIf="formSignUp.get('login').hasError('maxlength') && formSignUp.get('login').touched">
           Máximo 16 caracteres

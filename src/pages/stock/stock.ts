@@ -56,7 +56,6 @@ export class StockPage {
 
   // Objeto do Usuario
   public usuario: Usuario;
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -87,13 +86,14 @@ export class StockPage {
   // ################################################
   // ## Função ativada quando a View é carregada ####
   async ionViewDidEnter() {
-    // ## Listagem dos produtos conforme seu tipo
-    this.loadData(this.tipo);
 
     // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];
     });
+
+    // ## Listagem dos produtos conforme seu tipo
+    this.loadData(this.tipo, this.idUsuario);
 
     // Verifica a disponibilidade para liberar a aba de Pedido
     this.verifyToEnableTab();
@@ -103,7 +103,7 @@ export class StockPage {
   // ## Função ativada quando a aba é trocada #####
   onSegmentChange(value: any) {
     // Lista os produtos conforme seu tipo
-    this.loadData(value);
+    this.loadData(value, this.idUsuario);
   }
 
   // ###############################################################
@@ -122,7 +122,7 @@ export class StockPage {
     this.provider.remove(item.key).then(() => {
       let index = this.arrProdutos.indexOf(item);
       this.arrProdutos.splice(index, 1);
-      this.loadData(this.tipo);
+      this.loadData(this.tipo, this.idUsuario);
       this.toast
         .create({
           message: "Produto Removido",
@@ -135,13 +135,20 @@ export class StockPage {
 
   // ########################################################################
   // ## Função que carrega e filtra os dados no cache do Usuario ############
-  loadData(value) {
+  loadData(value, idUser) {
     this.provider
       .getAll(this.nomeCategoria)
       .then(results => {
-        this.arrRet = results;
+
+        // ## Filtro todos os produtos lancados de todos os tipos pelo usuario logado
+        this.arrRet = results.filter(data =>{
+          return (data.produto.usuario.idUsuario == idUser)
+        });
+
+        // Filtro os produtos por TIPO e por Usuario
         this.arrProdutos = results.filter(data => {
-          return data.produto.nome["TIPO"] == value; //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
+          // Listo pelo tipo do produto e pelo usuario que adicionou o produto
+          return (data.produto.nome["TIPO"] == value && data.produto.usuario.idUsuario == idUser); //&& data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
@@ -159,7 +166,7 @@ export class StockPage {
     });
 
     myModal.onDidDismiss(() => {
-      this.loadData(this.tipo);
+      this.loadData(this.tipo, this.idUsuario);
     });
     myModal.present();
   }
@@ -257,7 +264,8 @@ export class StockPage {
           handler: () => {
 
             // Verifico se já foi enviado Estoque deste usuário
-            this.verifyStock().then(ret => {
+            this.verifyStock()
+            .then(ret => {
               // Se for possivel o lancamento, seto a variavel de Editar como falsa para impedir o
               // usuário de enviar o pedido novamente. E insiro no Banco de Dados
               if (ret == true) {
@@ -272,6 +280,15 @@ export class StockPage {
                   })
                   .present();
               }
+            })
+            .catch(()=>{
+              this.toast
+                  .create({
+                    message: "Não foi possivel enviar o estoque !",
+                    duration: 3000,
+                    position: "bottom"
+                  })
+                  .present();
             });
           }
         }

@@ -4,6 +4,8 @@ import { ApiData } from "./../../utilitarios/apiData";
 import { Usuario } from "../../model/Usuario";
 import { ProductStorageProvider } from "../product-storage/product-storage";
 import { storage } from "firebase";
+import { CategoriaItem } from "../../model/CategoriaItem";
+import { Rules } from "../../Rules/rules";
 
 /*
   Generated class for the UserProvider provider.
@@ -13,8 +15,24 @@ import { storage } from "firebase";
 */
 @Injectable()
 export class UserProvider extends ApiData {
+  usuario: Usuario;
+  private nomeCategoria: string;
+  private idCategoria: number;
+  private rules:Rules
+
   constructor(public http: Http) {
     super();
+
+    this.rules = new Rules()
+    this.usuario = new Usuario();
+    this.usuario.categoriaItem = new CategoriaItem();
+
+    this.nomeCategoria = this.rules["categorias"]["usuario"]["categoriaItem"][
+      "nomeCategoria"
+    ];
+    this.idCategoria = this.rules["categorias"]["usuario"]["categoriaItem"][
+      "idCategoria"
+    ];
   }
 
   // ######################################################
@@ -99,6 +117,40 @@ export class UserProvider extends ApiData {
           }
         );
     });
+  }
+
+  loginAuthencation(login, password) {
+
+    // ## Objeto com os dados do usuário que está acessando o app
+    let arrUser = {
+      login: login,
+      password: password
+    };
+
+    // ## função que resgata os dados do usuario no banco
+    return this.getUser(arrUser).then(ret => {
+      if (ret == "") {
+        return ret
+      } else {
+        // Se não estiver vazio ele popula a model com os dados resgatados no banco
+       return this.populateUserModel(ret)
+      }
+    });
+  }
+
+  populateUserModel(ret) {
+
+    // ## populo a model com os dados do Usuário
+    this.usuario.nomeUsuario = ret[0]["nomeUsuario"];
+    this.usuario.loja = ret[0]["loja"];
+    this.usuario.email = ret[0]["email"];
+    this.usuario.idCargo = ret[0]["idCargo"];
+    this.usuario.idUsuario = ret[0]["idUsuario"];
+    this.usuario.apelidoUsuario = ret[0]["apelidoUsuario"];
+    this.usuario.categoriaItem.idCategoria = this.idCategoria;
+    this.usuario.categoriaItem.nomeCategoria = this.nomeCategoria;
+
+    return this.usuario
   }
 
   /*  insert(usuario: Usuario) {

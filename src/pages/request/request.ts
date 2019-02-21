@@ -89,14 +89,14 @@ export class RequestPage {
     this.verifyRequest(this.idUsuario, this.date);
 
     // ## Listagem dos produtos conforme seu tipo
-    this.loadData(this.tipo);
+    this.loadData(this.tipo, this.idUsuario);
   }
 
   // ##############################################
   // ## Função ativada quando a aba é trocada #####
   onSegmentChange(value: any) {
     // Lista os produtos conforme seu tipo
-    this.loadData(value);
+    this.loadData(value, this.idUsuario);
   }
 
   // ###############################################################
@@ -110,7 +110,7 @@ export class RequestPage {
 
     // Quando a modal é finalizada é chamado novamente o metodo de listagem com os novos produtos
     myModal.onDidDismiss(() => {
-      this.loadData(this.tipo);
+      this.loadData(this.tipo, this.idUsuario);
     });
     myModal.present();
   }
@@ -172,13 +172,21 @@ export class RequestPage {
 
   // ########################################################################
   // ## Função que carrega e filtra os dados no cache do Usuario ############
-  loadData(value) {
+  loadData(value, idUser) {
     this.provider
       .getAll(this.nomeCategoria)
       .then(results => {
-        this.arrRet = results;
+        // Filtro todos os produtos lancados de todos os tipos pelo usuario logado
+        this.arrRet = results.filter(data => {
+          return data.produto.usuario.idUsuario == idUser;
+        });
+
+        // Filtro os produtos por TIPO e por Usuario
         this.arrProdutos = results.filter(data => {
-          return data.produto.nome["TIPO"] == value; // && data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
+          return (
+            data.produto.nome["TIPO"] == value &&
+            data.produto.usuario.idUsuario == idUser
+          ); // && data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
       })
       .catch(error => {
@@ -202,7 +210,7 @@ export class RequestPage {
     this.provider.remove(item.key).then(() => {
       let index = this.arrProdutos.indexOf(item);
       this.arrProdutos.splice(index, 1);
-      this.loadData(this.tipo);
+      this.loadData(this.tipo, this.idUsuario);
       this.toast
         .create({
           message: "Produto Removido",
@@ -228,18 +236,33 @@ export class RequestPage {
         {
           text: "Confirmar",
           handler: () => {
-
             // Verifico se já foi enviado Pedido deste usuário
-            this.verifyRequest(this.idUsuario, this.date).then(ret => {
-              // Se for possivel o lancamento, seto a variavel de Send como falsa para impedir o
-              // usuário de enviar o pedido novamente. E insiro no Banco de Dados
-              if (ret == true) {
-                this.send = false;
-                this.insertDatabase();
-              } else {
-                console.log("NÃO PODE ENVIAR");
-              }
-            });
+            this.verifyRequest(this.idUsuario, this.date)
+              .then(ret => {
+                // Se for possivel o lancamento, seto a variavel de Send como falsa para impedir o
+                // usuário de enviar o pedido novamente. E insiro no Banco de Dados
+                if (ret == true) {
+                  this.send = false;
+                  this.insertDatabase();
+                } else {
+                  this.toast
+                    .create({
+                      message: "Pedido já foi enviado hoje !",
+                      duration: 3000,
+                      position: "bottom"
+                    })
+                    .present();
+                }
+              })
+              .catch(() => {
+                this.toast
+                  .create({
+                    message: "Não foi possivel enviar o estoque !",
+                    duration: 3000,
+                    position: "bottom"
+                  })
+                  .present();
+              });
           }
         }
       ]

@@ -13,6 +13,7 @@ import { ProductStorageProvider } from "../../providers/product-storage/product-
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Produto } from "../../model/Produto";
 import { CategoriaItem } from "../../model/CategoriaItem";
+import { Usuario } from "../../model/Usuario";
 
 /**
  * Generated class for the ModalProductPage page.
@@ -55,9 +56,10 @@ export class ModalProductPage {
     public utilitarios: Utilitarios,
     public view: ViewController
   ) {
-    // Instancia do Produto e do Tipo Categoria Item
+    // Instancia do Produto e do Tipo Categoria Item do Objeto Produto
     this.model = new Produto();
     this.model.categoriaItem = new CategoriaItem();
+    this.model.usuario = new Usuario();
 
     // ## Carrego o arrTipo e arrUnidade com os dados da classe utilitarios
     this.arrTipo = this.utilitarios.getArrayTipo();
@@ -69,6 +71,11 @@ export class ModalProductPage {
     // O valor do objeto já setado com os valores das categorias
     this.model.categoriaItem.idCategoria = this.idCategoria;
     this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
+
+    // ## setando o id do usuario logado na model produto
+    this.storage.get("Usuario").then((ret) => {
+      this.model.usuario.idUsuario = ret['idUsuario'];
+    });
 
     // ## Carrego o combo de Unidade como padrão KILO
     this.model.unidade = "KILO";
