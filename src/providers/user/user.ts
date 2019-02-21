@@ -149,7 +149,8 @@ export class UserProvider extends ApiData {
     this.usuario.apelidoUsuario = ret[0]["apelidoUsuario"];
     this.usuario.categoriaItem.idCategoria = this.idCategoria;
     this.usuario.categoriaItem.nomeCategoria = this.nomeCategoria;
-
+    this.usuario.token = ret[0]["token"];
+    this.usuario.logado = ret[0]["logado"];
     return this.usuario
   }
 
