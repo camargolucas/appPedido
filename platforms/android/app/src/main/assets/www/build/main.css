@@ -30637,6 +30637,10 @@ page-login h1 {
   color: #488aff;
 }
 
+page-login ion-label {
+  font-size: 16px !important;
+}
+
 page-login ion-input {
   font-weight: lighter;
   color: black;
@@ -30650,7 +30654,7 @@ page-login .ion-item {
   border: 0px solid !important;
   background-color: rgba(255, 255, 255, 0.4);
   margin-bottom: 4px;
-  height: 55px;
+  height: 69px;
 }
 
 page-login .div-components {
