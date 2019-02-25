@@ -18,8 +18,7 @@ export class ProductProvider extends ApiData {
 
     return this.http.post(
       this.API_URL +
-        "products/insertEstoque/" +
-        encodeURIComponent(productData) +
+        "products/insertEstoque/" + encodeURIComponent(productData) +
         "",
       this.requestOptions
     );
@@ -33,9 +32,7 @@ export class ProductProvider extends ApiData {
 
     return this.http.post(
       this.API_URL +
-        "products/insertPedido/" +
-        encodeURIComponent(productData) +
-        "",
+        "products/insertPedido/" + encodeURIComponent(productData) +"",
       this.requestOptions
     );
   }
