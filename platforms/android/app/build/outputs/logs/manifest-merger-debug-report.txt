@@ -1,13 +1,13 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
-INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
-INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
-INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
 MERGED from [:CordovaLib] C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
-INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
-INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
-INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-15:12
+INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:1-16:12
 	package
 		ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:2:98-124
 		INJECTED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml
@@ -94,3 +94,7 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:14:5-79
 	android:name
 		ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:14:22-76
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:15:5-75
+	android:name
+		ADDED from C:\Users\Frutamina\Documents\GitHub\prePedido\platforms\android\app\src\main\AndroidManifest.xml:15:22-72

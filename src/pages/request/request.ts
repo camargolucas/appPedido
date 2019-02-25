@@ -15,7 +15,7 @@ import { EditProductPage } from "../edit-product/edit-product";
 import { ProductProvider } from "../../providers/product/product";
 import { Rules } from "../../Rules/rules";
 import { UserProvider } from "../../providers/user/user";
-
+import { sortBy } from "sort-by-typescript";
 /**
  * Generated class for the RequestPage page.
  *
@@ -190,6 +190,8 @@ export class RequestPage {
             data.produto.usuario.idUsuario == idUser
           ); // && data.produto.categoriaItem.nomeCategoria == this.nomeCategoria
         });
+        // ## Ordeno o array pelo nome em ordem alfabetica
+        this.arrProdutos.sort(sortBy("produto.nome.NAME"));
       })
       .catch(error => {
         console.log(error);
