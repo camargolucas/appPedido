@@ -54,6 +54,7 @@ export class StockPage {
 
   // Variavel para popular o id do usuário logado
   public idUsuario: number;
+  public tokenUsuario: string;
 
   // Objeto do Usuario
   public usuario: Usuario;
@@ -90,6 +91,7 @@ export class StockPage {
     // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];
+      this.tokenUsuario = value["token"];
     });
 
     // ## Listagem dos produtos conforme seu tipo
@@ -225,14 +227,13 @@ export class StockPage {
   // ###############################################################
   // ## Função para inserir o Estoque no banco de dados
   public insertDataBase() {
-    let idUsuario = this.idUsuario;
-    let dataEnvio = this.date;
 
     // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
-      idUsuario: idUsuario,
-      dataEnvio: dataEnvio
+      idUsuario: this.idUsuario,
+      dataEnvio: this.date,
+      tokenUsuario: this.tokenUsuario
     };
 
     // ## Funcao da API que salva os dados no banco
