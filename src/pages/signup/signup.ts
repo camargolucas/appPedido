@@ -31,7 +31,7 @@ import { ProductStorageProvider } from "../../providers/product-storage/product-
   selector: "page-signup",
   templateUrl: "signup.html"
 })
-export class SignupPage extends UserProvider {
+export class SignupPage {
   // Variavel utilizada para criar um grupo de formulários
   formSignUp: FormGroup;
 
@@ -56,8 +56,9 @@ export class SignupPage extends UserProvider {
     public toast: ToastController,
     public storage: ProductStorageProvider,
     public menu:MenuController,
+    public userProvider:UserProvider
   ) {
-    super(http);
+   // super(http);
     // Instância do objeto Usuario
     this.usuario = new Usuario();
     this.usuario.categoriaItem = new CategoriaItem();
@@ -116,7 +117,7 @@ export class SignupPage extends UserProvider {
                                                     // ## para evitar disperdicio foi mantido o campo e trocado pelo email
 
     // ## Chamada da API para inserção no banco de dados
-    this.insert(this.usuario)
+    this.userProvider.insert(this.usuario)
       .toPromise()
       .then(ret => {
         var obj = ret.json();
@@ -127,7 +128,7 @@ export class SignupPage extends UserProvider {
           this.showToast("Cadastrado com sucesso");
 
 
-          this.loginAuthencation(this.email.value, this.password.value).then(ret => {
+          this.userProvider.loginAuthencation(this.email.value, this.password.value).then(ret => {
             // ## Redireciono o Usuario para a tela inicial
             this.navCtrl.push(TabsPage);
 
