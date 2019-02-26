@@ -22,6 +22,7 @@ import {
 
 import { Usuario } from "../../model/Usuario";
 import { Device } from "@ionic-native/device";
+import { CheckNetworkProvider } from "../../providers/check-network/check-network";
 
 /**
  * Generated class for the LoginPage page.
@@ -62,7 +63,8 @@ export class LoginPage {
     public userApi: UserProvider,
     public utilitarios: Utilitarios,
     public rules: Rules,
-    private device: Device
+    private device: Device,
+    public network: CheckNetworkProvider
   ) {
     // #########################################
     // ## Instâncio um novo objeto na memoria ##
@@ -80,6 +82,8 @@ export class LoginPage {
     this.idCategoria = this.rules["categorias"]["usuario"]["categoriaItem"][
       "idCategoria"
     ];
+
+    console.log(this.network.statusNetwork);
 
   }
 
@@ -109,29 +113,36 @@ export class LoginPage {
   } */
 
   login() {
+    console.log(this.network.statusNetwork);
 
-    this.showToast('Device UUID is: ' + this.device.uuid);
+    if(this.network.checkNetwork() === true){
+      
+        this.showToast('Device UUID is: ' + this.device.uuid);
 
-    return this.userApi
-      .loginAuthencation(this.userLogin.value, this.password.value)
-      .then(ret => {
-        // ## Se retornar vazio significa que o usuario não esta cadastrado
-        if (ret == "") {
-          this.showToast("Usuário Inválido");
-        } else {
-          // ## Redireciono o Usuario para a tela inicial
-          this.navCtrl.push(TabsPage);
+        return this.userApi
+          .loginAuthencation(this.userLogin.value, this.password.value)
+          .then(ret => {
+            // ## Se retornar vazio significa que o usuario não esta cadastrado
+            if (ret == "") {
+              this.showToast("Usuário Inválido");
+            } else {
+              // ## Redireciono o Usuario para a tela inicial
+              this.navCtrl.push(TabsPage);
 
-          // ## Ativo o menu lateral
-          this.menu.enable(true);
+              // ## Ativo o menu lateral
+              this.menu.enable(true);
 
-          // ## Carrego os dados do Usuario no cache
-          this.storage.insertUser(ret);
-        }
-      })
-      .catch(err => {
-        this.showToast("Não foi possivel acessar !");
-      });
+              // ## Carrego os dados do Usuario no cache
+              this.storage.insertUser(ret);
+            }
+          })
+          .catch(err => {
+            this.showToast("Não foi possivel acessar !");
+          });
+
+    }else{
+      this.showToast("Você não tem conexão com a internet!");
+    }
   }
 
   // ########################################################

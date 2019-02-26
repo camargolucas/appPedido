@@ -1,3 +1,5 @@
+import { Utilitarios } from './../../utilitarios/utilitarios';
+import { CheckNetworkProvider } from './../../providers/check-network/check-network';
 import { TabsPage } from "./../tabs/tabs";
 import { Usuario } from "./../../model/Usuario";
 import { ProductProvider } from "./../../providers/product/product";
@@ -69,7 +71,8 @@ export class StockPage {
     public apiProduct: ProductProvider,
     public userApi: UserProvider,
     public rules: Rules,
-    public tabState: TabStateProvider
+    public tabState: TabStateProvider,
+    public network: CheckNetworkProvider
   ) {
     // ##########################################################################################
     // ## Preencho a variavel com o tipo de categoria correspondente ############################
@@ -83,6 +86,9 @@ export class StockPage {
     // ## Seto como F(Fruta) para iniciar na aba Fruta
     this.tipo = "F";
     //this.tabState.setState("tabRequest", true)
+
+    console.log(this.network.statusNetwork);
+   
   }
 
   // ################################################
@@ -227,7 +233,6 @@ export class StockPage {
   // ###############################################################
   // ## Função para inserir o Estoque no banco de dados
   public insertDataBase() {
-
     // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
@@ -251,6 +256,29 @@ export class StockPage {
       });
 
     this.enableTab("tabRequest", true); // Ao inserir o estoque, libera a aba de Pedido
+
+  }
+
+  alertNotConnection(){
+    console.log("this.network.checkNetwork()" + this.network.checkNetwork());
+
+
+    const confirm = this.alertCtrl.create({
+      title: "Sem Conexão " + this.network.checkNetwork(),
+      message: "Lembre-se se voce enviar, o estoque não poderá ser alterado",
+      buttons: [
+        {
+          text: "Não",
+          handler: () => {}
+        },
+        {
+          text: "Ok",
+          handler: () => {
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   // ########################################################################
@@ -262,11 +290,14 @@ export class StockPage {
       buttons: [
         {
           text: "Não",
-          handler: () => {}
+          handler: () => {
+          }
         },
         {
           text: "Sim",
           handler: () => {
+
+            if(this.network.checkNetwork() === true){
             // Verifico se já foi enviado Estoque deste usuário
             this.verifyStock()
               .then(ret => {
@@ -276,28 +307,35 @@ export class StockPage {
                   this.editar = false;
                   this.insertDataBase();
                 } else {
-                  this.toast
-                    .create({
-                      message: "Estoque já foi enviado hoje !",
-                      duration: 3000,
-                      position: "bottom"
-                    })
-                    .present();
+                  this.showToast("Estoque já foi enviado hoje !");
                 }
               })
               .catch(() => {
-                this.toast
-                  .create({
-                    message: "Não foi possivel enviar o estoque !",
-                    duration: 3000,
-                    position: "bottom"
-                  })
-                  .present();
+                this.showToast("Não foi possivel enviar o estoque !");
               });
+            }else{
+              this.showToast("Você não tem conexão com a internet!");
+            }
           }
         }
       ]
     });
     confirm.present();
+
+
+
+
+
+  }
+
+
+  showToast(messageString:String){
+    this.toast
+    .create({
+      message: "" + messageString,
+      duration: 3000,
+      position: "bottom"
+    })
+    .present();
   }
 }
