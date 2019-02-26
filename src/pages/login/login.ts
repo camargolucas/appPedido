@@ -80,7 +80,6 @@ export class LoginPage {
     this.idCategoria = this.rules["categorias"]["usuario"]["categoriaItem"][
       "idCategoria"
     ];
-
   }
 
   // ##################################################################
@@ -109,27 +108,32 @@ export class LoginPage {
   } */
 
   login() {
-
-    this.showToast('Device UUID is: ' + this.device.uuid);
+    // this.showToast("Device UUID is: " + this.device.uuid);
 
     return this.userApi
-      .loginAuthencation(this.userLogin.value, this.password.value)
+      .loginAuthencation(
+        this.userLogin.value,
+        this.password.value,
+        this.device.uuid
+      )
       .then(ret => {
-        // ## Se retornar vazio significa que o usuario não esta cadastrado
-        if (ret == "") {
-          this.showToast("Usuário Inválido");
-        } else {
+        // ## Se retornar success significa que o usuario esta cadastrado
+        if (ret["status"] == "success") {
           // ## Redireciono o Usuario para a tela inicial
           this.navCtrl.push(TabsPage);
 
           // ## Ativo o menu lateral
           this.menu.enable(true);
 
-          // ## Carrego os dados do Usuario no cache
-          this.storage.insertUser(ret);
+          this.showToast("Bem Vindo !");
+        } else if (ret["status"] == "invalid user") {
+          this.showToast("Usuário Inválido");
+        } else if (ret["status"] == "invalid device") {
+          this.showToast("Dispositivo inválido");
         }
       })
       .catch(err => {
+        console.log(err);
         this.showToast("Não foi possivel acessar !");
       });
   }
