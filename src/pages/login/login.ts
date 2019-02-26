@@ -1,3 +1,4 @@
+//import { UniqueDeviceID } from "@ionic-native/unique-device-id";
 import { Rules } from "./../../Rules/rules";
 import { Utilitarios } from "./../../utilitarios/utilitarios";
 import { CategoriaItem } from "./../../model/CategoriaItem";
@@ -20,6 +21,7 @@ import {
 } from "ionic-angular";
 
 import { Usuario } from "../../model/Usuario";
+import { Device } from "@ionic-native/device";
 
 /**
  * Generated class for the LoginPage page.
@@ -59,7 +61,8 @@ export class LoginPage {
     public storage: ProductStorageProvider,
     public userApi: UserProvider,
     public utilitarios: Utilitarios,
-    public rules: Rules
+    public rules: Rules,
+    private device: Device
   ) {
     // #########################################
     // ## Instâncio um novo objeto na memoria ##
@@ -77,6 +80,7 @@ export class LoginPage {
     this.idCategoria = this.rules["categorias"]["usuario"]["categoriaItem"][
       "idCategoria"
     ];
+
   }
 
   // ##################################################################
@@ -90,7 +94,7 @@ export class LoginPage {
 
   // #######################################################################################
   // ## Função utilizada para armazenar no cache todos os dados do Usuário que está logado
-/*   userData(ret: any) {
+  /*   userData(ret: any) {
     this.model.nomeUsuario = ret[0]["nomeUsuario"];
     this.model.loja = ret[0]["loja"];
     this.model.email = ret[0]["email"];
@@ -104,17 +108,17 @@ export class LoginPage {
     this.storage.insertUser(this.model);
   } */
 
-
   login() {
+
+    this.showToast('Device UUID is: ' + this.device.uuid);
+
     return this.userApi
       .loginAuthencation(this.userLogin.value, this.password.value)
       .then(ret => {
-
         // ## Se retornar vazio significa que o usuario não esta cadastrado
         if (ret == "") {
           this.showToast("Usuário Inválido");
         } else {
-
           // ## Redireciono o Usuario para a tela inicial
           this.navCtrl.push(TabsPage);
 
@@ -124,7 +128,6 @@ export class LoginPage {
           // ## Carrego os dados do Usuario no cache
           this.storage.insertUser(ret);
         }
-
       })
       .catch(err => {
         this.showToast("Não foi possivel acessar !");
@@ -144,6 +147,5 @@ export class LoginPage {
   openSignUp() {
     // ## Redireciono para pagina de Cadastro
     this.navCtrl.push(SignupPage);
-
   }
 }

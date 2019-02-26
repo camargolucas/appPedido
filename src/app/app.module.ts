@@ -32,7 +32,8 @@ import { Network } from '@ionic-native/network/ngx';
 import { CheckNetworkProvider } from '../providers/check-network/check-network';
 import { Rules } from '../Rules/rules';
 import { TabStateProvider } from '../providers/tab-state/tab-state';
-
+//import { UniqueDeviceID } from '@ionic-native/unique-device-id';
+import { Device } from '@ionic-native/device';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,8 @@ import { TabStateProvider } from '../providers/tab-state/tab-state';
     ProductProvider,
     CheckNetworkProvider,
     TabStateProvider,
+    Device
+    //UniqueDeviceID
   ]
 })
 export class AppModule {}
