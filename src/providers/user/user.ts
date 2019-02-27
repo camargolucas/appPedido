@@ -2,8 +2,7 @@ import { Injectable, ɵisPromise } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 import { ApiData } from "./../../utilitarios/apiData";
 import { Usuario } from "../../model/Usuario";
-import { ProductStorageProvider } from "../product-storage/product-storage";
-import { storage } from "firebase";
+import { Storage } from "@ionic/storage";
 import { CategoriaItem } from "../../model/CategoriaItem";
 import { Rules } from "../../Rules/rules";
 
@@ -18,12 +17,12 @@ export class UserProvider extends ApiData {
   usuario: Usuario;
   private nomeCategoria: string;
   private idCategoria: number;
-  private rules:Rules
+  private rules: Rules;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public storage: Storage) {
     super();
 
-    this.rules = new Rules()
+    this.rules = new Rules();
     this.usuario = new Usuario();
     this.usuario.categoriaItem = new CategoriaItem();
 
@@ -119,39 +118,54 @@ export class UserProvider extends ApiData {
     });
   }
 
-  loginAuthencation(login, password) {
-
+  loginAuthencation(login, password, UUID?: string) {
     // ## Objeto com os dados do usuário que está acessando o app
     let arrUser = {
       login: login,
-      password: password
+      password: password,
+      UUID: UUID
     };
 
     // ## função que resgata os dados do usuario no banco
     return this.getUser(arrUser).then(ret => {
-      if (ret == "") {
-        return ret
-      } else {
-        // Se não estiver vazio ele popula a model com os dados resgatados no banco
-       return this.populateUserModel(ret)
-      }
+      // ## Se o usuario foi autenticado com sucesso ele popula a model
+      // ## com os dados resgatados no banco
+      this.populateUserModel(ret["userData"]);
+      return ret;
     });
   }
 
+  // ##  Método que popula a model Usuario e insere no cache
   populateUserModel(ret) {
-
     // ## populo a model com os dados do Usuário
-    this.usuario.nomeUsuario = ret[0]["nomeUsuario"];
-    this.usuario.loja = ret[0]["loja"];
-    this.usuario.email = ret[0]["email"];
-    this.usuario.idCargo = ret[0]["idCargo"];
-    this.usuario.idUsuario = ret[0]["idUsuario"];
-    this.usuario.apelidoUsuario = ret[0]["apelidoUsuario"];
-    this.usuario.categoriaItem.idCategoria = this.idCategoria;
-    this.usuario.categoriaItem.nomeCategoria = this.nomeCategoria;
-    this.usuario.token = ret[0]["token"];
-    this.usuario.logado = ret[0]["logado"];
-    return this.usuario
+    if (ret != "") {
+      this.usuario.nomeUsuario = ret[0]["nomeUsuario"];
+      this.usuario.loja = ret[0]["loja"];
+      this.usuario.email = ret[0]["email"];
+      this.usuario.idCargo = ret[0]["idCargo"];
+      this.usuario.idUsuario = ret[0]["idUsuario"];
+      this.usuario.apelidoUsuario = ret[0]["apelidoUsuario"];
+      this.usuario.categoriaItem.idCategoria = this.idCategoria;
+      this.usuario.categoriaItem.nomeCategoria = this.nomeCategoria;
+      this.usuario.token = ret[0]["token"];
+      this.usuario.logado = ret[0]["logado"];
+
+      // ## Armazeno os dados do usuário logado no seu cache
+      this.insertUser(this.usuario);
+    }
+  }
+
+  // ## Função que chama o método saveUser para salvar os dados do usuario no cache
+  public insertUser(user: any) {
+    // Só é aceito um objeto Usuario armazenado no cache
+    let key = "Usuario";
+    return this.saveUser(key, user);
+  }
+
+  // #####################################################
+  // ## Função que insere os dados do usuario no cache ###
+  public saveUser(key: string, user: Usuario) {
+    return this.storage.set(key, user);
   }
 
   /*  insert(usuario: Usuario) {
