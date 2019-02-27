@@ -52,6 +52,7 @@ export class RequestPage {
 
   // Utilizada para armazenar o id do Usuario logado
   public idUsuario: number;
+  public tokenUsuario: string;
 
   constructor(
     public modal: ModalController,
@@ -83,6 +84,7 @@ export class RequestPage {
     // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];
+      this.tokenUsuario = value["token"];
     });
 
     // ## Verifico se já foi enviado algum pedido do Usuario logado
@@ -276,13 +278,15 @@ export class RequestPage {
   // ## Função para inserir o Pedido no banco de dados ############
   insertDatabase() {
     // this.provider.get("Usuario").then(ret => {
-    let idUsuario = this.idUsuario;
+    //let idUsuario = this.idUsuario;
+
 
     // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
-      idUsuario: idUsuario,
-      dataEnvio: this.date
+      idUsuario: this.idUsuario,
+      dataEnvio: this.date,
+      tokenUsuario :this.tokenUsuario
     };
 
     // ## Funcao da API que salva os dados no banco

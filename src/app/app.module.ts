@@ -28,7 +28,7 @@ import { MorePage } from '../pages/more/more';
 import { AngularFireAuthModule } from 'angularfire2/auth'; */
 import { UserProvider } from '../providers/user/user';
 import { ProductProvider } from '../providers/product/product';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@ionic-native/network';
 import { CheckNetworkProvider } from '../providers/check-network/check-network';
 import { Rules } from '../Rules/rules';
 import { TabStateProvider } from '../providers/tab-state/tab-state';
