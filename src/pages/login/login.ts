@@ -1,3 +1,4 @@
+import { AlertController } from 'ionic-angular';
 //import { UniqueDeviceID } from "@ionic-native/unique-device-id";
 import { Rules } from "./../../Rules/rules";
 import { Utilitarios } from "./../../utilitarios/utilitarios";
@@ -64,7 +65,8 @@ export class LoginPage {
     public utilitarios: Utilitarios,
     public rules: Rules,
     private device: Device,
-    public network: CheckNetworkProvider
+    public network: CheckNetworkProvider,
+    private alertCtrl:AlertController
   ) {
     // #########################################
     // ## Instâncio um novo objeto na memoria ##
@@ -82,9 +84,6 @@ export class LoginPage {
     this.idCategoria = this.rules["categorias"]["usuario"]["categoriaItem"][
       "idCategoria"
     ];
-
-    console.log(this.network.statusNetwork);
-
   }
 
   // ##################################################################
@@ -113,37 +112,39 @@ export class LoginPage {
   } */
 
   login() {
-    console.log(this.network.statusNetwork);
+    // this.showToast("Device UUID is: " + this.device.uuid);
 
-    if(this.network.checkNetwork() === true){
-      
-        this.showToast('Device UUID is: ' + this.device.uuid);
+    return this.userApi
+      .loginAuthencation(
+        this.userLogin.value,
+        this.password.value,
+        this.device.uuid
+      )
+      .then(ret => {
+        // ## Se retornar success significa que o usuario esta cadastrado
+        if (ret["status"] == "success") {
+          // ## Redireciono o Usuario para a tela inicial
+          this.navCtrl.push(TabsPage);
 
-        return this.userApi
-          .loginAuthencation(this.userLogin.value, this.password.value)
-          .then(ret => {
-            // ## Se retornar vazio significa que o usuario não esta cadastrado
-            if (ret == "") {
-              this.showToast("Usuário Inválido");
-            } else {
-              // ## Redireciono o Usuario para a tela inicial
-              this.navCtrl.push(TabsPage);
+          // ## Ativo o menu lateral
+          this.menu.enable(true);
 
-              // ## Ativo o menu lateral
-              this.menu.enable(true);
+          this.showToast("Bem Vindo !");
+        } else if (ret["status"] == "invalid user") {
+          this.showToast("Usuário Inválido");
+        } else if (ret["status"] == "invalid device") {
+          //this.showToast("Dispositivo inválido");
+          this.showAlert('Novo local de acesso detectado. Você já acessou essa conta por outro dispositivo')
 
-              // ## Carrego os dados do Usuario no cache
-              this.storage.insertUser(ret);
-            }
-          })
-          .catch(err => {
-            this.showToast("Não foi possivel acessar !");
-          });
-
-    }else{
-      this.showToast("Você não tem conexão com a internet!");
-    }
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        this.showToast("Não foi possivel acessar !");
+      });
   }
+
+
 
   // ########################################################
   // ## Função para mostrar Toast's ('mensagens')
@@ -158,5 +159,14 @@ export class LoginPage {
   openSignUp() {
     // ## Redireciono para pagina de Cadastro
     this.navCtrl.push(SignupPage);
+  }
+
+  showAlert(message) {
+    const alert = this.alertCtrl.create({
+      title: 'Aviso',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
