@@ -269,11 +269,14 @@ export class StockPage {
       buttons: [
         {
           text: "Não",
-          handler: () => {}
+          handler: () => {
+
+          }
         },
         {
           text: "Ok",
           handler: () => {
+            
           }
         }
       ]

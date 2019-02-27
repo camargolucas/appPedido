@@ -25,12 +25,12 @@ export class CheckNetworkProvider {
       // prior to doing any api requests as well.
       this.statusNetwork = true;
       setTimeout(() => {
-        /*
+     
         if (this.network.type === 'wifi') {
           console.log('we got a wifi connection, woohoo!');
           this.statusNetwork = true;
         }
-        */
+      
         this.statusNetwork = true;
       }, 3000);
     });
