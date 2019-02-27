@@ -137,7 +137,7 @@ export class LoginPage {
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
         this.showToast("Não foi possivel acessar !");
       });
   }
