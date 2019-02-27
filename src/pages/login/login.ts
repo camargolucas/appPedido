@@ -1,3 +1,4 @@
+import { AlertController } from 'ionic-angular';
 //import { UniqueDeviceID } from "@ionic-native/unique-device-id";
 import { Rules } from "./../../Rules/rules";
 import { Utilitarios } from "./../../utilitarios/utilitarios";
@@ -62,7 +63,8 @@ export class LoginPage {
     public userApi: UserProvider,
     public utilitarios: Utilitarios,
     public rules: Rules,
-    private device: Device
+    private device: Device,
+    private alertCtrl:AlertController
   ) {
     // #########################################
     // ## Instâncio um novo objeto na memoria ##
@@ -129,7 +131,9 @@ export class LoginPage {
         } else if (ret["status"] == "invalid user") {
           this.showToast("Usuário Inválido");
         } else if (ret["status"] == "invalid device") {
-          this.showToast("Dispositivo inválido");
+          //this.showToast("Dispositivo inválido");
+          this.showAlert('Novo local de acesso detectado. Você já acessou essa conta por outro dispositivo')
+
         }
       })
       .catch(err => {
@@ -137,6 +141,8 @@ export class LoginPage {
         this.showToast("Não foi possivel acessar !");
       });
   }
+
+
 
   // ########################################################
   // ## Função para mostrar Toast's ('mensagens')
@@ -151,5 +157,14 @@ export class LoginPage {
   openSignUp() {
     // ## Redireciono para pagina de Cadastro
     this.navCtrl.push(SignupPage);
+  }
+
+  showAlert(message) {
+    const alert = this.alertCtrl.create({
+      title: 'Aviso',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
