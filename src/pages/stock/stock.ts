@@ -88,7 +88,7 @@ export class StockPage {
     //this.tabState.setState("tabRequest", true)
 
     console.log(this.network.statusNetwork);
-   
+
   }
 
   // ################################################
@@ -210,7 +210,6 @@ export class StockPage {
     let date = this.date;
     let ENVIOS: any;
     let tabEnabled: boolean;
-
     let arrUser = {
       idUsuario: id,
       data: date
@@ -244,16 +243,11 @@ export class StockPage {
     // ## Funcao da API que salva os dados no banco
     this.apiProduct
       .insert(Produtos)
-      .toPromise() // Caso tenha inserido com sucesso ...
-      .then(ret => {
-        this.toast
-          .create({
-            message: "Estoque Enviado com sucesso",
-            duration: 3000,
-            position: "bottom"
-          })
-          .present();
-      });
+      .then((ret)=>{
+        console.log(ret)
+        this.showToast('Estoque enviado com sucesso')
+      })
+
 
     this.enableTab("tabRequest", true); // Ao inserir o estoque, libera a aba de Pedido
 
@@ -261,7 +255,6 @@ export class StockPage {
 
   alertNotConnection(){
     console.log("this.network.checkNetwork()" + this.network.checkNetwork());
-
 
     const confirm = this.alertCtrl.create({
       title: "Sem Conexão " + this.network.checkNetwork(),
@@ -276,7 +269,7 @@ export class StockPage {
         {
           text: "Ok",
           handler: () => {
-            
+
           }
         }
       ]
@@ -324,13 +317,7 @@ export class StockPage {
       ]
     });
     confirm.present();
-
-
-
-
-
   }
-
 
   showToast(messageString:String){
     this.toast

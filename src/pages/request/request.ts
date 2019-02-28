@@ -215,13 +215,7 @@ export class RequestPage {
       let index = this.arrProdutos.indexOf(item);
       this.arrProdutos.splice(index, 1);
       this.loadData(this.tipo, this.idUsuario);
-      this.toast
-        .create({
-          message: "Produto Removido",
-          duration: 3000,
-          position: "bottom"
-        })
-        .present();
+     this.showToast('Produto removido')
     });
   }
 
@@ -249,23 +243,11 @@ export class RequestPage {
                   this.send = false;
                   this.insertDatabase();
                 } else {
-                  this.toast
-                    .create({
-                      message: "Pedido já foi enviado hoje !",
-                      duration: 3000,
-                      position: "bottom"
-                    })
-                    .present();
+                  this.showToast('Produto já foi enviado hoje')
                 }
               })
               .catch(() => {
-                this.toast
-                  .create({
-                    message: "Não foi possivel enviar o estoque !",
-                    duration: 3000,
-                    position: "bottom"
-                  })
-                  .present();
+               this.showToast('Não foi possivel enviar ')
               });
           }
         }
@@ -292,8 +274,7 @@ export class RequestPage {
     // ## Funcao da API que salva os dados no banco
     this.productApi
       .insertRequest(Produtos)
-      .toPromise() // Caso tenha inserido com sucesso ...
-      .then(ret => {
+
         this.toast
           .create({
             message: "Pedido Enviado com sucesso",
@@ -301,8 +282,15 @@ export class RequestPage {
             position: "bottom"
           })
           .present();
-      });
+  }
 
-    // });
+  showToast(messageString:String){
+    this.toast
+    .create({
+      message: "" + messageString,
+      duration: 3000,
+      position: "bottom"
+    })
+    .present();
   }
 }

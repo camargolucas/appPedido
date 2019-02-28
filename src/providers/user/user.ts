@@ -83,14 +83,6 @@ export class UserProvider extends ApiData {
             encodeURIComponent(strData) +
             ""
         )
-        .subscribe(
-          result => {
-            resolve(result.json());
-          },
-          error => {
-            console.log(error.json());
-          }
-        );
     });
   }
 
@@ -100,21 +92,12 @@ export class UserProvider extends ApiData {
     let strData = JSON.stringify(data);
 
     return new Promise((resolve, reject) => {
-      this.http
-        .get(
-          this.API_URL +
-            "users/getSentRequest/" +
-            encodeURIComponent(strData) +
-            ""
-        )
-        .subscribe(
-          result => {
-            resolve(result.json());
-          },
-          error => {
-            console.log(error.json());
-          }
-        );
+      this.http.get(
+        this.API_URL +
+          "users/getSentRequest/" +
+          encodeURIComponent(strData) +
+          ""
+      );
     });
   }
 

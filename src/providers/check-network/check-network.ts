@@ -6,7 +6,7 @@ import { Network } from '@ionic-native/network';
 export class CheckNetworkProvider {
 
   public statusNetwork: boolean = false;
-  
+
   constructor(
     private network: Network,
     public alertCtrl: AlertController,
@@ -25,12 +25,12 @@ export class CheckNetworkProvider {
       // prior to doing any api requests as well.
       this.statusNetwork = true;
       setTimeout(() => {
-     
+
         if (this.network.type === 'wifi') {
           console.log('we got a wifi connection, woohoo!');
           this.statusNetwork = true;
         }
-      
+
         this.statusNetwork = true;
       }, 3000);
     });
@@ -40,6 +40,6 @@ export class CheckNetworkProvider {
   //##################################################################
   // ## Função para verificar a conexão de internet do Usuário #######
   checkNetwork() {
-    return this.statusNetwork;
+    return true //this.statusNetwork;
   }
 }
