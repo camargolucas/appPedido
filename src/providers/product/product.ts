@@ -17,7 +17,7 @@ export class ProductProvider extends ApiData {
       // Transformo o JSON em String para enviar na URL
       let productData = JSON.stringify(product);
 
-       this.http
+      this.http
         .post(
           this.API_URL +
             "products/insertEstoque/" +
@@ -25,16 +25,16 @@ export class ProductProvider extends ApiData {
             "",
           this.requestOptions
         )
-        .subscribe(res => {
+        .subscribe(
+          res => {
             resolve(res);
-            console.log('foi')
-        }, (err) => {
-          reject(err);
-          console.log('n foi cearainho')
-        });
 
+          },
+          err => {
+            reject(err);
 
-
+          }
+        );
     });
   }
 
@@ -43,14 +43,25 @@ export class ProductProvider extends ApiData {
   insertRequest(product: any) {
     // Transformo o JSON em String para enviar na URL
     let productData = JSON.stringify(product);
-
-    return this.http.post(
-      this.API_URL +
-        "products/insertPedido/" +
-        encodeURIComponent(productData) +
-        "",
-      this.requestOptions
-    );
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(
+          this.API_URL +
+            "products/insertPedido/" +
+            encodeURIComponent(productData) +
+            "",
+          this.requestOptions
+        )
+        .subscribe(
+          res => {
+            //resolve(res.json());
+            resolve(res)
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
   }
 
   // #####################################################

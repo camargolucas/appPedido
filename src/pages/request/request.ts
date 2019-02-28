@@ -16,6 +16,7 @@ import { ProductProvider } from "../../providers/product/product";
 import { Rules } from "../../Rules/rules";
 import { UserProvider } from "../../providers/user/user";
 import { sortBy } from "sort-by-typescript";
+import { retry } from "rxjs/operators";
 /**
  * Generated class for the RequestPage page.
  *
@@ -215,7 +216,7 @@ export class RequestPage {
       let index = this.arrProdutos.indexOf(item);
       this.arrProdutos.splice(index, 1);
       this.loadData(this.tipo, this.idUsuario);
-     this.showToast('Produto removido')
+      this.showToast("Produto removido");
     });
   }
 
@@ -243,11 +244,11 @@ export class RequestPage {
                   this.send = false;
                   this.insertDatabase();
                 } else {
-                  this.showToast('Produto já foi enviado hoje')
+                  this.showToast("Produto já foi enviado hoje");
                 }
               })
               .catch(() => {
-               this.showToast('Não foi possivel enviar ')
+                this.showToast("Não foi possivel enviar ");
               });
           }
         }
@@ -262,35 +263,33 @@ export class RequestPage {
     // this.provider.get("Usuario").then(ret => {
     //let idUsuario = this.idUsuario;
 
-
     // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
       idUsuario: this.idUsuario,
       dataEnvio: this.date,
-      tokenUsuario :this.tokenUsuario
+      tokenUsuario: this.tokenUsuario
     };
 
-    // ## Funcao da API que salva os dados no banco
-    this.productApi
-      .insertRequest(Produtos)
+    // ## Funcao da API que salva oss dados no banco
+    this.productApi.insertRequest(Produtos)
+    .then((ret) => {
+      if (ret["_body"] == "1") {
+        this.showToast("Pedido enviado com sucesso");
+      } else {
+        this.showToast("Houve um problema no envio");
+      }
 
-        this.toast
-          .create({
-            message: "Pedido Enviado com sucesso",
-            duration: 3000,
-            position: "bottom"
-          })
-          .present();
+    });
   }
 
-  showToast(messageString:String){
+  showToast(messageString: String) {
     this.toast
-    .create({
-      message: "" + messageString,
-      duration: 3000,
-      position: "bottom"
-    })
-    .present();
+      .create({
+        message: "" + messageString,
+        duration: 3000,
+        position: "bottom"
+      })
+      .present();
   }
 }
