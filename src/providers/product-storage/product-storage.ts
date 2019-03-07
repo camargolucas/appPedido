@@ -26,7 +26,6 @@ export class ProductStorageProvider {
   // ######################################################
   // ## Função de chamada para a função de inserção #######
   public insert(produto: any) {
-
     // ## Geração da key, feita com a data hora minuto e segundo
     let key = this.datePipe.transform(new Date(), "ddMMyyyyHHmmss");
     return this.save(key, produto);
@@ -64,7 +63,6 @@ export class ProductStorageProvider {
   // ##################################################
   // Função que chama a inserção de dados do usuario ##
   public insertUser(user: any) {
-
     // Só é aceito um objeto Usuario armazenado no cache
     let key = "Usuario";
     return this.saveUser(key, user);
@@ -131,6 +129,16 @@ export class ProductStorageProvider {
   // ## Método para salvar os dados no cache ###########
   public saveProductsDataBase(key: string, products: any) {
     return this.storage.set(key, products);
+  }
+
+  // ## Função que verificar se há produtos armazenados no storage do Usuário
+  public verifyProductsStorage() {
+    return this.get("ProductsDb").then(ret => {
+      console.log(ret)
+      if (ret == null) {
+        this.insertDatabaseProducts();
+      }
+    });
   }
 }
 

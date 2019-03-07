@@ -107,6 +107,7 @@ export class RequestPage {
   addProduct() {
     // Criação da Modal
     const myModal = this.modal.create(ModalProductPage, {
+      tipoProduto: this.tipo,
       idCategoria: this.idCategoria,
       nomeCategoria: this.nomeCategoria
     });

@@ -105,6 +105,9 @@ var LoginPage = /** @class */ (function () {
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__tabs_tabs__["a" /* TabsPage */]);
                 // ## Ativo o menu lateral
                 _this.menu.enable(true);
+                // ## Verifico se os produtos estão armazenados em cache para que ele possa fazer as
+                // ## buscas
+                _this.storage.verifyProductsStorage();
                 _this.showToast("Bem Vindo !");
             }
             else if (ret["status"] == "invalid user") {
@@ -151,7 +154,7 @@ var LoginPage = /** @class */ (function () {
     ], LoginPage.prototype, "password", void 0);
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_9__angular_core__["m" /* Component */])({
-            selector: "page-login",template:/*ion-inline-start:"C:\Users\Frutamina\Documents\GitHub\prePedido\src\pages\login\login.html"*/'<ion-content padding>\n\n  <div class="div-components">\n\n    <form [formGroup]="formLogin">\n\n      <div class="title">\n\n        <ion-title>\n\n          <h1>Bem Vindo</h1>\n\n        </ion-title>\n\n      </div>\n\n      <ion-item class="ion-item" no-lines>\n\n        <ion-label stacked color="primary">\n\n          <ion-icon name="md-contact"></ion-icon>\n\n          Usuário / Email\n\n        </ion-label>\n\n        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>\n\n        <hr>\n\n      </ion-item>\n\n      <ion-item class="ion-item" no-lines>\n\n        <ion-label stacked color="primary">\n\n          <ion-icon name="md-lock" left></ion-icon>\n\n          Senha\n\n        </ion-label>\n\n        <ion-input type="password" formControlName="senha" #senha> </ion-input>\n\n        <hr>\n\n      </ion-item>\n\n      <div padding>\n\n        <button ion-button block (click)="login()" round [disabled]="formLogin.invalid">Entrar</button>\n\n      </div>\n\n     <!--  <div padding>\n\n        <button ion-button (click)="openSignUp()" round clear>Cadastre-se</button>\n\n      </div> -->\n\n    </form>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Frutamina\Documents\GitHub\prePedido\src\pages\login\login.html"*/
+            selector: "page-login",template:/*ion-inline-start:"C:\Users\Frutamina\Documents\GitHub\prePedido\src\pages\login\login.html"*/'<ion-content padding>\n  <div class="div-components">\n    <form [formGroup]="formLogin">\n      <div class="title">\n        <ion-title>\n          <h1>Bem Vindo</h1>\n        </ion-title>\n      </div>\n      <ion-item class="ion-item" no-lines>\n        <ion-label stacked color="primary">\n          <ion-icon name="md-contact"></ion-icon>\n          Email\n        </ion-label>\n        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>\n        <hr>\n      </ion-item>\n      <ion-item class="ion-item" no-lines>\n        <ion-label stacked color="primary">\n          <ion-icon name="md-lock" left></ion-icon>\n          Senha\n        </ion-label>\n        <ion-input type="password" formControlName="senha" #senha> </ion-input>\n        <hr>\n      </ion-item>\n      <div padding>\n        <button ion-button block (click)="login()" round [disabled]="formLogin.invalid">Entrar</button>\n      </div>\n     <!--  <div padding>\n        <button ion-button (click)="openSignUp()" round clear>Cadastre-se</button>\n      </div> -->\n    </form>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Frutamina\Documents\GitHub\prePedido\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */],
@@ -182,8 +185,8 @@ var LoginPage = /** @class */ (function () {
 var ApiData = /** @class */ (function () {
     function ApiData() {
         // ## URL da API
-        //this.API_URL = "http://apprequestapi.kinghost.net:21093/";
-        this.API_URL = "http://localhost:21093/"; // TESTE API LOCAL
+        this.API_URL = "http://apprequestapi.kinghost.net:21093/";
+        //this.API_URL = "http://localhost:21093/"; // TESTE API LOCAL
         // ## Configuração do Header da API
         // ## Padrão de transição de dados
         this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Headers */]();
@@ -693,7 +696,7 @@ var RequestPage = /** @class */ (function () {
             var index = _this.arrProdutos.indexOf(item);
             _this.arrProdutos.splice(index, 1);
             _this.loadData(_this.tipo, _this.idUsuario);
-            _this.showToast('Produto removido');
+            _this.showToast("Produto removido");
         });
     };
     // ########################################################################
@@ -721,11 +724,11 @@ var RequestPage = /** @class */ (function () {
                                 _this.insertDatabase();
                             }
                             else {
-                                _this.showToast('Produto já foi enviado hoje');
+                                _this.showToast("Produto já foi enviado hoje");
                             }
                         })
                             .catch(function () {
-                            _this.showToast('Não foi possivel enviar ');
+                            _this.showToast("Não foi possivel enviar ");
                         });
                     }
                 }
@@ -738,6 +741,7 @@ var RequestPage = /** @class */ (function () {
     RequestPage.prototype.insertDatabase = function () {
         // this.provider.get("Usuario").then(ret => {
         //let idUsuario = this.idUsuario;
+        var _this = this;
         // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
         var Produtos = {
             arrProduto: this.arrRet,
@@ -745,16 +749,16 @@ var RequestPage = /** @class */ (function () {
             dataEnvio: this.date,
             tokenUsuario: this.tokenUsuario
         };
-        // ## Funcao da API que salva os dados no banco
-        this.productApi
-            .insertRequest(Produtos);
-        this.toast
-            .create({
-            message: "Pedido Enviado com sucesso",
-            duration: 3000,
-            position: "bottom"
-        })
-            .present();
+        // ## Funcao da API que salva oss dados no banco
+        this.productApi.insertRequest(Produtos)
+            .then(function (ret) {
+            if (ret["_body"] == "1") {
+                _this.showToast("Pedido enviado com sucesso");
+            }
+            else {
+                _this.showToast("Houve um problema no envio");
+            }
+        });
     };
     RequestPage.prototype.showToast = function (messageString) {
         this.toast
@@ -1124,11 +1128,14 @@ var StockPage = /** @class */ (function () {
             tokenUsuario: this.tokenUsuario
         };
         // ## Funcao da API que salva os dados no banco
-        this.apiProduct
-            .insert(Produtos)
-            .then(function (ret) {
+        this.apiProduct.insert(Produtos).then(function (ret) {
             console.log(ret);
-            _this.showToast('Estoque enviado com sucesso');
+            if (ret["_body"] == "1") {
+                _this.showToast("Estoque enviado com sucesso");
+            }
+            else {
+                _this.showToast("Houve um problema no envio");
+            }
         });
         this.enableTab("tabRequest", true); // Ao inserir o estoque, libera a aba de Pedido
     };
@@ -1140,13 +1147,11 @@ var StockPage = /** @class */ (function () {
             buttons: [
                 {
                     text: "Não",
-                    handler: function () {
-                    }
+                    handler: function () { }
                 },
                 {
                     text: "Ok",
-                    handler: function () {
-                    }
+                    handler: function () { }
                 }
             ]
         });
@@ -1162,8 +1167,7 @@ var StockPage = /** @class */ (function () {
             buttons: [
                 {
                     text: "Não",
-                    handler: function () {
-                    }
+                    handler: function () { }
                 },
                 {
                     text: "Sim",
@@ -1427,6 +1431,16 @@ var ProductStorageProvider = /** @class */ (function () {
     // ## Método para salvar os dados no cache ###########
     ProductStorageProvider.prototype.saveProductsDataBase = function (key, products) {
         return this.storage.set(key, products);
+    };
+    // ## Função que verificar se há produtos armazenados no storage do Usuário
+    ProductStorageProvider.prototype.verifyProductsStorage = function () {
+        var _this = this;
+        return this.get("ProductsDb").then(function (ret) {
+            console.log(ret);
+            if (ret == null) {
+                _this.insertDatabaseProducts();
+            }
+        });
     };
     ProductStorageProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["A" /* Injectable */])(),
@@ -1908,7 +1922,7 @@ var UserProvider = /** @class */ (function (_super) {
         var arrUser = {
             login: login,
             password: password,
-            UUID: "fef47c060ef21cf6"
+            UUID: UUID
         };
         // ## função que resgata os dados do usuario no banco
         return this.getUser(arrUser).then(function (ret) {
@@ -2317,12 +2331,11 @@ var MyApp = /** @class */ (function () {
             splashScreen.hide();
             //##########################################################################################
             //## Quando o aplicativo é aberto, carrego os produtos do banco de dados no Cache do Usuario
-            //## sendo assim ele pode pesquisar prdutos offline ##########################################
+            //## sendo assim ele pode pesquisar prdutos offline ########################################
             product.insertDatabaseProducts();
         });
         this.network.checkNetwork();
         this.checkUserTokenExists();
-        this.network.checkNetwork();
     }
     //#################################################################
     //## Método para redirecionar as páginas do Menu lateral ##########
@@ -2337,7 +2350,7 @@ var MyApp = /** @class */ (function () {
         this.product.get("Usuario").then(function (ret) {
             //Se o usuário é nulo
             if (ret != null) {
-                //Se o logado é 1 significa que o usuário esta logado 
+                //Se o logado é 1 significa que o usuário esta logado
                 //e redireciona para a página de Estoque
                 if (ret.logado == 1) {
                     //Redireciona para a página de Stok
@@ -2633,22 +2646,30 @@ var ProductProvider = /** @class */ (function (_super) {
                 "", _this.requestOptions)
                 .subscribe(function (res) {
                 resolve(res);
-                console.log('foi');
             }, function (err) {
                 reject(err);
-                console.log('n foi cearainho');
             });
         });
     };
     // ################################################
     // ## Função que insere o Pedido no banco ########
     ProductProvider.prototype.insertRequest = function (product) {
+        var _this = this;
         // Transformo o JSON em String para enviar na URL
         var productData = JSON.stringify(product);
-        return this.http.post(this.API_URL +
-            "products/insertPedido/" +
-            encodeURIComponent(productData) +
-            "", this.requestOptions);
+        return new Promise(function (resolve, reject) {
+            _this.http
+                .post(_this.API_URL +
+                "products/insertPedido/" +
+                encodeURIComponent(productData) +
+                "", _this.requestOptions)
+                .subscribe(function (res) {
+                //resolve(res.json());
+                resolve(res);
+            }, function (err) {
+                reject(err);
+            });
+        });
     };
     // #####################################################
     // ## Resgato todos os produtos da tabela de Produtos
@@ -2684,7 +2705,10 @@ var Utilitarios = /** @class */ (function () {
             { und: "KILO", value: "kg" },
             { und: "BANDEJA", value: "bj" },
             { und: "CAIXA", value: "cx" },
-            { und: "SACO", value: "sc" }
+            { und: "SACO", value: "sc" },
+            { und: "BIN", value: "bn" },
+            { und: "UNIDADE", value: "un" },
+            { und: "PACOTE", value: "pc" }
         ];
         // Array onde é armazenada os Tipos de produto
         this.arrTipo = [
