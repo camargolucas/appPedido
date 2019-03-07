@@ -127,32 +127,14 @@ export class ModalProductPage {
     if (this.model.qtd > 0) {
       this.insertProduct()
         .then(ret => {
-          this.toast
-            .create({
-              message: "Produto Salvo",
-              duration: 2000,
-              position: "botton"
-            })
-            .present();
+          this.showToast("Produto Salvo com sucesso");
           this.navCtrl.pop();
         })
         .catch(() => {
-          this.toast
-            .create({
-              message: "Erro ao Salvar Produto",
-              duration: 3000,
-              position: "botton"
-            })
-            .present();
+          this.showToast("Problema ao salvar o produto");
         });
     } else {
-      this.toast
-        .create({
-          message: "Insira um valor válido !",
-          duration: 3000,
-          position: "botton"
-        })
-        .present();
+      this.showToast("Insira um valor válido");
     }
   }
 
@@ -160,5 +142,15 @@ export class ModalProductPage {
   insertProduct() {
     // ## Chamada da função para inserção
     return this.storage.insert(this.model);
+  }
+
+  showToast(messageString: String) {
+    this.toast
+      .create({
+        message: "" + messageString,
+        duration: 3000,
+        position: "bottom"
+      })
+      .present();
   }
 }

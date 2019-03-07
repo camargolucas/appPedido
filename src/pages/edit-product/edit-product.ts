@@ -39,6 +39,8 @@ export class EditProductPage {
   private nomeProd = "";
   private nomeCategoria = "";
   private classCssImg: string;
+  // Tipo do produto
+  private tipo: string;
 
   constructor(
     public navCtrl: NavController,
@@ -66,6 +68,11 @@ export class EditProductPage {
     this.arrUnidade = this.utilitarios.getArrayUnidade();
     // ## Populo a variavel nomeProd com o valor que esta no campo nome
     this.nomeProd = this.model.nome;
+
+    // ## Resgato tipo do produto em que o usuário escolheu nas tabs segment(Fruta, Verdura ou Legume)
+    // ## e seto minha variavel que faz o filtro por tipo na hora da pesquisa dos produtos
+    this.tipo = navParams.data["tipoProduto"];
+    this.completeService.setType(this.tipo);
 
     // ###############################################################################################
     // ## Verifico em qual tela ele esta querendo editar para colocar a imagem de fundo correspondente ;
@@ -95,7 +102,6 @@ export class EditProductPage {
       //   tipo: new FormControl('',Validators.required),
       und: new FormControl("", Validators.required)
     });
-
   }
 
   // ##############################################################
@@ -104,32 +110,14 @@ export class EditProductPage {
     if (this.model.qtd > 0) {
       this.saveProduct()
         .then(() => {
-          this.toast
-            .create({
-              message: "Produto Salvo",
-              duration: 2000,
-              position: "botton"
-            })
-            .present();
+          this.showToast('Produto Salvo')
           this.navCtrl.pop();
         })
         .catch(() => {
-          this.toast
-            .create({
-              message: "Erro ao Salvar Produto",
-              duration: 3000,
-              position: "botton"
-            })
-            .present();
+         this.showToast('Problema ao salvar o produto')
         });
     } else {
-      this.toast
-        .create({
-          message: "Insira um valor válido !",
-          duration: 3000,
-          position: "botton"
-        })
-        .present();
+      this.showToast('Insira um valor válido')
     }
   }
 
@@ -140,6 +128,16 @@ export class EditProductPage {
 
     // ## Atualizo o cache do Usuário com o novo produto
     return this.storage.update(this.key, this.model);
+  }
+
+  showToast(messageString: String) {
+    this.toast
+      .create({
+        message: "" + messageString,
+        duration: 3000,
+        position: "bottom"
+      })
+      .present();
   }
 
   // ## Método que destrói a modal

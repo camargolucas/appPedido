@@ -132,24 +132,9 @@ export class ProductStorageProvider {
   }
 
 
-  setCount(type:string){
-    this.get("ProductsDb").then((ret)=>{
-
-      console.log(ret);
-
-
-    })
-  }
-
-
-
-
-
-
   // ## Função que verificar se há produtos armazenados no storage do Usuário
   public verifyProductsStorage() {
     return this.get("ProductsDb").then(ret => {
-      console.log(ret)
       if (ret == null) {
         this.insertDatabaseProducts();
       }

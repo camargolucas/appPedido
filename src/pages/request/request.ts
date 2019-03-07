@@ -30,6 +30,15 @@ import { retry } from "rxjs/operators";
   templateUrl: "request.html"
 })
 export class RequestPage {
+  // ## Contabiliza o total de quantidade adicionadas de Fruta
+  public totalFrutas: number = 0;
+
+  // ## Contabiliza o total de quantidade adicionadas de Verdura
+  public totalVerduras: number = 0;
+
+  // ## Contabiliza o total de quantidade adicionadas de Legume
+  public totalLegumes: number = 0;
+
   // Utilizada para distinguir no cache a qual categoria os dados armazenados pertencem quando armazenada
   private idCategoria: number;
   private nomeCategoria: string;
@@ -100,6 +109,29 @@ export class RequestPage {
   onSegmentChange(value: any) {
     // Lista os produtos conforme seu tipo
     this.loadData(value, this.idUsuario);
+  }
+
+  // ## Função que conta as quantidades enviadas de cada produto
+  public countQtd(tipo: string) {
+    let arrCount = this.arrRet.filter(data => {
+      return data.produto.nome["TIPO"] == tipo;
+    });
+
+    let cont: number = 0;
+    let qtd: number;
+
+    for (let i = 0; i < arrCount.length; i++) {
+      qtd = arrCount[i].produto.qtd;
+      cont = Number(cont) + Number(qtd);
+    }
+    return cont;
+  }
+
+  // ## Função que seta a quantidade de cada tipo de produto
+  public setCount() {
+    this.totalFrutas = this.countQtd("F");
+    this.totalVerduras = this.countQtd("V");
+    this.totalLegumes = this.countQtd("L");
   }
 
   // ###############################################################
@@ -194,6 +226,9 @@ export class RequestPage {
         });
         // ## Ordeno o array pelo nome em ordem alfabetica
         this.arrProdutos.sort(sortBy("produto.nome.NAME"));
+
+        // ## Conta as quantidades lançadas de cada produto
+        this.setCount();
       })
       .catch(error => {
         console.log(error);
@@ -273,14 +308,12 @@ export class RequestPage {
     };
 
     // ## Funcao da API que salva oss dados no banco
-    this.productApi.insertRequest(Produtos)
-    .then((ret) => {
+    this.productApi.insertRequest(Produtos).then(ret => {
       if (ret["_body"] == "1") {
         this.showToast("Pedido enviado com sucesso");
       } else {
         this.showToast("Houve um problema no envio");
       }
-
     });
   }
 

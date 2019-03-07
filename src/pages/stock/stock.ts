@@ -1,3 +1,4 @@
+import { retry } from "rxjs/operators";
 import { Utilitarios } from "./../../utilitarios/utilitarios";
 import { CheckNetworkProvider } from "./../../providers/check-network/check-network";
 import { TabsPage } from "./../tabs/tabs";
@@ -35,10 +36,14 @@ import { sortBy } from "sort-by-typescript";
   templateUrl: "stock.html"
 })
 export class StockPage {
+  // ## Contabiliza o total de quantidade adicionadas de Fruta
+  public totalFrutas:number = 0;
 
-  totalFrutas = "2015"
-  totalVerduras = "1789"
-  totalLegume = "1600"
+  // ## Contabiliza o total de quantidade adicionadas de Verdura
+  public totalVerduras:number = 0;
+
+  // ## Contabiliza o total de quantidade adicionadas de Legume
+  public totalLegumes:number = 0;
 
   // Array para carregar os produtos filtrados do cache por CATEGORIA que estão no cache
   private arrRet: ListaProduto[];
@@ -62,6 +67,9 @@ export class StockPage {
   // Variavel para popular o id do usuário logado
   public idUsuario: number;
   public tokenUsuario: string;
+
+  // contador
+  public cont: number;
 
   // Objeto do Usuario
   public usuario: Usuario;
@@ -93,24 +101,30 @@ export class StockPage {
     //this.tabState.setState("tabRequest", true)
   }
 
+  public countQtd(tipo: string) {
+    let arrCount = this.arrRet.filter(data => {
+      return data.produto.nome["TIPO"] == tipo;
+    });
 
-  
+    let cont: number = 0;
+    let qtd: number;
 
-  public setTotalProducts(){
+    for (let i = 0; i < arrCount.length; i++) {
+      qtd = arrCount[i].produto.qtd;
+      cont = Number(cont) + Number(qtd);
+    }
+    return cont;
+  }
 
-      this.storage.setCount("F");
-
-      this.totalFrutas = "50";
-      this.totalLegume = "100";
-      this.totalVerduras = "200";
-
+  public setCount() {
+    this.totalFrutas = this.countQtd("F");
+    this.totalVerduras = this.countQtd("V");
+    this.totalLegumes = this.countQtd("L");
   }
 
   // ################################################
   // ## Função ativada quando a View é carregada ####
   async ionViewDidEnter() {
-
-    this.setTotalProducts();
     // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];
@@ -137,7 +151,8 @@ export class StockPage {
     this.navCtrl.push(EditProductPage, {
       key: item.key,
       produto: item.produto,
-      nomeCategoria: this.nomeCategoria
+      nomeCategoria: this.nomeCategoria,
+      tipoProduto: this.tipo
     });
   }
 
@@ -179,6 +194,9 @@ export class StockPage {
         });
         // ## Ordeno o array pelo nome em ordem alfabetica
         this.arrProdutos.sort(sortBy("produto.nome.NAME"));
+
+        // ## Conta as quantidades lançadas de cada produto
+        this.setCount();
       })
       .catch(error => {
         console.log(error);
@@ -259,7 +277,7 @@ export class StockPage {
 
     // ## Funcao da API que salva os dados no banco
     this.apiProduct.insert(Produtos).then(ret => {
-      console.log(ret)
+      console.log(ret);
       if (ret["_body"] == "1") {
         this.showToast("Estoque enviado com sucesso");
       } else {
