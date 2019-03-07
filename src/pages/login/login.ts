@@ -118,7 +118,7 @@ export class LoginPage {
       .loginAuthencation(
         this.userLogin.value,
         this.password.value,
-        this.device.uuid
+        "thiago"
       )
       .then(ret => {
         // ## Se retornar success significa que o usuario esta cadastrado
@@ -143,8 +143,6 @@ export class LoginPage {
         this.showToast("Não foi possivel acessar !");
       });
   }
-
-
 
   // ########################################################
   // ## Função para mostrar Toast's ('mensagens')

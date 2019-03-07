@@ -45,9 +45,9 @@ $colors: (
 
 // ## Padrões de imagens de fundo
 $backgroundimg:(
- stock:       url('../assets/imgs/stock.png'), //linear-gradient(to bottom,#f1f5f7,#d9e4eb, #89a3d1) !important,
- request:     url('../assets/imgs/request.png'), //linear-gradient(to bottom,#f3eff5,#e8dfec,  #bb99ca) !important
- default:     url('../assets/imgs/default.png')
+ stock:       url('../assets/imgs/stock.jpg'), //linear-gradient(to bottom,#f1f5f7,#d9e4eb, #89a3d1) !important,
+ request:     url('../assets/imgs/request.jpg'), //linear-gradient(to bottom,#f3eff5,#e8dfec,  #bb99ca) !important
+ default:     url('../assets/imgs/default.jpg')
 );
 
 // ## Setada as cores das abas

@@ -132,6 +132,22 @@ export class ProductStorageProvider {
   public saveProductsDataBase(key: string, products: any) {
     return this.storage.set(key, products);
   }
+
+
+  setCount(type:string){
+    this.get("ProductsDb").then((ret)=>{
+
+      console.log(ret);
+
+
+    })
+  }
+
+
+
+
+
+
 }
 
 /* export class Produto{

@@ -35,6 +35,11 @@ import { sortBy } from "sort-by-typescript";
   templateUrl: "stock.html"
 })
 export class StockPage {
+
+  totalFrutas = "2015"
+  totalVerduras = "1789"
+  totalLegume = "1600"
+
   // Array para carregar os produtos filtrados do cache por CATEGORIA que estão no cache
   private arrRet: ListaProduto[];
 
@@ -91,9 +96,24 @@ export class StockPage {
    
   }
 
+
+  
+
+  public setTotalProducts(){
+
+      this.storage.setCount("F");
+
+      this.totalFrutas = "50";
+      this.totalLegume = "100";
+      this.totalVerduras = "200";
+
+  }
+
   // ################################################
   // ## Função ativada quando a View é carregada ####
   async ionViewDidEnter() {
+
+    this.setTotalProducts();
     // Armazeno o id do Usuario logado na variavel idUsuario
     await this.provider.get("Usuario").then(value => {
       this.idUsuario = value["idUsuario"];

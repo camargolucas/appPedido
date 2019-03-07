@@ -16,26 +16,19 @@
         <ion-icon name="md-add"></ion-icon>
       </button>
     </ion-buttons>
-
-
   </ion-toolbar>
-
-
 </ion-header>
-
-
-
 
 <ion-content class="scroll-content">
   <ion-segment (ionChange)="onSegmentChange(tipo)" [(ngModel)]="tipo">
     <ion-segment-button value="F">
-      Fruta
+      FRUTA <ion-badge item-end class="totalItemBadge">{{totalFrutas}}</ion-badge>
     </ion-segment-button>
     <ion-segment-button value="V">
-      Verdura
+      VERDURA <ion-badge item-end class="totalItemBadge">{{totalVerduras}}</ion-badge>
     </ion-segment-button>
     <ion-segment-button value="L">
-      Legume
+      LEGUME <ion-badge item-end class="totalItemBadge">{{totalLegume}}</ion-badge>
     </ion-segment-button>
   </ion-segment>
 
