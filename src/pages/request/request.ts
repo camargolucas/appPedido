@@ -16,6 +16,7 @@ import { ProductProvider } from "../../providers/product/product";
 import { Rules } from "../../Rules/rules";
 import { UserProvider } from "../../providers/user/user";
 import { sortBy } from "sort-by-typescript";
+import { retry } from "rxjs/operators";
 /**
  * Generated class for the RequestPage page.
  *
@@ -106,6 +107,7 @@ export class RequestPage {
   addProduct() {
     // Criação da Modal
     const myModal = this.modal.create(ModalProductPage, {
+      tipoProduto: this.tipo,
       idCategoria: this.idCategoria,
       nomeCategoria: this.nomeCategoria
     });
@@ -215,13 +217,7 @@ export class RequestPage {
       let index = this.arrProdutos.indexOf(item);
       this.arrProdutos.splice(index, 1);
       this.loadData(this.tipo, this.idUsuario);
-      this.toast
-        .create({
-          message: "Produto Removido",
-          duration: 3000,
-          position: "bottom"
-        })
-        .present();
+      this.showToast("Produto removido");
     });
   }
 
@@ -249,23 +245,11 @@ export class RequestPage {
                   this.send = false;
                   this.insertDatabase();
                 } else {
-                  this.toast
-                    .create({
-                      message: "Pedido já foi enviado hoje !",
-                      duration: 3000,
-                      position: "bottom"
-                    })
-                    .present();
+                  this.showToast("Produto já foi enviado hoje");
                 }
               })
               .catch(() => {
-                this.toast
-                  .create({
-                    message: "Não foi possivel enviar o estoque !",
-                    duration: 3000,
-                    position: "bottom"
-                  })
-                  .present();
+                this.showToast("Não foi possivel enviar ");
               });
           }
         }
@@ -280,29 +264,33 @@ export class RequestPage {
     // this.provider.get("Usuario").then(ret => {
     //let idUsuario = this.idUsuario;
 
-
     // ## Monto um objeto com os dados de envio do Usuario, e os produtos adicionados
     let Produtos = {
       arrProduto: this.arrRet,
       idUsuario: this.idUsuario,
       dataEnvio: this.date,
-      tokenUsuario :this.tokenUsuario
+      tokenUsuario: this.tokenUsuario
     };
 
-    // ## Funcao da API que salva os dados no banco
-    this.productApi
-      .insertRequest(Produtos)
-      .toPromise() // Caso tenha inserido com sucesso ...
-      .then(ret => {
-        this.toast
-          .create({
-            message: "Pedido Enviado com sucesso",
-            duration: 3000,
-            position: "bottom"
-          })
-          .present();
-      });
+    // ## Funcao da API que salva oss dados no banco
+    this.productApi.insertRequest(Produtos)
+    .then((ret) => {
+      if (ret["_body"] == "1") {
+        this.showToast("Pedido enviado com sucesso");
+      } else {
+        this.showToast("Houve um problema no envio");
+      }
 
-    // });
+    });
+  }
+
+  showToast(messageString: String) {
+    this.toast
+      .create({
+        message: "" + messageString,
+        duration: 3000,
+        position: "bottom"
+      })
+      .present();
   }
 }

@@ -1,5 +1,5 @@
-import { Utilitarios } from './../../utilitarios/utilitarios';
-import { CheckNetworkProvider } from './../../providers/check-network/check-network';
+import { Utilitarios } from "./../../utilitarios/utilitarios";
+import { CheckNetworkProvider } from "./../../providers/check-network/check-network";
 import { TabsPage } from "./../tabs/tabs";
 import { Usuario } from "./../../model/Usuario";
 import { ProductProvider } from "./../../providers/product/product";
@@ -91,9 +91,6 @@ export class StockPage {
     // ## Seto como F(Fruta) para iniciar na aba Fruta
     this.tipo = "F";
     //this.tabState.setState("tabRequest", true)
-
-    console.log(this.network.statusNetwork);
-   
   }
 
 
@@ -230,7 +227,6 @@ export class StockPage {
     let date = this.date;
     let ENVIOS: any;
     let tabEnabled: boolean;
-
     let arrUser = {
       idUsuario: id,
       data: date
@@ -262,26 +258,20 @@ export class StockPage {
     };
 
     // ## Funcao da API que salva os dados no banco
-    this.apiProduct
-      .insert(Produtos)
-      .toPromise() // Caso tenha inserido com sucesso ...
-      .then(ret => {
-        this.toast
-          .create({
-            message: "Estoque Enviado com sucesso",
-            duration: 3000,
-            position: "bottom"
-          })
-          .present();
-      });
+    this.apiProduct.insert(Produtos).then(ret => {
+      console.log(ret)
+      if (ret["_body"] == "1") {
+        this.showToast("Estoque enviado com sucesso");
+      } else {
+        this.showToast("Houve um problema no envio");
+      }
+    });
 
     this.enableTab("tabRequest", true); // Ao inserir o estoque, libera a aba de Pedido
-
   }
 
-  alertNotConnection(){
+  alertNotConnection() {
     console.log("this.network.checkNetwork()" + this.network.checkNetwork());
-
 
     const confirm = this.alertCtrl.create({
       title: "Sem Conexão " + this.network.checkNetwork(),
@@ -289,15 +279,11 @@ export class StockPage {
       buttons: [
         {
           text: "Não",
-          handler: () => {
-
-          }
+          handler: () => {}
         },
         {
           text: "Ok",
-          handler: () => {
-            
-          }
+          handler: () => {}
         }
       ]
     });
@@ -313,30 +299,28 @@ export class StockPage {
       buttons: [
         {
           text: "Não",
-          handler: () => {
-          }
+          handler: () => {}
         },
         {
           text: "Sim",
           handler: () => {
-
-            if(this.network.checkNetwork() === true){
-            // Verifico se já foi enviado Estoque deste usuário
-            this.verifyStock()
-              .then(ret => {
-                // Se for possivel o lancamento, seto a variavel de Editar como falsa para impedir o
-                // usuário de enviar o pedido novamente. E insiro no Banco de Dados
-                if (ret == true) {
-                  this.editar = false;
-                  this.insertDataBase();
-                } else {
-                  this.showToast("Estoque já foi enviado hoje !");
-                }
-              })
-              .catch(() => {
-                this.showToast("Não foi possivel enviar o estoque !");
-              });
-            }else{
+            if (this.network.checkNetwork() === true) {
+              // Verifico se já foi enviado Estoque deste usuário
+              this.verifyStock()
+                .then(ret => {
+                  // Se for possivel o lancamento, seto a variavel de Editar como falsa para impedir o
+                  // usuário de enviar o pedido novamente. E insiro no Banco de Dados
+                  if (ret == true) {
+                    this.editar = false;
+                    this.insertDataBase();
+                  } else {
+                    this.showToast("Estoque já foi enviado hoje !");
+                  }
+                })
+                .catch(() => {
+                  this.showToast("Não foi possivel enviar o estoque !");
+                });
+            } else {
               this.showToast("Você não tem conexão com a internet!");
             }
           }
@@ -344,21 +328,15 @@ export class StockPage {
       ]
     });
     confirm.present();
-
-
-
-
-
   }
 
-
-  showToast(messageString:String){
+  showToast(messageString: String) {
     this.toast
-    .create({
-      message: "" + messageString,
-      duration: 3000,
-      position: "bottom"
-    })
-    .present();
+      .create({
+        message: "" + messageString,
+        duration: 3000,
+        position: "bottom"
+      })
+      .present();
   }
 }

@@ -129,6 +129,11 @@ export class LoginPage {
           // ## Ativo o menu lateral
           this.menu.enable(true);
 
+          // ## Verifico se os produtos estão armazenados em cache para que ele possa fazer as
+          // ## buscas
+          this.storage.verifyProductsStorage()
+
+
           this.showToast("Bem Vindo !");
         } else if (ret["status"] == "invalid user") {
           this.showToast("Usuário Inválido");

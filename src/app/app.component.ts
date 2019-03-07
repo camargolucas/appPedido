@@ -1,5 +1,4 @@
-
-import { Utilitarios } from './../utilitarios/utilitarios';
+import { Utilitarios } from "./../utilitarios/utilitarios";
 import { ProductStorageProvider } from "./../providers/product-storage/product-storage";
 import { Component, ViewChild } from "@angular/core";
 import { Platform, NavController, Nav } from "ionic-angular";
@@ -29,8 +28,7 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     public product: ProductStorageProvider,
-    public tabPage: TabStateProvider,
-
+    public tabPage: TabStateProvider
   ) {
     // ###########################################################################
     // ## Todo novo menu que for adicionado deve ser colocado nesse array ###########
@@ -45,14 +43,13 @@ export class MyApp {
 
       //##########################################################################################
       //## Quando o aplicativo é aberto, carrego os produtos do banco de dados no Cache do Usuario
-      //## sendo assim ele pode pesquisar prdutos offline ##########################################
+      //## sendo assim ele pode pesquisar prdutos offline ########################################
       product.insertDatabaseProducts();
     });
-    this.network.checkNetwork();
+
+    this.network.checkNetwork()
 
     this.checkUserTokenExists();
-
-    this.network.checkNetwork();
   }
   //#################################################################
   //## Método para redirecionar as páginas do Menu lateral ##########
@@ -62,25 +59,25 @@ export class MyApp {
 
   //####################################################################
   //Função para verificar se usuário já esta logado
-  checkUserTokenExists(){
+  checkUserTokenExists() {
     //Obtendo dados do usuário
-    this.product.get("Usuario").then((ret)=>{
+    this.product.get("Usuario").then(ret => {
       //Se o usuário é nulo
       if (ret != null) {
-        //Se o logado é 1 significa que o usuário esta logado 
+        //Se o logado é 1 significa que o usuário esta logado
         //e redireciona para a página de Estoque
-        if(ret.logado == 1){
+        if (ret.logado == 1) {
           //Redireciona para a página de Stok
           this.nav.push(TabsPage);
-        }else{
+        } else {
           //Se não esta logado o usuário é redirecionado para a página de login.
           this.nav.push(LoginPage);
         }
-      }else{
+      } else {
         //Se os dados são Nulos o usuário é redirecionado para a página de login.
         this.nav.push(LoginPage);
       }
     });
   }
- //####################################################################
+  //####################################################################
 }

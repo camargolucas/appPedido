@@ -30612,13 +30612,13 @@ page-edit-product .searchbar {
 
 page-edit-product .Estoque-Background .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/stock.png");
+  background-image: url("../assets/imgs/stock.jpg");
   background-size: cover;
 }
 
 page-edit-product .Pedido-Background .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/request.png");
+  background-image: url("../assets/imgs/request.jpg");
   background-size: cover;
 }
 
@@ -30629,7 +30629,7 @@ page-login .title {
 
 page-login .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/default.png");
+  background-image: url("../assets/imgs/default.jpg");
   background-size: cover;
 }
 
@@ -30658,7 +30658,7 @@ page-login .ion-item {
 }
 
 page-login .div-components {
-  padding-top: 30%;
+  padding-top: 40%;
 }
 
 page-modal-product {
@@ -30695,13 +30695,13 @@ page-modal-product ion-label {
 
 page-modal-product .Estoque-Background .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/stock.png");
+  background-image: url("../assets/imgs/stock.jpg");
   background-size: cover;
 }
 
 page-modal-product .Pedido-Background .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/request.png");
+  background-image: url("../assets/imgs/request.jpg");
   background-size: cover;
 }
 
@@ -30716,7 +30716,7 @@ page-more h2 {
 
 page-more .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/default.png");
+  background-image: url("../assets/imgs/default.jpg");
   background-size: cover;
 }
 
@@ -30777,7 +30777,7 @@ page-request ion-fab {
 
 page-request .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/request.png");
+  background-image: url("../assets/imgs/request.jpg");
   background-size: cover;
 }
 
@@ -30791,7 +30791,7 @@ page-signup h1 {
 
 page-signup .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/default.png");
+  background-image: url("../assets/imgs/default.jpg");
   background-size: cover;
 }
 
@@ -30882,7 +30882,7 @@ page-stock .cfg-title ion-col[name='Und'] {
 
 page-stock .scroll-content {
   padding: 0px;
-  background-image: url("../assets/imgs/stock.png");
+  background-image: url("../assets/imgs/stock.jpg");
   background-size: cover;
 }
 

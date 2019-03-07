@@ -47,6 +47,9 @@ export class ModalProductPage {
   private nomeCategoria: string;
   private idCategoria: number;
 
+  // Tipo do produto
+  private tipo: string;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -65,6 +68,11 @@ export class ModalProductPage {
     this.arrTipo = this.utilitarios.getArrayTipo();
     this.arrUnidade = this.utilitarios.getArrayUnidade();
 
+    // ## Resgato tipo do produto em que o usuário escolheu nas tabs segment(Fruta, Verdura ou Legume)
+    // ## e seto minha variavel que faz o filtro na hora da pesquisa dos produtos
+    this.tipo = navParams.data["tipoProduto"];
+    this.completeService.setType(this.tipo);
+
     // ## Pego os dados que são enviados da tela anterior e populo as variaveis
     this.idCategoria = navParams.data["idCategoria"];
     this.nomeCategoria = navParams.data["nomeCategoria"];
@@ -73,14 +81,14 @@ export class ModalProductPage {
     this.model.categoriaItem.nomeCategoria = this.nomeCategoria;
 
     // ## setando o id do usuario logado na model produto
-    this.storage.get("Usuario").then((ret) => {
-      this.model.usuario.idUsuario = ret['idUsuario'];
+    this.storage.get("Usuario").then(ret => {
+      this.model.usuario.idUsuario = ret["idUsuario"];
     });
 
     // ## Carrego o combo de Unidade como padrão KILO
     this.model.unidade = "KILO";
 
-    // Verifico em qual tela esta sendo aberto a inclusao para indicar ao css qual imagem de fundo ele deve utilizar
+    // ## Verifico em qual tela esta sendo aberto a inclusao para indicar ao css qual imagem de fundo ele deve utilizar
     if (this.nomeCategoria === "Estoque")
       this.classCssImg = "Estoque-Background";
     else if (this.nomeCategoria === "Pedido")

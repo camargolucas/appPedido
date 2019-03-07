@@ -8,7 +8,12 @@ export class Utilitarios {
     { und: "KILO", value: "kg" },
     { und: "BANDEJA", value: "bj" },
     { und: "CAIXA", value: "cx" },
-    { und: "SACO", value: "sc" }
+    { und: "SACO", value: "sc" },
+    { und: "BIN", value: "bn" },
+    { und: "UNIDADE", value: "un" },
+    { und: "PACOTE", value: "pc" }
+
+
   ];
 
   // Array onde é armazenada os Tipos de produto
