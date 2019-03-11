@@ -19,7 +19,7 @@ export class CompleteServiceProvider extends ApiData
   labelAttribute = "NAME";
   //###############################################################################
   formValueAttribute = "";
-  type:string
+  private type:string
   constructor(public http: Http, public product: ProductStorageProvider) {
     super();
   }
@@ -36,9 +36,8 @@ export class CompleteServiceProvider extends ApiData
     //Pesquisa os dados do produto que está armazenado em cache
     return this.product.get("ProductsDb").then(v => {
       return (arrProdutos = v.Produtos.filter(value => {
-        //  Filtra pelo NAME (nome do produto)
-        //console.log(value.TIPO)
 
+        // Filtra pelo nome do produto e pelo Tipo do produto
         return (value.NAME.toLowerCase().startsWith(keyword.toLowerCase()) && value.TIPO == this.getType())
       }));
     });
