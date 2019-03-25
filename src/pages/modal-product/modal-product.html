@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="light">
     <ion-title>
-      Inserir Produto
+      <p class="title"> Inserir Produto </p>
     </ion-title>
     <ion-buttons clear start>
       <button ion-button (click)="closeModal()">
-        <span ion-text color="primary">Cancel</span>
+        <span ion-text color="dark">Cancel</span>
         <!--  <ion-icon name="md-close" ></ion-icon> -->
       </button>
     </ion-buttons>
@@ -18,14 +18,15 @@
     <div>
       <ion-label class="label-product" stacked>Produto</ion-label>
       <ion-auto-complete type="text" name="produto" [(ngModel)]="model.nome" [dataProvider]="completeService"
-        formControlName="products" [options]="{ autocomplete  : 'on' , placeholder : 'Digite o Produto'}"></ion-auto-complete>
+        formControlName="products" [options]="{ autocomplete  : 'on' , placeholder : 'Digite o Produto'}">
+      </ion-auto-complete>
     </div>
     <hr>
 
-    <ion-item>
+    <ion-item no-lines>
       <ion-label stacked>Quantidade</ion-label>
-      <ion-input type="number" min="1" pattern="[0-9]*" maxlength="10" name="qtd" [(ngModel)]="model.qtd" placeholder="Digite a quantidade"
-        formControlName="qtd"></ion-input>
+      <ion-input type="number" min="1" pattern="[0-9]*" maxlength="10" name="qtd" [(ngModel)]="model.qtd"
+        placeholder="Digite a quantidade" formControlName="qtd"></ion-input>
     </ion-item>
 
     <!--  <ion-item>
@@ -37,7 +38,7 @@
         </ion-select>
       </ion-item> -->
 
-    <ion-item>
+    <ion-item no-lines>
       <ion-label stacked>Und. Medida</ion-label>
       <ion-select name="unidade" [(ngModel)]="model.unidade" placeholder="Escolha a Unidade" formControlName="und">
         <ion-option *ngFor="let item of arrUnidade" value="{{ item.und }}"> {{
@@ -46,7 +47,8 @@
       </ion-select>
     </ion-item>
 
-    <button type="submit" ion-button block (click)="save()" [disabled]="myForm.invalid">Salvar</button>
+    <button ion-button round class="save-button" color="secondary" type="submit" block (click)="save()"
+      [disabled]="myForm.invalid">Salvar</button>
 
   </form>
 </ion-content>

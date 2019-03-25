@@ -1,28 +1,48 @@
 page-modal-product {
-  $fontcolor:map-get($colors, shades );
-  .label-product{
-    padding-left: 6%;
-  }
+  $fontcolor-gray: map-get($colors, shades);
 
   .searchbar-input {
     font-size: 1.7rem !important;
-    color:$fontcolor !important;
+    color: $fontcolor-gray !important;
 
-}
-.searchbar {
-  background: #FFF !important;
-  border-radius: 10px !important;
-  height: 40px !important;
-  //max-width: 3px;
-  border: 0px solid transparent !important;
-  color:$fontcolor;
-}
+  }
 
-ion-label{
-  color: map-get($colors, primary);
-}
+  .title {
+    color: $fontcolor-gray !important;
+  }
 
-/* form{
+  .searchbar {
+    background: #FFF !important;
+    border-radius: 10px !important;
+    height: 40px !important;
+    //max-width: 3px;
+    border: 0px solid transparent !important;
+    color: $fontcolor-gray;
+  }
+
+  ion-item {
+    margin-bottom: 20px !important;
+    background: #FFF !important;
+    border-radius: 10px !important;
+
+    ion-input {
+      height: 40px !important;
+      color: $fontcolor-gray
+    }
+
+    ion-select {
+      color: $fontcolor-gray
+    }
+
+
+    //max-width: 3px;
+    border: 0px solid transparent !important;
+    color: $fontcolor-gray;
+  }
+
+
+
+  /* form{
   ion-input{
     color:$fontcolor;
   }
@@ -31,29 +51,56 @@ ion-label{
   }
 } */
 
-.Estoque-Background{
-
-  .scroll-content{
-    padding: 0px;
-    background-image: map-get($backgroundimg , stock);
-    //background-image: map-get($backgroundimg , stock);
-
-    background-size: cover;
+  .save-button {
+    display: flex;
+    margin-top: 25px;
   }
 
-}
 
-.Pedido-Background{
+  .Estoque-Background {
+    $font-color-stock: map-get($colors, primary);
 
-  .scroll-content{
-    padding: 0px;
-    background-image: map-get($backgroundimg , request);
-    //background-image: map-get($backgroundimg , stock);
+    .scroll-content {
+      padding: 0px;
+      background-image: map-get($backgroundimg, stock);
 
-    background-size: cover;
+      ion-label {
+        color: $font-color-stock
+      }
+
+      .save-button {
+        background-color: $font-color-stock
+      }
+
+      //background-image: map-get($backgroundimg , stock);
+
+      background-size: cover;
+    }
+
   }
 
-}
+  .Pedido-Background {
+    $font-color-request: map-get($colors, indigo);
+
+    .scroll-content {
+      padding: 0px;
+      background-image: map-get($backgroundimg, request);
+
+      //background-image: map-get($backgroundimg , stock);
+      ion-label {
+        color: $font-color-request
+      }
+
+      .save-button {
+        background-color: $font-color-request
+      }
+
+      background-size: cover;
+    }
+
+  }
+
+
 
 
 

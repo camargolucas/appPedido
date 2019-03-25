@@ -28,11 +28,9 @@ export class ProductProvider extends ApiData {
         .subscribe(
           res => {
             resolve(res);
-
           },
           err => {
             reject(err);
-
           }
         );
     });
@@ -55,7 +53,7 @@ export class ProductProvider extends ApiData {
         .subscribe(
           res => {
             //resolve(res.json());
-            resolve(res)
+            resolve(res);
           },
           err => {
             reject(err);
@@ -68,13 +66,14 @@ export class ProductProvider extends ApiData {
   // ## Resgato todos os produtos da tabela de Produtos
   getAllProducts() {
     return new Promise((resolve, reject) => {
-      this.http.get(this.API_URL + "products/getAll").subscribe(ret => {
-        resolve(ret.json());
-      });
+      this.http.get(this.API_URL + "products/getAll").subscribe(
+        ret => {
+          resolve(ret.json());
+        },
+        error => {
+          reject(error.json());
+        }
+      );
     });
   }
-
-
-
-
 }

@@ -33,32 +33,31 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  shades:     #595959,
-  indigo:     #4B0082
-);
+$colors: (primary: #629afa,
+secondary: #32db64,
+danger: #f53d3d,
+light: #f7f7f7,
+dark: #222,
+shades: #595959,
+indigo: #7f40ac,
+lightIndigo: #ebe0f3,
+lightPrimary: #e3ebf8);
 
 // ## Padrões de imagens de fundo
-$backgroundimg:(
- stock:       url('../assets/imgs/stock.jpg'), //linear-gradient(to bottom,#f1f5f7,#d9e4eb, #89a3d1) !important,
- request:     url('../assets/imgs/request.jpg'), //linear-gradient(to bottom,#f3eff5,#e8dfec,  #bb99ca) !important
- default:     url('../assets/imgs/default.jpg')
-);
+$backgroundimg: (stock: url('../assets/imgs/stock.jpg'), //linear-gradient(to bottom,#f1f5f7,#d9e4eb, #89a3d1) !important,
+request: url('../assets/imgs/request.jpg'), //linear-gradient(to bottom,#f3eff5,#e8dfec,  #bb99ca) !important
+default: url('../assets/imgs/default.jpg'));
 
 // ## Setada as cores das abas
 .tabbar {
-	a.tab-button[aria-selected=true]:nth-of-type(2) {
-    color: color($colors,indigo);
 
-		.tab-button-icon {
-			color: color($colors,indigo);
+  a.tab-button[aria-selected=true]:nth-of-type(2) {
+    color: color($colors, indigo);
+
+    .tab-button-icon {
+      color: color($colors, indigo);
     }
-	}
+  }
 }
 
 

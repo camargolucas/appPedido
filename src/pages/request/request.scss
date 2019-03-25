@@ -2,7 +2,8 @@ page-request {
 
   .title {
     text-align: center;
-    font-size: 30px;
+    font-size: 16px;
+    color: map-get($colors, indigo)
   }
 
   h4 {
@@ -69,7 +70,7 @@ page-request {
     background-size: cover;
   }
 
-  .icon-cfg{
+  .icon-cfg {
     font-size: 25px;
   }
 }

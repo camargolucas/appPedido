@@ -131,7 +131,6 @@ export class ProductStorageProvider {
     return this.storage.set(key, products);
   }
 
-
   // ## Função que verificar se há produtos armazenados no storage do Usuário
   public verifyProductsStorage() {
     return this.get("ProductsDb").then(ret => {

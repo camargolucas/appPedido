@@ -5,11 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-toolbar>
-    <ion-title class="title"> Estoque </ion-title>
-    <button class="icon-cfg" ion-button menuToggle color="primary">
+  <ion-toolbar color="lightPrimary">
+    <ion-title>
+      <p class="title"> Estoque </p>
+    </ion-title>
+    <!--   <button class="icon-cfg" ion-button menuToggle color="primary">
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </button> -->
 
     <ion-buttons *ngIf="isAvaible() " end>
       <button class="icon-cfg" ion-button color="primary" (click)="addProduct()">
@@ -52,7 +54,7 @@
   <div *ngFor="let item of arrProdutos " class="card">
     <ion-list>
       <ion-item-sliding>
-        <ion-item class="item">
+        <ion-item color="light" class="item">
           <ion-grid>
             <div>
               <ion-row>
@@ -79,7 +81,7 @@
           </button>
         </ion-item-options>
         <ion-item-options *ngIf="isAvaible()" side="left" (ionSwipe)="editProduct(item)">
-          <button ion-button (click)="editProduct(item)">
+          <button ion-button expandable (click)="editProduct(item)">
             <ion-icon name="create"></ion-icon>Editar
           </button>
 

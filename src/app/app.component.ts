@@ -1,7 +1,7 @@
 import { Utilitarios } from "./../utilitarios/utilitarios";
 import { ProductStorageProvider } from "./../providers/product-storage/product-storage";
 import { Component, ViewChild } from "@angular/core";
-import { Platform, NavController, Nav } from "ionic-angular";
+import { Platform, NavController, Nav, MenuController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 
@@ -28,8 +28,10 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     public product: ProductStorageProvider,
-    public tabPage: TabStateProvider
+    public tabPage: TabStateProvider,
+    public menu: MenuController
   ) {
+    this.menu.enable(false);
     // ###########################################################################
     // ## Todo novo menu que for adicionado deve ser colocado nesse array ###########
     // ## utilizado no método openPage para nevageção no menu lateral ###############
@@ -47,7 +49,7 @@ export class MyApp {
       product.insertDatabaseProducts();
     });
 
-    this.network.checkNetwork()
+    this.network.checkNetwork();
 
     this.checkUserTokenExists();
   }

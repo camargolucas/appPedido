@@ -11,7 +11,7 @@
           <ion-icon name="md-contact"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="text" formControlName="usuario" #usuario> </ion-input>
+        <ion-input type="text" formControlName="usuario" #usuario placeholder="Digite seu email"> </ion-input>
         <hr>
       </ion-item>
       <ion-item class="ion-item" no-lines>
@@ -19,15 +19,16 @@
           <ion-icon name="md-lock" left></ion-icon>
           Senha
         </ion-label>
-        <ion-input type="password" formControlName="senha" #senha> </ion-input>
+        <ion-input type="password" formControlName="senha" #senha placeholder="Digite sua senha "> </ion-input>
         <hr>
       </ion-item>
-      <div padding>
+      <div class="btn-cfg" padding>
         <button ion-button block (click)="login()" round [disabled]="formLogin.invalid">Entrar</button>
       </div>
-     <!--  <div padding>
+      <!--  <div padding>
         <button ion-button (click)="openSignUp()" round clear>Cadastre-se</button>
       </div> -->
     </form>
   </div>
+  
 </ion-content>

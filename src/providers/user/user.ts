@@ -56,6 +56,7 @@ export class UserProvider extends ApiData {
         .get(this.API_URL + "users/get/" + encodeURIComponent(usuarioData))
         .subscribe(
           result => {
+            console.log(result);
             resolve(result.json());
           },
           error => {
@@ -123,7 +124,7 @@ export class UserProvider extends ApiData {
     let arrUser = {
       login: login,
       password: password,
-      UUID: 'fef47c060ef21cf6'
+      UUID: "UUID"
     };
 
     // ## função que resgata os dados do usuario no banco
@@ -137,6 +138,7 @@ export class UserProvider extends ApiData {
 
   // ##  Método que popula a model Usuario e insere no cache
   populateUserModel(ret) {
+    console.log(ret);
     // ## populo a model com os dados do Usuário
     if (ret != "") {
       this.usuario.nomeUsuario = ret[0]["nomeUsuario"];

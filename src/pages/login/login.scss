@@ -16,17 +16,19 @@ page-login {
   }
 
   h1 {
-    color: map-get($colors , primary );
+    color: map-get($colors, primary);
   }
-  ion-label{
+
+  ion-label {
     font-size: 16px !important;
   }
 
   ion-input {
     font-weight: lighter;
-    color:black;
+    color: black;
 
   }
+
   .ion-item {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -38,10 +40,13 @@ page-login {
     height: 69px;
   }
 
-  .div-components{
+  .div-components {
     padding-top: 40%;
   }
+
+
+  .btn-cfg {
+    margin-top: 40px !important;
+  }
+
 }
-
-
-

@@ -1,47 +1,99 @@
 page-edit-product {
+  $fontcolor: map-get($colors, shades);
 
-  .label-product{
-    padding-left: 6%;
+  .title {
+    color: $fontcolor;
   }
 
   .searchbar-input {
     font-size: 1.7rem !important;
-}
-.searchbar {
-  background: #FFF !important;
-  border-radius: 10px !important;
-  height: 40px !important;
-  //max-width: 3px;
-  border: 0px solid transparent !important;
-}
-/* ion-auto-complete {
+    color: $fontcolor !important;
+  }
+
+  .searchbar {
+    background: #FFF !important;
+    border-radius: 10px !important;
+    height: 40px !important;
+    //max-width: 3px;
+    border: 0px solid transparent !important;
+    color: $fontcolor;
+  }
+
+  /* ion-auto-complete {
   width: 200vw;
 }
 
 */
 
-.Estoque-Background{
+  ion-item {
+    margin-bottom: 20px !important;
+    background: #FFF !important;
+    border-radius: 10px !important;
 
-  .scroll-content{
-    padding: 0px;
-    background-image: map-get($backgroundimg , stock);
-    //background-image: map-get($backgroundimg , stock);
+    ion-input {
+      height: 40px !important;
+      color: $fontcolor
+    }
 
-    background-size: cover;
+    ion-select {
+      color: $fontcolor
+    }
+
+    //max-width: 3px;
+    border: 0px solid transparent !important;
+    color: $fontcolor;
   }
 
-}
 
-.Pedido-Background{
 
-  .scroll-content{
-    padding: 0px;
-    background-image: map-get($backgroundimg , request);
-    //background-image: map-get($backgroundimg , stock);
-
-    background-size: cover;
+  .save-button {
+    display: flex;
+    margin-top: 25px;
   }
 
-}
+
+
+  .Estoque-Background {
+    $font-color-stock: map-get($colors, primary);
+
+    .scroll-content {
+      padding: 0px;
+      background-image: map-get($backgroundimg, stock);
+
+      ion-label {
+        color: $font-color-stock
+      }
+
+      .save-button {
+        background-color: $font-color-stock
+      }
+
+      //background-image: map-get($backgroundimg , stock);
+
+      background-size: cover;
+    }
+
+  }
+
+  .Pedido-Background {
+    $font-color-request: map-get($colors, indigo);
+
+    .scroll-content {
+      padding: 0px;
+      background-image: map-get($backgroundimg, request);
+
+      //background-image: map-get($backgroundimg , stock);
+      ion-label {
+        color: $font-color-request
+      }
+
+      .save-button {
+        background-color: $font-color-request
+      }
+
+      background-size: cover;
+    }
+
+  }
 
 }
